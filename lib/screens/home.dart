@@ -1,11 +1,24 @@
 import 'package:backdrop/app_bar.dart';
 import 'package:backdrop/button.dart';
 import 'package:backdrop/scaffold.dart';
-import 'package:carousel_pro/carousel_pro.dart';
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+//import 'package:carousel_pro/carousel_pro.dart';
 //import 'package:backdrop/sub_header.dart';
 import 'package:flutter/material.dart';
+
 import 'package:puntotienda/consts/colors.dart';
 class HomeScreen extends StatelessWidget{
+ final List<String>imageList=[
+   "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+   "https://images.pexels.com/photos/3568520/pexels-photo-3568520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+   "https://images.pexels.com/photos/163140/technology-computer-motherboard-chips-163140.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+   "https://images.pexels.com/photos/1714340/pexels-photo-1714340.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+
+ ];
+
+
+
     @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +34,8 @@ class HomeScreen extends StatelessWidget{
             decoration: BoxDecoration( gradient:  LinearGradient(colors:[ColorsConst.starterColor,ColorsConst.endColor])),
           ),
           actions: <Widget>[
-          IconButton( iconSize:15,
+          IconButton( 
+          iconSize:15,
           padding: const EdgeInsets.all(10),
           icon: CircleAvatar(radius: 15,
           backgroundColor: Colors.white,
@@ -36,29 +50,33 @@ class HomeScreen extends StatelessWidget{
         ),
 
         frontLayer: SizedBox(
-          height: 150.0,
-          width: 300.0,
-          child: Carousel(
-            boxFit: BoxFit.cover,
-            autoplay: false,
-            animationCurve: Curves.fastOutSlowIn,
-            animationDuration: Duration(milliseconds: 1000),
-            dotSize: 6.0,
-            dotIncreasedColor: Color(0xFFFF335C),
-            dotBgColor: Colors.transparent,
-            dotPosition: DotPosition.topRight,
-            dotVerticalPadding: 10.0,
-            showIndicator: true,
-            indicatorBgPadding: 7.0,
-            images: [
-              NetworkImage('https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg'),
-              NetworkImage('https://cdn-images-1.medium.com/max/2000/1*wnIEgP1gNMrK5gZU7QS0-A.jpeg'),
-              ExactAssetImage("assets/images/LaunchImage.jpg"),
-            ],
+          height: 190.0,
+          width: double.infinity,
+          child:  CarouselSlider(
+          options: CarouselOptions(
+            autoPlay: true,
+            autoPlayAnimationDuration: Duration(milliseconds: 1000),
+            aspectRatio: 2.0,
+            enlargeCenterPage: true,
+            enlargeStrategy: CenterPageEnlargeStrategy.height,
           ),
+          items: imageList.map((e) => ClipRRect(
+            borderRadius:BorderRadius.circular(8),
+            child: Stack(
+              fit: StackFit.expand,
+              children:<Widget> [
+                Image.network(e,width: 1050,
+                height: 350,
+                fit: BoxFit.cover,
+                )
+              ],
+            ),
+          )).toList(),
+        ),
+      ),
       ),
 
-      ),),
+      ),
     );
   }
 

@@ -36,6 +36,8 @@ dependencies:
   badges: ^2.0.1
   backdrop: ^0.6.2
   carousel_pro: ^1.0.0
+  carousel_slider: ^4.0.0
+  
 
 dev_dependencies:
   flutter_test:
