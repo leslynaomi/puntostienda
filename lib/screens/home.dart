@@ -49,31 +49,55 @@ class HomeScreen extends StatelessWidget{
           child: Text("Back Layer"),
         ),
 
-        frontLayer: SizedBox(
-          height: 190.0,
-          width: double.infinity,
-          child:  CarouselSlider(
-          options: CarouselOptions(
-            autoPlay: true,
-            autoPlayAnimationDuration: Duration(milliseconds: 1000),
-            aspectRatio: 2.0,
-            enlargeCenterPage: true,
-            enlargeStrategy: CenterPageEnlargeStrategy.height,
-          ),
-          items: imageList.map((e) => ClipRRect(
-            borderRadius:BorderRadius.circular(8),
-            child: Stack(
-              fit: StackFit.expand,
-              children:<Widget> [
-                Image.network(e,width: 1050,
-                height: 350,
-                fit: BoxFit.cover,
-                )
-              ],
-            ),
-          )).toList(),
+        frontLayer:
+        
+        
+         Column(
+           children: [
+             SizedBox(
+              height: 190.0,
+              width: double.infinity,
+              child:  CarouselSlider(
+              
+              options: CarouselOptions(
+                
+                autoPlay: true,
+                autoPlayAnimationDuration: Duration(milliseconds: 1000),
+                aspectRatio: 2.0,
+                enlargeCenterPage: true,
+                enableInfiniteScroll: false,
+               // enlargeStrategy: CenterPageEnlargeStrategy.height,
+              ),
+              items: imageList.map((e) => ClipRRect(
+                borderRadius:BorderRadius.circular(8),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children:<Widget> [
+                    Image.network(e,width: 1050,
+                    height: 350,
+                    fit: BoxFit.cover,
+                    )
+                  ],
+                ),
+              )).toList(),
         ),
       ),
+   Padding(
+     padding: const EdgeInsets.all(8.0),
+     child: Row(children: [
+       Text('Marcas Populares', style:TextStyle(fontWeight: FontWeight.w800, fontSize: 20),),
+       Spacer(),
+  ElevatedButton(onPressed: (){}, child:Text('Ver todo...', style:TextStyle(fontWeight: FontWeight.w800, fontSize: 15, color: Colors.red) ,),)
+     ],),
+   )
+
+
+
+           ],
+         ),
+
+
+
       ),
 
       ),
