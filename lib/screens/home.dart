@@ -9,7 +9,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:puntotienda/consts/colors.dart';
-import 'package:puntotienda/widget/category.dart';
+//import 'package:puntotienda/widget/category.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<String> imageList = [
@@ -99,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Marcas Populares',
+                    'Categorias',
                     style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                   ),
                 ),
