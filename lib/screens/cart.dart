@@ -15,7 +15,9 @@ class CartScreen extends StatelessWidget {
               title: Text('Recuento de articulos del carrito'),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    print('Soy el botón de eliminar todos los productos');
+                  },
                   icon: Icon(Icons.delete),
                 )
               ],
@@ -45,18 +47,17 @@ class CartScreen extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
-                 decoration: BoxDecoration(
-                   borderRadius: BorderRadius.circular(30),
-                   gradient:LinearGradient(colors:[
-                          ColorsConst.gradiendLStart,
-                          ColorsConst.gradiendLEnd,
-                         ],
-                         stops:[0.0,0.7  ]
-                         
-                         ),
-                          ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  gradient: LinearGradient(colors: [
+                    ColorsConst.gradiendLStart,
+                    ColorsConst.gradiendLEnd,
+                  ], stops: [
+                    0.0,
+                    0.7
+                  ]),
+                ),
                 child: Material(
-                  
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(30),

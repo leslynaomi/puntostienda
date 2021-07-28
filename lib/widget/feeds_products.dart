@@ -25,7 +25,6 @@ class _FeedProductsState extends State<FeedProducts> {
               children: [
                 Stack(
                   children: [
-                    
                     ClipRRect(
                       borderRadius: BorderRadius.circular(2),
                       child: Container(
@@ -42,15 +41,16 @@ class _FeedProductsState extends State<FeedProducts> {
                     ),
                     Positioned(
                       //bottom: 0,
-                     // right: 5,
-                        child: Badge(
+                      // right: 5,
+                      child: Badge(
                         alignment: Alignment.center,
                         toAnimate: true,
                         shape: BadgeShape.square,
                         badgeColor: Colors.pink,
-                        borderRadius: BorderRadius.only(bottomRight: Radius.circular(8)),
-                        badgeContent:
-                            Text('Nuevo', style: TextStyle(color: Colors.white)),
+                        borderRadius:
+                            BorderRadius.only(bottomRight: Radius.circular(8)),
+                        badgeContent: Text('Nuevo',
+                            style: TextStyle(color: Colors.white)),
                       ),
                     ),
                   ],

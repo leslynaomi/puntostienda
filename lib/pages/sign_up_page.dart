@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:puntotienda/database/conexion_firestore.dart';
 import 'package:puntotienda/widget/back_button.dart';
 import 'package:puntotienda/widget/header_text.dart';
 
 class SignUpPage extends StatelessWidget {
-
   final nombreController = TextEditingController();
   final apellidoController = TextEditingController();
   final telefonoController = TextEditingController();
@@ -29,12 +29,13 @@ class SignUpPage extends StatelessWidget {
               children: [
                 headerText('Crear una cuenta', Theme.of(context).primaryColor,
                     FontWeight.bold, 25.0),
-                _username(context,nombreController),
-                _userapellido(context,apellidoController),
-                _phoneInput(context,telefonoController),
-                _emailInput(context,emailController),
-                _passwordInput(context,passwdController),
-                _signUpButton(context,nombreController,apellidoController,telefonoController,emailController,passwdController)
+                _username(context, nombreController),
+                _userapellido(context, apellidoController),
+                _phoneInput(context, telefonoController),
+                _emailInput(context, emailController),
+                _passwordInput(context, passwdController),
+                _signUpButton(context, nombreController, apellidoController,
+                    telefonoController, emailController, passwdController)
               ],
             ),
           ),
@@ -42,7 +43,7 @@ class SignUpPage extends StatelessWidget {
   }
 }
 
-Widget _username(BuildContext context,TextEditingController nombreController) {  
+Widget _username(BuildContext context, TextEditingController nombreController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -59,7 +60,8 @@ Widget _username(BuildContext context,TextEditingController nombreController) {
   );
 }
 
-Widget _userapellido(BuildContext context,TextEditingController apellidoController) {
+Widget _userapellido(
+    BuildContext context, TextEditingController apellidoController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -76,7 +78,8 @@ Widget _userapellido(BuildContext context,TextEditingController apellidoControll
   );
 }
 
-Widget _emailInput(BuildContext context,TextEditingController emailController) {
+Widget _emailInput(
+    BuildContext context, TextEditingController emailController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -93,7 +96,8 @@ Widget _emailInput(BuildContext context,TextEditingController emailController) {
   );
 }
 
-Widget _phoneInput(BuildContext context,TextEditingController telefonoController) {
+Widget _phoneInput(
+    BuildContext context, TextEditingController telefonoController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -110,7 +114,8 @@ Widget _phoneInput(BuildContext context,TextEditingController telefonoController
   );
 }
 
-Widget _passwordInput(BuildContext context,TextEditingController passwdController) {
+Widget _passwordInput(
+    BuildContext context, TextEditingController passwdController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -128,22 +133,40 @@ Widget _passwordInput(BuildContext context,TextEditingController passwdControlle
   );
 }
 
-Widget _signUpButton(BuildContext context,TextEditingController nombreController,TextEditingController apellidoController,TextEditingController telefonoController,TextEditingController emailController,TextEditingController passwdController) {
+Widget _signUpButton(
+    BuildContext context,
+    TextEditingController nombreController,
+    TextEditingController apellidoController,
+    TextEditingController telefonoController,
+    TextEditingController emailController,
+    TextEditingController passwdController) {
+
   return Container(
     width: 350.0,
     height: 45.0,
     margin: EdgeInsets.only(top: 30.0),
     child: ElevatedButton(
         onPressed: () {
-          FirebaseFirestore.instance.collection('producto').add({
-            "nombre" : nombreController.text,
-            "apellido" : apellidoController.text,
-            "teléfono" : telefonoController.text,
-            "email" : emailController.text,
-            "contraseña" : passwdController.text,
-            }
-          );
-        },        
+          Map<String, dynamic> registros = {
+            "nombre": nombreController.text,
+            "apellido": apellidoController.text,
+            "teléfono": telefonoController.text,
+            "email": emailController.text,
+            "contraseña": passwdController.text
+          };
+
+          insertarRegistros("usuario", registros);
+
+          //Anterior inserción
+          // FirebaseFirestore.instance.collection('producto').add({
+          //   "nombre" : nombreController.text,
+          //   "apellido" : apellidoController.text,
+          //   "teléfono" : telefonoController.text,
+          //   "email" : emailController.text,
+          //   "contraseña" : passwdController.text,
+          //   }
+          // );
+        },
         child: Text('Crear cuenta',
             style: TextStyle(color: Colors.white, fontSize: 17.0))),
   );

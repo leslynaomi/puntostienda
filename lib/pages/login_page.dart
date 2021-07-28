@@ -4,8 +4,6 @@ import 'package:puntotienda/widget/back_button.dart';
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setSystemUIOverlayStyle(
-        // SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.white));
 
     return Scaffold(
       body: Column(
