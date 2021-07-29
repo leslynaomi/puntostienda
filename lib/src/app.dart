@@ -1,5 +1,8 @@
+
 import 'package:flutter/material.dart';
+
 import 'package:puntotienda/routes.dart';
+
 
 //import '../widget/bottom_bar.dart';
 
@@ -9,14 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-        routes: routes,
+      routes: routes,
       initialRoute: 'welcome',
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-    
     );
   }
 }

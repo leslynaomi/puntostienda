@@ -1,9 +1,16 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:puntotienda/consts/back_button.dart';
 import 'package:puntotienda/consts/header_text.dart';
+import 'package:puntotienda/pages/crud.dart';
+//import 'package:puntotienda/pages/crud.dart';
 
 class SignUpPage extends StatelessWidget {
+  final nombreController = TextEditingController();
+  final emailController = TextEditingController();
+  final usuarioController = TextEditingController();
+  final telefonoController = TextEditingController();
+  final passwdController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,12 +28,13 @@ class SignUpPage extends StatelessWidget {
               children: [
                 headerText('Crear una cuenta', Theme.of(context).primaryColor,
                     FontWeight.bold, 25.0),
-                _username(context),
-                _userapellido(context),
-                _phoneInput(context),
-                _emailInput(context),
-                _passwordInput(context),
-                _signUpButton(context)
+                _username(context, nombreController),
+                _email(context, emailController),
+                _telf(context, telefonoController),
+                _usuario(context, usuarioController),
+                _passwordInput(context, passwdController),
+                _signUpButton(context, nombreController, emailController,
+                    telefonoController, usuarioController, passwdController)
               ],
             ),
           ),
@@ -34,7 +42,7 @@ class SignUpPage extends StatelessWidget {
   }
 }
 
-Widget _username(BuildContext context) {
+Widget _username(BuildContext context, TextEditingController uController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -42,6 +50,7 @@ Widget _username(BuildContext context) {
         color: Color.fromRGBO(142, 142, 147, 1.2),
         borderRadius: BorderRadius.circular(40.0)),
     child: TextField(
+      controller: uController,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
           hintText: 'nombres',
@@ -50,7 +59,7 @@ Widget _username(BuildContext context) {
   );
 }
 
-Widget _userapellido(BuildContext context) {
+Widget _email(BuildContext context, TextEditingController uController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -58,7 +67,8 @@ Widget _userapellido(BuildContext context) {
         color: Color.fromRGBO(142, 142, 147, 1.2),
         borderRadius: BorderRadius.circular(40.0)),
     child: TextField(
-      keyboardType: TextInputType.text,
+      controller: uController,
+      keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
           hintText: 'email',
           border: OutlineInputBorder(borderSide: BorderSide.none)),
@@ -66,7 +76,7 @@ Widget _userapellido(BuildContext context) {
   );
 }
 
-Widget _emailInput(BuildContext context) {
+Widget _telf(BuildContext context, TextEditingController uController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -74,7 +84,8 @@ Widget _emailInput(BuildContext context) {
         color: Color.fromRGBO(142, 142, 147, 1.2),
         borderRadius: BorderRadius.circular(40.0)),
     child: TextField(
-      keyboardType: TextInputType.emailAddress,
+      controller: uController,
+      keyboardType: TextInputType.phone,
       decoration: InputDecoration(
           hintText: 'telf',
           border: OutlineInputBorder(borderSide: BorderSide.none)),
@@ -82,7 +93,7 @@ Widget _emailInput(BuildContext context) {
   );
 }
 
-Widget _phoneInput(BuildContext context) {
+Widget _usuario(BuildContext context, TextEditingController uController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -90,7 +101,8 @@ Widget _phoneInput(BuildContext context) {
         color: Color.fromRGBO(142, 142, 147, 1.2),
         borderRadius: BorderRadius.circular(40.0)),
     child: TextField(
-      keyboardType: TextInputType.phone,
+      controller: uController,
+      keyboardType: TextInputType.text,
       decoration: InputDecoration(
           hintText: 'usuario',
           border: OutlineInputBorder(borderSide: BorderSide.none)),
@@ -98,7 +110,7 @@ Widget _phoneInput(BuildContext context) {
   );
 }
 
-Widget _passwordInput(BuildContext context) {
+Widget _passwordInput(BuildContext context, TextEditingController uController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -106,6 +118,7 @@ Widget _passwordInput(BuildContext context) {
         color: Color.fromRGBO(142, 142, 147, 1.2),
         borderRadius: BorderRadius.circular(40.0)),
     child: TextField(
+      controller: uController,
       keyboardType: TextInputType.visiblePassword,
       obscureText: true,
       decoration: InputDecoration(
@@ -115,15 +128,33 @@ Widget _passwordInput(BuildContext context) {
   );
 }
 
-Widget _signUpButton(BuildContext context) {
+Widget _signUpButton(
+    BuildContext context,
+    TextEditingController nombre,
+    TextEditingController email,
+    TextEditingController telefono,
+    TextEditingController usuario,
+    TextEditingController passw) {
   return Container(
     width: 350.0,
     height: 45.0,
     margin: EdgeInsets.only(top: 30.0),
     child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          int ig= insertar(nombre, email, telefono, usuario, passw);
+
+          if(ig == 1){
+             Navigator.of(context).pushNamed('login');
+          }
+
+          else{
+            Navigator.of(context).pushNamed('sign-up');
+          }
+         
+        },
         //shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         // color: Theme.of(context).accentColor,
+
         child: Text('crear',
             style: TextStyle(color: Colors.white, fontSize: 17.0))),
   );

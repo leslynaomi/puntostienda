@@ -1,9 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:puntotienda/consts/Colrs.dart';
 import 'package:puntotienda/consts/back_button.dart';
 
-class LoginPage extends StatelessWidget {
+import 'package:provider/provider.dart';
+import 'package:puntotienda/src/repository/auth_repository.dart';
+
+class LoginPage extends StatefulWidget {
+  LoginPage({Key? key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -19,7 +32,7 @@ class LoginPage extends StatelessWidget {
                 height: 250,
                 fit: BoxFit.cover,
                 image: NetworkImage(
-                    'https://images.unsplash.com/photo-1565474832112-7d5826f8a8c6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80'),
+                    'https://images.pexels.com/photos/5217882/pexels-photo-5217882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
               ),
               Container(
                 margin: EdgeInsets.only(top: 50.0),
@@ -52,9 +65,10 @@ class LoginPage extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             fontSize: 15.0,
                           )),
-                      _emailInput(),
-                      _passwordInput(),
-                      _buttonLogin(context),
+                      _emailInput(emailController),
+                      _passwordInput(passwordController),
+                      _buttonLogin(
+                          context, emailController, passwordController),
                       Container(
                         margin: EdgeInsets.only(top: 20.0),
                         child: GestureDetector(
@@ -105,30 +119,32 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-Widget _emailInput() {
+Widget _emailInput(TextEditingController controller) {
   return Container(
     margin: EdgeInsets.only(top: 20.0),
     padding: EdgeInsets.only(left: 10),
     decoration: BoxDecoration(
         color: Color.fromRGBO(142, 142, 147, 1.2),
         borderRadius: BorderRadius.circular(30.0)),
-    child: TextField(
-      keyboardType: TextInputType.emailAddress,
+    child: TextFormField(
+      controller: controller,
+      keyboardType: TextInputType.text,
       decoration: InputDecoration(
-          hintText: 'Email',
+          hintText: 'User',
           border: OutlineInputBorder(borderSide: BorderSide.none)),
     ),
   );
 }
 
-Widget _passwordInput() {
+Widget _passwordInput(TextEditingController controller) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 10),
     decoration: BoxDecoration(
         color: Color.fromRGBO(142, 142, 147, 1.2),
         borderRadius: BorderRadius.circular(30.0)),
-    child: TextField(
+    child: TextFormField(
+      controller: controller,
       obscureText: true,
       decoration: InputDecoration(
           hintText: 'password',
@@ -137,17 +153,21 @@ Widget _passwordInput() {
   );
 }
 
-Widget _buttonLogin(BuildContext context) {
+Widget _buttonLogin(BuildContext context, TextEditingController controller,
+    TextEditingController controllerp) {
   return Container(
     width: 350.0,
     height: 45.0,
     margin: EdgeInsets.only(top: 10.0),
     child: ElevatedButton(
         onPressed: () {
+            
+
           Navigator.of(context).pushNamed('tabs');
+          
         },
-       // shape:  RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-       // color: Theme.of(context).accentColor,
+        // shape:  RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        // color: Theme.of(context).accentColor,
         child: Text('iniciar sesion',
             style: TextStyle(color: Colors.white, fontSize: 17.0))),
   );

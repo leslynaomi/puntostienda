@@ -1,18 +1,30 @@
-import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthUser extends Equatable {
-  final String uid;
-  final String? email;
+class AuthService {
+  final FirebaseAuth _auth;
+  AuthService(this._auth);
 
-  AuthUser(this.uid, this.email);
+  Stream<User?> get authStateChanges => _auth.idTokenChanges();
 
-  @override
+  Future<String> login(String email, String password) async {
+    try {
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      return "logged In";
+    } catch (e) {
+      return"logged Out";
+    }
+  }
 
-  List<Object?> get props => [uid];
-}
+  Future<String> signUp(String email, String password) async {
+    try {
+      
+      await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      return "Signed Up";
+    } catch (e) {
+      return"logged Out";
+    }
+  }
 
-abstract class AuthRepositoryBase {
-  Stream<AuthUser?> get onAuthStateChanged;
-  Future<AuthUser> get signInAnonymously;
-  Future<void> signOut();
+
+
 }

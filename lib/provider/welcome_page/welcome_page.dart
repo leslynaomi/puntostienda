@@ -17,7 +17,7 @@ class WelcomePage extends StatelessWidget {
                 image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                        'https://previews.123rf.com/images/nicolasmenijes/nicolasmenijes1601/nicolasmenijes160100078/50761723-3d-ilustraci%C3%B3n-estetoscopio-p%C3%ADldoras-y-botiqu%C3%ADn-de-primeros-auxilios-concepto-de-la-medicina-fondo-blanco-a.jpg'))),
+                        'https://images.pexels.com/photos/6214386/pexels-photo-6214386.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'))),
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
               child: Container(
@@ -36,7 +36,7 @@ class WelcomePage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 30.0),
                 child: Text(
-                    'La medicación es solo un dispositivo que ofrecemos a nuestras administraciones y una consideración extraordinaria hacia el paciente.',
+                    'La Informacion y la libertad son indivisibles',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
