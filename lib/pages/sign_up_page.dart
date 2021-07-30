@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:puntotienda/database/conexion_firestore.dart';
 import 'package:puntotienda/widget/back_button.dart';
 import 'package:puntotienda/widget/header_text.dart';
@@ -155,7 +155,8 @@ Widget _signUpButton(
             "contraseña": passwdController.text
           };
 
-          insertarRegistros("usuario", registros);
+          insertarRegistros("usuario", registros);          
+          Navigator.pushNamed(context, "login");
 
           //Anterior inserción
           // FirebaseFirestore.instance.collection('producto').add({
