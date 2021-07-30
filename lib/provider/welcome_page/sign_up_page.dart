@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:puntotienda/consts/back_button.dart';
 import 'package:puntotienda/consts/header_text.dart';
@@ -8,7 +8,6 @@ import 'package:puntotienda/pages/crud.dart';
 class SignUpPage extends StatelessWidget {
   final nombreController = TextEditingController();
   final emailController = TextEditingController();
-  final usuarioController = TextEditingController();
   final telefonoController = TextEditingController();
   final passwdController = TextEditingController();
   @override
@@ -21,7 +20,7 @@ class SignUpPage extends StatelessWidget {
             return backbutton(context, Colors.black);
           }),
         ),
-        body: Center(
+        body: new SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.all(30),
             child: Column(
@@ -31,10 +30,10 @@ class SignUpPage extends StatelessWidget {
                 _username(context, nombreController),
                 _email(context, emailController),
                 _telf(context, telefonoController),
-                _usuario(context, usuarioController),
+             
                 _passwordInput(context, passwdController),
                 _signUpButton(context, nombreController, emailController,
-                    telefonoController, usuarioController, passwdController)
+                    telefonoController, passwdController)
               ],
             ),
           ),
@@ -93,22 +92,7 @@ Widget _telf(BuildContext context, TextEditingController uController) {
   );
 }
 
-Widget _usuario(BuildContext context, TextEditingController uController) {
-  return Container(
-    margin: EdgeInsets.only(top: 10.0),
-    padding: EdgeInsets.only(left: 15.0),
-    decoration: BoxDecoration(
-        color: Color.fromRGBO(142, 142, 147, 1.2),
-        borderRadius: BorderRadius.circular(40.0)),
-    child: TextField(
-      controller: uController,
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-          hintText: 'usuario',
-          border: OutlineInputBorder(borderSide: BorderSide.none)),
-    ),
-  );
-}
+
 
 Widget _passwordInput(BuildContext context, TextEditingController uController) {
   return Container(
@@ -133,7 +117,6 @@ Widget _signUpButton(
     TextEditingController nombre,
     TextEditingController email,
     TextEditingController telefono,
-    TextEditingController usuario,
     TextEditingController passw) {
   return Container(
     width: 350.0,
@@ -141,7 +124,7 @@ Widget _signUpButton(
     margin: EdgeInsets.only(top: 30.0),
     child: ElevatedButton(
         onPressed: () {
-          int ig= insertar(nombre, email, telefono, usuario, passw);
+          int ig= insertar(nombre, email, telefono, passw);
 
           if(ig == 1){
              Navigator.of(context).pushNamed('login');

@@ -66,11 +66,11 @@ class _UserScreen extends State<UserScreen> {
                                 ),
                               ],
                               shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image: NetworkImage(
-                                    'https://images.pexels.com/photos/5872171/pexels-photo-5872171.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'),
-                              ),
+                              //image: DecorationImage(
+                               // fit: BoxFit.fill,
+                                //image: NetworkImage(
+                          //),
+                            //  ),
                             ),
                           ),
                           SizedBox(
