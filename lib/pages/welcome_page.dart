@@ -1,6 +1,7 @@
 //import 'dart:html';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:puntotienda/widget/fondo_pantalla.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -10,22 +11,7 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
         body: Stack(
       children: [
-        Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              //El Wallpaper de fondo
-              image: NetworkImage(
-                  'https://tse4.mm.bing.net/th?id=OIP.KWC8ieJrAQ0UV6SD0Ei3NgHaO0&pid=15.1'),
-            ),
-          ),
-          //Ajustamos la opacidad del wallpaper de fondo
-          child: BackdropFilter(
-              filter: ImageFilter.blur(),
-              child: Container(
-                color: Colors.black.withOpacity(0.3),
-              )),
-        ),
+        fondopantalla(context),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

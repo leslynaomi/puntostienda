@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:puntotienda/bottom_bar.dart';
+import 'package:puntotienda/pages/admin/admin.dart';
+import 'package:puntotienda/pages/admin/admin_categoria.dart';
+import 'package:puntotienda/pages/admin/admin_productos.dart';
 import 'package:puntotienda/pages/forgot_password.dart';
 import 'package:puntotienda/pages/login_page.dart';
 import 'package:puntotienda/pages/sign_up_page.dart';
@@ -24,6 +27,10 @@ class MyApp extends StatelessWidget {
           'forgot-password': (BuildContext context) => ForgotPassword(),  
           'sign-up' : (BuildContext context) => SignUpPage(),
           'BottomBarScreen' : (BuildContext context) => BottomBarScreen(),
+          
+          'AreaAdmin' : (BuildContext context) => Administracion(),
+          'Productos' : (BuildContext context) => Productos(),
+          'Categoria' : (BuildContext context) => Categoria(),
       },
       initialRoute: 'welcome',
       title: 'Flutter Demo',

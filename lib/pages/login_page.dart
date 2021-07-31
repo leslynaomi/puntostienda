@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:puntotienda/methods/aviso.dart';
 import 'package:puntotienda/widget/back_button.dart';
 
 class LoginPage extends StatelessWidget {
@@ -148,24 +149,17 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
     margin: EdgeInsets.only(top: 10.0),
     child: ElevatedButton(
         onPressed: () async {
-          var result = validarUser(emailController, passwordController);
-          if (await result) {
-            Navigator.of(context).pushNamed('BottomBarScreen');
+          if (await validarUser(emailController, passwordController)) {
+            if (await esAdmin(emailController)) {
+              Navigator.of(context).pushNamed('AreaAdmin');
+            } else {
+              Navigator.of(context).pushNamed('BottomBarScreen');
+            }
           } else {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) => CupertinoAlertDialog(
-                      title: Text("Usuario no registrado"),
-                      actions: <Widget>[
-                        CupertinoDialogAction(
-                          isDefaultAction: true,
-                          child: Text("Volver a intentar"),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    ));
+            await mostrarAviso(
+                context,
+                "No se encuentra el usuario en los registros",
+                "Intentar de nuevo");
           }
         },
         child: Text('iniciar sesion',
@@ -180,94 +174,28 @@ Future<bool> validarUser(TextEditingController emailController,
 
   await db.then((QuerySnapshot querySnapshot) {
     querySnapshot.docs.forEach((doc) {
-      print(doc["email"]);
-      print(doc["contraseña"]);
-
-      if (doc["email"] == emailController.text &&
-          doc["contraseña"] == passwordController.text) {
-        resultado = true;
-        print("funcionó la consulta men");
-        print(resultado);
+      if (emailController.text != "" && passwordController.text != "") {
+        if (doc["email"] == emailController.text &&
+            doc["contraseña"] == passwordController.text) {
+          resultado = true;
+        }
+      } else {
+        print("Ingrese un usuario válido");
       }
     });
   });
   return resultado;
 }
 
-//Recorriendo y buscando en toda una colección con QuerySnapShot
- //Lo mismo pero con "For in"
-  // await db.then((QuerySnapshot querySnapshot){
-  //   for (var doc in querySnapshot.docs) {
-  //     print(doc["email"]);
-  //     print(doc["contraseña"]);
+Future<bool> esAdmin(TextEditingController emailController) async {
+  bool resultado = false;
+  var db = FirebaseFirestore.instance.collection("usuario").get();
 
-  //     if (doc["email"] == emailController.text &&
-  //         doc["contraseña"] == passwordController.text) {
-  //       resultado = true;
-  //       print("funcionó la consulta men");
-  //       print(resultado);
-  //     }
-  //   }
+  await db.then((QuerySnapshot snapshot) => snapshot.docs.forEach((doc) {
+        if ("jeanpaulflores2014@gmail.com" == emailController.text) {
+          resultado = true;
+        }
+      }));
+  return resultado;
+}
 
-//Mostrando datos con un FutureBuilder (es un widget)
-// FutureBuilder<DocumentSnapshot>(
-//     future: db.doc("documentId").get(),
-//     builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-//       if (snapshot.hasError) {
-//         print("Algo salió mal, error");
-//       }
-
-//       if (snapshot.hasData && !snapshot.data!.exists) {
-//         print("El documento no existe");
-//       }
-
-//       if (snapshot.connectionState == ConnectionState.done) {
-//         Map<String, dynamic> data =
-//             snapshot.data!.data() as Map<String, dynamic>;
-//         email = data['email'];
-//         password = data['password'];
-
-//         if (email == emailController.text &&
-//             password == passwordController.text) {
-//           print("Usuario encontrado!");
-//           resultado = true;
-//         }
-//         //return Text("Usuario: ${data['nombre']} y Contraseña: ${data['password']}");
-//       }
-//     },
-//   );
-
-
-//Ejemplo de la documentación de FirebaseFirestore
-// class GetUserName extends StatelessWidget {
-//   final String documentId;
-
-//   GetUserName(this.documentId);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-//     return FutureBuilder<DocumentSnapshot>(
-//       future: users.doc(documentId).get(),
-//       builder:
-//           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-//         if (snapshot.hasError) {
-//           return Text("Algo salió mal, error");
-//         }
-
-//         if (snapshot.hasData && !snapshot.data!.exists) {
-//           return Text("El documento no existe");
-//         }
-
-//         if (snapshot.connectionState == ConnectionState.done) {
-//           Map<String, dynamic> data =
-//               snapshot.data!.data() as Map<String, dynamic>;
-//           return Text("Full Name: ${data['full_name']} ${data['last_name']}");
-//         }
-
-//         return Text("loading");
-//       },
-//     );
-//   }
-// }

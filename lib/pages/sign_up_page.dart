@@ -157,16 +157,6 @@ Widget _signUpButton(
 
           insertarRegistros("usuario", registros);          
           Navigator.pushNamed(context, "login");
-
-          //Anterior inserción
-          // FirebaseFirestore.instance.collection('producto').add({
-          //   "nombre" : nombreController.text,
-          //   "apellido" : apellidoController.text,
-          //   "teléfono" : telefonoController.text,
-          //   "email" : emailController.text,
-          //   "contraseña" : passwdController.text,
-          //   }
-          // );
         },
         child: Text('Crear cuenta',
             style: TextStyle(color: Colors.white, fontSize: 17.0))),

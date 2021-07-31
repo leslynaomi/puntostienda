@@ -38,12 +38,3 @@ Map<String, dynamic>? mostrarRegistros(String coleccion) {
   //Retornamos la consulta
   return consultaMap;
 }
-
-  //Ejemplo de Gerardo de consulta avanzada
-  // FirebaseFirestore _db = FirebaseFirestore.instance;
-  //     dato = _db.collection('pacientes')
-  //     .where("name", isEqualTo: name)
-  //     .snapshots().listen((event) {
-  //     print(event.docs[0].data());
-  //     paciente = event.docs[0].data();
-  // });
