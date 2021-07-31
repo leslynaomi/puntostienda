@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
           'BottomBarScreen' : (BuildContext context) => BottomBarScreen(),
           
           'AreaAdmin' : (BuildContext context) => Administracion(),
-          'Productos' : (BuildContext context) => Productos(),
-          'Categoria' : (BuildContext context) => Categoria(),
+          'Productos' : (BuildContext context) => AdminProductos(),
+          'Categoria' : (BuildContext context) => AdminCategoria(),
       },
       initialRoute: 'welcome',
       title: 'Flutter Demo',

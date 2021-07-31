@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:puntotienda/pages/admin/admin_productos.dart';
 
 //Insertar Registros de Firestore
 void insertarRegistros(String coleccion, Map<String, dynamic> registros) {
@@ -25,22 +26,22 @@ void eliminarRegistros(String coleccion, String idRegistro) {
 
 //Mostrar Registros de Firestore
 // Future <Map<String, dynamic>> mostrarRegistros(String coleccion) async{
-  
+
 //   var db = FirebaseFirestore.instance.collection(coleccion).get();
 //   Map<String, dynamic> consultaMap;
-  
+
 //   await db.then((QuerySnapshot querySnapshot){
 //     querySnapshot.docs.forEach((doc){
 //       print(doc[0]);
 //     });
-//   }); 
+//   });
 //     // {
 //     //10 registros por ahora
 //     // consultaMap = event.docs[10].data();
 //     // print(event.docs[10].data());
 //   // });
-  
 
 //   //Retornamos la consulta
 //   return consultaMap;
 // }
+

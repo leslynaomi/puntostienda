@@ -4,7 +4,7 @@ import 'package:puntotienda/methods/aviso.dart';
 import 'package:puntotienda/widget/buttons/text_field.dart';
 import 'package:puntotienda/widget/fondo_pantalla.dart';
 
-class Categoria extends StatelessWidget {
+class AdminCategoria extends StatelessWidget {
   //const Categoria({Key? key}) : super(key: key);
   final categoriaController = TextEditingController();
   @override

@@ -7,7 +7,7 @@ import 'package:puntotienda/widget/buttons/text_field.dart';
 import 'package:puntotienda/widget/fondo_pantalla.dart';
 // import 'package:puntotienda/widget/text_field.dart';
 
-class Productos extends StatelessWidget {
+class AdminProductos extends StatelessWidget {
   // const Productos({Key? key}) : super(key: key);
   final productController = TextEditingController();
   final descripcionController = TextEditingController();

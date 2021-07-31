@@ -172,18 +172,21 @@ Future<bool> validarUser(TextEditingController emailController,
   bool resultado = false;
   var db = FirebaseFirestore.instance.collection("usuario").get();
 
-  await db.then((QuerySnapshot querySnapshot) {
-    querySnapshot.docs.forEach((doc) {
-      if (emailController.text != "" && passwordController.text != "") {
-        if (doc["email"] == emailController.text &&
-            doc["contraseña"] == passwordController.text) {
-          resultado = true;
+  await db.then(
+      (QuerySnapshot querySnapshot) {
+        querySnapshot.docs.forEach((doc) {
+          if (emailController.text != "" && passwordController.text != "") {
+            if (doc["email"] == emailController.text &&
+                doc["contraseña"] == passwordController.text) {
+              resultado = true;
+            }
+          } else {
+            print("Ingrese un usuario válido");
+          }
         }
-      } else {
-        print("Ingrese un usuario válido");
-      }
-    });
-  });
+      );
+    }
+  );
   return resultado;
 }
 
