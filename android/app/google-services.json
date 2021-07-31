@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "1055260821491",
+    "firebase_url": "https://mapita-292210.firebaseio.com",
+    "project_id": "mapita-292210",
+    "storage_bucket": "mapita-292210.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055260821491:android:9bfe94fc2b6efe95f47486",
+        "android_client_info": {
+          "package_name": "com.example.betafinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW7xcAnBHtz_gaEc5w5TyQflYOK0ZLK8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055260821491:android:b5811cfe8d3e84ebf47486",
+        "android_client_info": {
+          "package_name": "com.example.foundmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW7xcAnBHtz_gaEc5w5TyQflYOK0ZLK8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055260821491:android:e3e1c6e21707fc23f47486",
+        "android_client_info": {
+          "package_name": "com.example.puntotienda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW7xcAnBHtz_gaEc5w5TyQflYOK0ZLK8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
