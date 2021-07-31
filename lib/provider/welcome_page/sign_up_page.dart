@@ -1,8 +1,10 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/back_button.dart';
 import 'package:puntotienda/consts/header_text.dart';
 import 'package:puntotienda/pages/crud.dart';
+import 'package:puntotienda/src/provider/firebase_provider.dart';
 //import 'package:puntotienda/pages/crud.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -30,7 +32,6 @@ class SignUpPage extends StatelessWidget {
                 _username(context, nombreController),
                 _email(context, emailController),
                 _telf(context, telefonoController),
-             
                 _passwordInput(context, passwdController),
                 _signUpButton(context, nombreController, emailController,
                     telefonoController, passwdController)
@@ -92,8 +93,6 @@ Widget _telf(BuildContext context, TextEditingController uController) {
   );
 }
 
-
-
 Widget _passwordInput(BuildContext context, TextEditingController uController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
@@ -124,16 +123,16 @@ Widget _signUpButton(
     margin: EdgeInsets.only(top: 30.0),
     child: ElevatedButton(
         onPressed: () {
-          int ig= insertar(nombre, email, telefono, passw);
-
-          if(ig == 1){
-             Navigator.of(context).pushNamed('login');
-          }
-
-          else{
+          int ig = insertar(nombre, email, telefono, passw);
+          String usuario = nombre.text;
+          String correo = email.text;
+          String celular = telefono.text;
+          Provider.of<User>(context, listen: false).changeUser(usuario,correo,celular);
+          if (ig == 1) {
+            Navigator.of(context).pushNamed('login');
+          } else {
             Navigator.of(context).pushNamed('sign-up');
           }
-         
         },
         //shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         // color: Theme.of(context).accentColor,

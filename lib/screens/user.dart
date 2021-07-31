@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
+import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
+import 'package:puntotienda/src/provider/firebase_provider.dart';
 
 class UserScreen extends StatefulWidget {
   @override
@@ -108,10 +110,10 @@ class _UserScreen extends State<UserScreen> {
                 thickness: 1,
                 color: Colors.grey,
               ),
-              userListTitle('Email', 'Email sub', context),
+              userListTitle('Nombre', context),
               userListTelefono('Numero de telefono', '+591', context),
-              userListlocaldeenvio('Direccion de Envio', '', context),
-              userListverdespues('fecha de union', 'date', context),
+              userEmail('Email',  context),
+              
               Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: usertitle('Configuracion de Usuario')),
@@ -145,7 +147,7 @@ class _UserScreen extends State<UserScreen> {
 
  
     
-      Widget userListTitle(String title, String subtitle, BuildContext context) {
+      Widget userListTitle(String title, BuildContext context) {
         return Material(
           color: Colors.transparent,
           child: InkWell(
@@ -153,8 +155,8 @@ class _UserScreen extends State<UserScreen> {
             child: ListTile(
               onTap: () {},
               title: Text(title),
-              subtitle: Text(subtitle),
-              leading: Icon(Icons.email),
+              subtitle:  Text(Provider.of<User>(context).nombre),
+              leading: Icon(Icons.account_circle),
             ),
           ),
         );
@@ -168,15 +170,15 @@ class _UserScreen extends State<UserScreen> {
             child: ListTile(
               onTap: () {},
               title: Text(title),
-              subtitle: Text(subtitle),
+              subtitle: Text(subtitle+Provider.of<User>(context).telefono),
               leading: Icon(Icons.phone),
             ),
           ),
         );
       }
     
-      Widget userListlocaldeenvio(
-          String title, String subtitle, BuildContext context) {
+      Widget userEmail(
+          String title, BuildContext context) {
         return Material(
           color: Colors.transparent,
           child: InkWell(
@@ -184,8 +186,8 @@ class _UserScreen extends State<UserScreen> {
             child: ListTile(
               onTap: () {},
               title: Text(title),
-              subtitle: Text(subtitle),
-              leading: Icon(Icons.local_shipping),
+              subtitle: Text(Provider.of<User>(context).email),
+              leading: Icon(Icons.email),
             ),
           ),
         );
