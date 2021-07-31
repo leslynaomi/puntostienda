@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:puntotienda/consts/colors.dart';
-//import 'package:flutter_icons/flutter_icons.dart';
 
 class CartFull extends StatefulWidget {
   CartFull({Key? key}) : super(key: key);
@@ -13,7 +12,7 @@ class _CartFullState extends State<CartFull> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 135,
+      height: 150,
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -25,7 +24,7 @@ class _CartFullState extends State<CartFull> {
       child: Row(
         children: [
           Container(
-            width: 130,
+            width: 120,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(

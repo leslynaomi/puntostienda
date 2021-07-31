@@ -1,3 +1,4 @@
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/widget/cart_empty.dart';
@@ -6,7 +7,11 @@ import 'package:puntotienda/widget/cart_full.dart';
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List products = [];
+    
+
+    var products = [];
+
+
     return products.isNotEmpty
         ? Scaffold(body: CartEmpty())
         : Scaffold(
@@ -16,6 +21,8 @@ class CartScreen extends StatelessWidget {
               actions: [
                 IconButton(
                   onPressed: () {
+                    
+                    //await mostrarDatos();
                     print('Soy el botón de eliminar todos los productos');
                   },
                   icon: Icon(Icons.delete),
@@ -25,8 +32,8 @@ class CartScreen extends StatelessWidget {
             body: Container(
               margin: EdgeInsets.only(bottom: 60),
               child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (BuildContext ctx, int index) {
+                  itemCount: 6,
+                  itemBuilder: (BuildContext context, int index) {
                     return CartFull();
                   }),
             ));
@@ -99,3 +106,13 @@ class CartScreen extends StatelessWidget {
     );
   }
 }
+
+// Future <void>  mostrarDatos()async{
+//   Map<String, dynamic> consultaMap;
+  
+//   var db = FirebaseFirestore.instance.collection('productos').
+//   withConverter<consultaMap>(
+//       fromFirestore: (snapshot, _) => Movie.fromJson(snapshot.data()!),
+//       toFirestore: (movie, _) => movie.toJson(),
+//     );
+// }

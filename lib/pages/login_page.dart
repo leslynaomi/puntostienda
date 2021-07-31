@@ -198,4 +198,3 @@ Future<bool> esAdmin(TextEditingController emailController) async {
       }));
   return resultado;
 }
-
