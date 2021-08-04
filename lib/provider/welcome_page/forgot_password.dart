@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
-import 'package:puntotienda/consts/alert_dialog.dart';
-import 'package:puntotienda/consts/back_button.dart';
-import 'package:puntotienda/consts/done_button.dart';
-import 'package:puntotienda/consts/header_text.dart';
+import 'package:puntotienda/widget/alert_dialog.dart';
+import 'package:puntotienda/widget/back_button.dart';
+import 'package:puntotienda/widget/done_button.dart';
+import 'package:puntotienda/widget/header_text.dart';
 
 class ForgotPassword extends StatelessWidget {
   @override
@@ -13,7 +12,7 @@ class ForgotPassword extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.0,
         leading: Builder(builder: (BuildContext context) {
-          return backbutton(context, Colors.black);
+          return backButton(context, Colors.black);
         }),
       ),
       body: Center(
@@ -68,13 +67,13 @@ Widget _sendButton(BuildContext context) {
         onPressed: () {
           _showAlertta(context);
         },
-       // shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        //color: Theme.of(context).accentColor,
+        // shape:
+        //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        // color: Theme.of(context).accentColor,
         child: Text('enviar',
             style: TextStyle(color: Colors.white, fontSize: 17.0))),
   );
 }
-
 
 void _showAlertta(BuildContext context) {
   showAlertDialog(

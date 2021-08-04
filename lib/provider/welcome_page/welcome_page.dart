@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:puntotienda/consts/header_text.dart';
+import 'package:puntotienda/widget/fondo_pantalla.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -12,31 +13,18 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        'https://images.pexels.com/photos/6214386/pexels-photo-6214386.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'))),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
-              child: Container(
-                color: Colors.black.withOpacity(0.3),
-              ),
-            ),
-          ),
+          fondopantalla(context),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 50.0),
-                child: headerText('Ofrecemos algo más allá de la medicación',
+                child: headerText('FOUNDMART',
                     Colors.white, FontWeight.bold, 45.0),
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 30.0),
-                child: Text(
-                    'La Informacion y la libertad son indivisibles',
+                child: Text('Mucho más que una tienda de computadoras',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w400,
@@ -49,12 +37,11 @@ class WelcomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pushNamed('login');
                     },
-                   // shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20.0)),
+                    // shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20.0)),
                     //color: Theme.of(context).accentColor,
-                    child: Text('log in',
+                    child: Text('Iniciar Sesión',
                         style: TextStyle(color: Colors.white, fontSize: 15.0))),
               ),
-             
             ],
           )
         ],

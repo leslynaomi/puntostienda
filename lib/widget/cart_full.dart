@@ -11,12 +11,9 @@ class CartFull extends StatefulWidget {
 class _CartFullState extends State<CartFull> {
   @override
   Widget build(BuildContext context) {
-
-
-
     return SingleChildScrollView(
-    child :Container(
-      height: 135,
+        child: Container(
+      height: 165,
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -164,6 +161,5 @@ class _CartFullState extends State<CartFull> {
         ],
       ),
     ));
-    
   }
 }
