@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:flutter/material.dart';
 
 class Productos {
-   String nombre;
-   String descripcion;
-   String precio;
-   String stock;
-   String categoria;
-   String imagen;
+  String nombre;
+  String descripcion;
+  String precio;
+  String stock;
+  String categoria;
+  String imagen;
 
   Productos(
       {this.nombre = "",
@@ -39,16 +39,16 @@ class Productos {
   }
 
 //Future<void> mostrarDatos() async {
-   
+
 //}
 
   Future<void> main() async {
     var db = FirebaseFirestore.instance
-      .collection('productos')
-      .withConverter<Productos>(
-        fromFirestore: (snapshot, _) => Productos.fromJson(snapshot.data()!),
-        toFirestore: (productos, _) => productos.toJson(),
-      );
+        .collection('productos')
+        .withConverter<Productos>(
+          fromFirestore: (snapshot, _) => Productos.fromJson(snapshot.data()!),
+          toFirestore: (productos, _) => productos.toJson(),
+        );
     // Obtain science-fiction movies
     // List<QueryDocumentSnapshot<Productos>> coleccion = await db
     //     //.where('genre', isEqualTo: 'Sci-fi')

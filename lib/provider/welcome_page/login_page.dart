@@ -204,9 +204,10 @@ Future<String> obtenerTelefonoUser(String correo) async {
   await db.then((QuerySnapshot value) async => value.docs.forEach((doc) {
         if (doc["email"] == correo) {
           resultado = doc["teléfono"];
-        } else {
-          print("No se encuentra registrado el correo ingresado");
         }
+        // else {
+        //   print("No se encuentra registrado el correo ingresado");
+        // }
         // print(doc.get("nombre"));
         // print(doc.data());
       }));
@@ -256,7 +257,7 @@ Future<bool> validarUser(TextEditingController emailController,
       }
     });
   }, onError: (_) {
-    print("Ocurrió un problema");
+    print("Ocurrió un problema"); 
   });
   return resultado;
 }

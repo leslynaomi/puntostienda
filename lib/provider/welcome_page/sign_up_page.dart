@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:puntotienda/methods/database/conexion_firestore.dart';
 
-//import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:puntotienda/database/conexion_firestore.dart';
-// import 'package:puntotienda/src/provider/firebase_provider.dart';
+// import 'package:puntotienda/database/conexion_firestore.dart';
 import 'package:puntotienda/widget/back_button.dart';
 import 'package:puntotienda/widget/header_text.dart';
 
@@ -159,8 +158,8 @@ Widget _signUpButton(
           };
           Provider.of<UsuarioSingUp>(context, listen: false).changeUser(
               nombreController.text + apellidoController.text,
-              emailController.text,
-              telefonoController.text);
+              telefonoController.text,
+              emailController.text);
 
           insertarRegistros("usuario", registros);
           Navigator.pushNamed(context, "login");

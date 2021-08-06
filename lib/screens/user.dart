@@ -3,7 +3,6 @@ import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/provider/user_provider.dart';
-// import 'package:puntotienda/src/provider/firebase_provider.dart';
 
 class UserScreen extends StatefulWidget {
   @override
@@ -17,9 +16,7 @@ class _UserScreen extends State<UserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return /*ChangeNotifierProvider(
-      create: (_) => UsuarioSingUp(),
-      child:*/ CustomScrollView(
+    return CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
             automaticallyImplyLeading: false,
@@ -67,11 +64,6 @@ class _UserScreen extends State<UserScreen> {
                                   ),
                                 ],
                                 shape: BoxShape.circle,
-                                //image: DecorationImage(
-                                // fit: BoxFit.fill,
-                                //image: NetworkImage(
-                                //),
-                                //  ),
                               ),
                             ),
                             SizedBox(

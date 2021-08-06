@@ -24,24 +24,21 @@ void eliminarRegistros(String coleccion, String idRegistro) {
   db.collection(coleccion).doc(idRegistro).delete();
 }
 
-//Mostrar Registros de Firestore
-// Future <Map<String, dynamic>> mostrarRegistros(String coleccion) async{
+//Obtener/Robar Registros de Firestore en una lista de mapas
+Future<List<Map<String, dynamic>>> obtenerRegistros(String coleccion) async {
+  List<Map<String, dynamic>> mapa = [];
+  var db = FirebaseFirestore.instance.collection(coleccion).get();
+  await db.then((value) async {
+    value.docs.forEach((doc) async {
+      mapa.add(doc.data());
+    });
+  });
+  return mapa;
+}
 
-//   var db = FirebaseFirestore.instance.collection(coleccion).get();
-//   Map<String, dynamic> consultaMap;
+//        Apuntes
+//Añadiendo todo el contenido del documento en un mapa
+//mapa.addAll(doc.data());
 
-//   await db.then((QuerySnapshot querySnapshot){
-//     querySnapshot.docs.forEach((doc){
-//       print(doc[0]);
-//     });
-//   });
-//     // {
-//     //10 registros por ahora
-//     // consultaMap = event.docs[10].data();
-//     // print(event.docs[10].data());
-//   // });
-
-//   //Retornamos la consulta
-//   return consultaMap;
-// }
-
+//Imprimir en pantalla todos los documentos al recorrer la colección
+// print(doc.data());

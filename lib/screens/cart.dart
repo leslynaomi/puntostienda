@@ -1,5 +1,4 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:puntotienda/consts/colors.dart';
 //import 'package:puntotienda/database/productos.dart';
@@ -19,21 +18,10 @@ class CartScreen extends StatelessWidget {
               title: Text('Recuento de articulos del carrito'),
               actions: [
                 IconButton(
-                  onPressed: () {
+                  onPressed: () /*async*/ {
                     // Productos prod = new Productos();
                     // var aux = prod.db;
                     // aux = asMap();
-                    var db =
-                        FirebaseFirestore.instance.collection("producto").get();
-                    
-
-                    db.then((value) async {
-                      value.docs.forEach((doc) async {
-                        print (doc.id);
-                    
-                      });
-                    
-                    });
 
                     print('Soy el botón de eliminar todos los productos');
                   },
