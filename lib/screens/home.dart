@@ -9,6 +9,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:puntotienda/consts/colors.dart';
+import 'package:puntotienda/consts/horizontalwidget.dart';
 //import 'package:puntotienda/widget/category.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -64,7 +65,7 @@ class HomeScreen extends StatelessWidget {
             child: Text("Back Layer"),
           ),
           frontLayer: SingleChildScrollView(
-                      child: Column(
+              child: Column(
               children: [
                 SizedBox(
                   height: 190.0,
@@ -96,6 +97,8 @@ class HomeScreen extends StatelessWidget {
                         .toList(),
                   ),
                 ),
+
+
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
@@ -104,14 +107,32 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: double.infinity,
-                  height: 180,
-                 // child: ListView.builder(
-                 //   itemCount: 7,
-                  //  itemBuilder: (BuildContext ctx, int index) {
-                      
-                   // }
-                 // ),
+                  height: 210,
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  child: SizedBox(
+                    height: 190.0,
+                    width: double.infinity,
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                        autoPlay: false,
+                        autoPlayAnimationDuration: Duration(milliseconds: 1000),
+                        aspectRatio: 2.0,
+                        enlargeCenterPage: true,
+                        enableInfiniteScroll: false,
+                        // enlargeStrategy: CenterPageEnlargeStrategy.height,
+                      ),
+                      items: brandImages
+                          .map((e) => ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Stack(
+                                  fit: StackFit.expand,
+                                  children:   [LisCategoria(),] 
+                                  
+                                ),
+                              ))
+                          .toList(),
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
