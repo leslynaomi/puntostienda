@@ -3,6 +3,7 @@ import 'package:backdrop/button.dart';
 import 'package:backdrop/scaffold.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 //import 'package:carousel_pro/carousel_pro.dart';
 //import 'package:backdrop/sub_header.dart';
@@ -65,7 +66,7 @@ class HomeScreen extends StatelessWidget {
             child: Text("Back Layer"),
           ),
           frontLayer: SingleChildScrollView(
-              child: Column(
+            child: Column(
               children: [
                 SizedBox(
                   height: 190.0,
@@ -97,8 +98,6 @@ class HomeScreen extends StatelessWidget {
                         .toList(),
                   ),
                 ),
-
-
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
@@ -106,42 +105,15 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                   ),
                 ),
-                Container(
-                  height: 210,
-                  width: MediaQuery.of(context).size.width * 0.95,
-                  child: SizedBox(
-                    height: 190.0,
-                    width: double.infinity,
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        autoPlay: false,
-                        autoPlayAnimationDuration: Duration(milliseconds: 1000),
-                        aspectRatio: 2.0,
-                        enlargeCenterPage: true,
-                        enableInfiniteScroll: false,
-                        // enlargeStrategy: CenterPageEnlargeStrategy.height,
-                      ),
-                      items: brandImages
-                          .map((e) => ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Stack(
-                                  fit: StackFit.expand,
-                                  children:   [LisCategoria(),] 
-                                  
-                                ),
-                              ))
-                          .toList(),
-                    ),
-                  ),
-                ),
+                Container(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
                       Text(
                         'Marcas Populares',
-                        style:
-                            TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800, fontSize: 20),
                       ),
                       Spacer(),
                       ElevatedButton(
@@ -199,3 +171,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+
+
