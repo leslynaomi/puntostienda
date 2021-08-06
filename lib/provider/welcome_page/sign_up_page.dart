@@ -1,17 +1,20 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:puntotienda/consts/back_button.dart';
-import 'package:puntotienda/consts/header_text.dart';
-import 'package:puntotienda/pages/crud.dart';
-import 'package:puntotienda/src/provider/firebase_provider.dart';
-//import 'package:puntotienda/pages/crud.dart';
+import 'package:puntotienda/methods/database/conexion_firestore.dart';
+
+// import 'package:puntotienda/database/conexion_firestore.dart';
+import 'package:puntotienda/widget/back_button.dart';
+import 'package:puntotienda/widget/header_text.dart';
+
+import '../user_provider.dart';
 
 class SignUpPage extends StatelessWidget {
   final nombreController = TextEditingController();
-  final emailController = TextEditingController();
+  final apellidoController = TextEditingController();
   final telefonoController = TextEditingController();
+  final emailController = TextEditingController();
   final passwdController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,10 +22,10 @@ class SignUpPage extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0.0,
           leading: Builder(builder: (BuildContext context) {
-            return backbutton(context, Colors.black);
+            return backButton(context, Colors.black);
           }),
         ),
-        body: new SingleChildScrollView(
+        body: Center(
           child: Container(
             padding: EdgeInsets.all(30),
             child: Column(
@@ -30,11 +33,12 @@ class SignUpPage extends StatelessWidget {
                 headerText('Crear una cuenta', Theme.of(context).primaryColor,
                     FontWeight.bold, 25.0),
                 _username(context, nombreController),
-                _email(context, emailController),
-                _telf(context, telefonoController),
+                _userapellido(context, apellidoController),
+                _phoneInput(context, telefonoController),
+                _emailInput(context, emailController),
                 _passwordInput(context, passwdController),
-                _signUpButton(context, nombreController, emailController,
-                    telefonoController, passwdController)
+                _signUpButton(context, nombreController, apellidoController,
+                    telefonoController, emailController, passwdController)
               ],
             ),
           ),
@@ -42,7 +46,7 @@ class SignUpPage extends StatelessWidget {
   }
 }
 
-Widget _username(BuildContext context, TextEditingController uController) {
+Widget _username(BuildContext context, TextEditingController nombreController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -50,16 +54,17 @@ Widget _username(BuildContext context, TextEditingController uController) {
         color: Color.fromRGBO(142, 142, 147, 1.2),
         borderRadius: BorderRadius.circular(40.0)),
     child: TextField(
-      controller: uController,
+      controller: nombreController,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
-          hintText: 'nombres',
+          hintText: 'Nombre',
           border: OutlineInputBorder(borderSide: BorderSide.none)),
     ),
   );
 }
 
-Widget _email(BuildContext context, TextEditingController uController) {
+Widget _userapellido(
+    BuildContext context, TextEditingController apellidoController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -67,16 +72,35 @@ Widget _email(BuildContext context, TextEditingController uController) {
         color: Color.fromRGBO(142, 142, 147, 1.2),
         borderRadius: BorderRadius.circular(40.0)),
     child: TextField(
-      controller: uController,
+      controller: apellidoController,
+      keyboardType: TextInputType.text,
+      decoration: InputDecoration(
+          hintText: 'Apellido',
+          border: OutlineInputBorder(borderSide: BorderSide.none)),
+    ),
+  );
+}
+
+Widget _emailInput(
+    BuildContext context, TextEditingController emailController) {
+  return Container(
+    margin: EdgeInsets.only(top: 10.0),
+    padding: EdgeInsets.only(left: 15.0),
+    decoration: BoxDecoration(
+        color: Color.fromRGBO(142, 142, 147, 1.2),
+        borderRadius: BorderRadius.circular(40.0)),
+    child: TextField(
+      controller: emailController,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
-          hintText: 'email',
+          hintText: 'Email',
           border: OutlineInputBorder(borderSide: BorderSide.none)),
     ),
   );
 }
 
-Widget _telf(BuildContext context, TextEditingController uController) {
+Widget _phoneInput(
+    BuildContext context, TextEditingController telefonoController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -84,16 +108,17 @@ Widget _telf(BuildContext context, TextEditingController uController) {
         color: Color.fromRGBO(142, 142, 147, 1.2),
         borderRadius: BorderRadius.circular(40.0)),
     child: TextField(
-      controller: uController,
+      controller: telefonoController,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
-          hintText: 'telf',
+          hintText: 'Teléfono',
           border: OutlineInputBorder(borderSide: BorderSide.none)),
     ),
   );
 }
 
-Widget _passwordInput(BuildContext context, TextEditingController uController) {
+Widget _passwordInput(
+    BuildContext context, TextEditingController passwdController) {
   return Container(
     margin: EdgeInsets.only(top: 10.0),
     padding: EdgeInsets.only(left: 15.0),
@@ -101,11 +126,11 @@ Widget _passwordInput(BuildContext context, TextEditingController uController) {
         color: Color.fromRGBO(142, 142, 147, 1.2),
         borderRadius: BorderRadius.circular(40.0)),
     child: TextField(
-      controller: uController,
+      controller: passwdController,
       keyboardType: TextInputType.visiblePassword,
       obscureText: true,
       decoration: InputDecoration(
-          hintText: 'contraseña',
+          hintText: 'Contraseña',
           border: OutlineInputBorder(borderSide: BorderSide.none)),
     ),
   );
@@ -113,31 +138,33 @@ Widget _passwordInput(BuildContext context, TextEditingController uController) {
 
 Widget _signUpButton(
     BuildContext context,
-    TextEditingController nombre,
-    TextEditingController email,
-    TextEditingController telefono,
-    TextEditingController passw) {
+    TextEditingController nombreController,
+    TextEditingController apellidoController,
+    TextEditingController telefonoController,
+    TextEditingController emailController,
+    TextEditingController passwdController) {
   return Container(
     width: 350.0,
     height: 45.0,
     margin: EdgeInsets.only(top: 30.0),
     child: ElevatedButton(
         onPressed: () {
-          int ig = insertar(nombre, email, telefono, passw);
-          String usuario = nombre.text;
-          String correo = email.text;
-          String celular = telefono.text;
-          Provider.of<User>(context, listen: false).changeUser(usuario,correo,celular);
-          if (ig == 1) {
-            Navigator.of(context).pushNamed('login');
-          } else {
-            Navigator.of(context).pushNamed('sign-up');
-          }
-        },
-        //shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        // color: Theme.of(context).accentColor,
+          Map<String, dynamic> registros = {
+            "nombre": nombreController.text,
+            "apellido": apellidoController.text,
+            "teléfono": telefonoController.text,
+            "email": emailController.text,
+            "contraseña": passwdController.text
+          };
+          Provider.of<UsuarioSingUp>(context, listen: false).changeUser(
+              nombreController.text + apellidoController.text,
+              telefonoController.text,
+              emailController.text);
 
-        child: Text('crear',
+          insertarRegistros("usuario", registros);
+          Navigator.pushNamed(context, "login");
+        },
+        child: Text('Crear cuenta',
             style: TextStyle(color: Colors.white, fontSize: 17.0))),
   );
 }

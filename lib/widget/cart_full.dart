@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:puntotienda/consts/colors.dart';
-//import 'package:flutter_icons/flutter_icons.dart';
 
 class CartFull extends StatefulWidget {
   CartFull({Key? key}) : super(key: key);
@@ -12,12 +11,9 @@ class CartFull extends StatefulWidget {
 class _CartFullState extends State<CartFull> {
   @override
   Widget build(BuildContext context) {
-
-
-
     return SingleChildScrollView(
-    child :Container(
-      height: 135,
+        child: Container(
+      height: 165,
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -29,7 +25,7 @@ class _CartFullState extends State<CartFull> {
       child: Row(
         children: [
           Container(
-            width: 130,
+            width: 120,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
@@ -78,31 +74,36 @@ class _CartFullState extends State<CartFull> {
                       Text('Precio:'),
                       Text(
                         '450 Bs',
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600),
                       )
                     ],
                   ),
-                   Row(
+                  Row(
                     children: [
                       Text('Sub Total:'),
                       Text(
                         '450 Bs',
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.brown.shade900),
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.brown.shade900),
                       )
                     ],
                   ),
-                  Row(children: [
-                    Text('Envio Gratis', style: TextStyle( color: Colors.brown.shade900),),
-                   Spacer(),
-                     Material(
+                  Row(
+                    children: [
+                      Text(
+                        'Envio Gratis',
+                        style: TextStyle(color: Colors.brown.shade900),
+                      ),
+                      Spacer(),
+                      Material(
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(4.0),
                           onTap: () {},
                           child: Container(
-                           
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Icon(
@@ -114,27 +115,32 @@ class _CartFullState extends State<CartFull> {
                           ),
                         ),
                       ),
-                      Card(elevation: 12,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width*0.12,
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(gradient:LinearGradient(colors:[
-                          ColorsConst.gradiendLStart,
-                          ColorsConst.gradiendLEnd,
-                         ],
-                         stops:[0.0,0.7  ]
-                         
-                         ),
+                      Card(
+                        elevation: 12,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.12,
+                          padding: const EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [
+                              ColorsConst.gradiendLStart,
+                              ColorsConst.gradiendLEnd,
+                            ], stops: [
+                              0.0,
+                              0.7
+                            ]),
                           ),
-                          child: Text('154', textAlign: TextAlign.center,),
-                      ),),
-                       Material(
+                          child: Text(
+                            '154',
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      Material(
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(4.0),
                           onTap: () {},
                           child: Container(
-                           
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Icon(
@@ -146,8 +152,8 @@ class _CartFullState extends State<CartFull> {
                           ),
                         ),
                       ),
-
-                  ],),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -155,6 +161,5 @@ class _CartFullState extends State<CartFull> {
         ],
       ),
     ));
-    
   }
 }

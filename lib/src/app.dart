@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:puntotienda/routes.dart';
-
 
 //import '../widget/bottom_bar.dart';
 

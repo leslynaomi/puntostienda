@@ -1,12 +1,18 @@
+/*// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:puntotienda/consts/colors.dart';
+//import 'package:puntotienda/database/productos.dart';
 import 'package:puntotienda/widget/cart_empty.dart';
 import 'package:puntotienda/widget/cart_full.dart';
 
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List products = [];
+
+   var products = [];
+
+    var productos = [];
+
     return products.isNotEmpty
         ? Scaffold(body: CartEmpty())
         : Scaffold(
@@ -15,7 +21,13 @@ class CartScreen extends StatelessWidget {
               title: Text('Recuento de articulos del carrito'),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () /*async*/ {
+                    // Productos prod = new Productos();
+                    // var aux = prod.db;
+                    // aux = asMap();
+
+                    print('Soy el botón de eliminar todos los productos');
+                  },
                   icon: Icon(Icons.delete),
                 )
               ],
@@ -23,8 +35,8 @@ class CartScreen extends StatelessWidget {
             body: Container(
               margin: EdgeInsets.only(bottom: 60),
               child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (BuildContext ctx, int index) {
+                  itemCount: 6,
+                  itemBuilder: (BuildContext context, int index) {
                     return CartFull();
                   }),
             ));
@@ -45,18 +57,17 @@ class CartScreen extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
-                 decoration: BoxDecoration(
-                   borderRadius: BorderRadius.circular(30),
-                   gradient:LinearGradient(colors:[
-                          ColorsConst.gradiendLStart,
-                          ColorsConst.gradiendLEnd,
-                         ],
-                         stops:[0.0,0.7  ]
-                         
-                         ),
-                          ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  gradient: LinearGradient(colors: [
+                    ColorsConst.gradiendLStart,
+                    ColorsConst.gradiendLEnd,
+                  ], stops: [
+                    0.0,
+                    0.7
+                  ]),
+                ),
                 child: Material(
-                  
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(30),
@@ -97,4 +108,4 @@ class CartScreen extends StatelessWidget {
       ),
     );
   }
-}
+}*/
