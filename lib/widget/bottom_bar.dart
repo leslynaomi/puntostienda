@@ -16,7 +16,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     HomeScreen(),
     FeedsScreen(),
     SearchScreen(),
-    CartScreen(),
+    //CartScreen(),
     UserScreen(),
   ];
 
