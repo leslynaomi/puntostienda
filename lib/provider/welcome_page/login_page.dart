@@ -177,7 +177,7 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
               print(phoneUser);
 
               if (nameUser != "" && phoneUser != "") {
-                Provider.of<UsuarioSingUp>(context, listen: false)
+                Provider.of<UsuarioProvider>(context, listen: false)
                     .changeUser(nameUser, phoneUser, emailController.text);
               } else {
                 await mostrarAviso(
@@ -205,11 +205,6 @@ Future<String> obtenerTelefonoUser(String correo) async {
         if (doc["email"] == correo) {
           resultado = doc["teléfono"];
         }
-        // else {
-        //   print("No se encuentra registrado el correo ingresado");
-        // }
-        // print(doc.get("nombre"));
-        // print(doc.data());
       }));
   return resultado;
 }
@@ -222,19 +217,7 @@ Future<String> obtenerNombreYApellidoUser(String correo) async {
       if (doc["email"] == correo) {
         resultado = doc["nombre"] + " " + doc["apellido"];
         print("Esto guarda resultado: " + resultado);
-      } 
-      // else {
-      //   print("-------------------------------------------------");
-      //   print("-------------------------------------------------");
-      //   print("No se encuentra registrado el correo ingresado");
-      //   print(doc["email"]);
-      //   print(doc["nombre"]);
-      //   print(doc["apellido"]);
-      //   print("-------------------------------------------------");
-      //   print("-------------------------------------------------");
-      // }
-      // print(doc.get("nombre"));
-      // print(doc.data());
+      }
     });
   });
   return resultado;
@@ -257,7 +240,7 @@ Future<bool> validarUser(TextEditingController emailController,
       }
     });
   }, onError: (_) {
-    print("Ocurrió un problema"); 
+    print("Ocurrió un problema");
   });
   return resultado;
 }

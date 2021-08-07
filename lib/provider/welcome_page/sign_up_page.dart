@@ -156,7 +156,7 @@ Widget _signUpButton(
             "email": emailController.text,
             "contraseña": passwdController.text
           };
-          Provider.of<UsuarioSingUp>(context, listen: false).changeUser(
+          Provider.of<UsuarioProvider>(context, listen: false).changeUser(
               nombreController.text + apellidoController.text,
               telefonoController.text,
               emailController.text);

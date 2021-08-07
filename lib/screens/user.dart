@@ -143,7 +143,7 @@ class _UserScreen extends State<UserScreen> {
         child: ListTile(
           onTap: () {},
           title: Text(title),
-          subtitle: Text(Provider.of<UsuarioSingUp>(context).nombre),
+          subtitle: Text(Provider.of<UsuarioProvider>(context).nombre),
           leading: Icon(Icons.account_circle),
         ),
       ),
@@ -158,7 +158,7 @@ class _UserScreen extends State<UserScreen> {
         child: ListTile(
           onTap: () {},
           title: Text(title),
-          subtitle: Text(subtitle + Provider.of<UsuarioSingUp>(context).getTelefono),
+          subtitle: Text(subtitle + Provider.of<UsuarioProvider>(context).getTelefono),
           leading: Icon(Icons.phone),
         ),
       ),
@@ -173,7 +173,7 @@ class _UserScreen extends State<UserScreen> {
         child: ListTile(
           onTap: () {},
           title: Text(title),
-          subtitle: Text(Provider.of<UsuarioSingUp>(context).email),
+          subtitle: Text(Provider.of<UsuarioProvider>(context).email),
           leading: Icon(Icons.email),
         ),
       ),
