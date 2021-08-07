@@ -12,7 +12,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
   @override
   Widget build(BuildContext context) {
     //Reemplazar por la cantidad de productos a obtener
-    var cantidad = 6;
+    var cantidad = 8;
     
     return Scaffold(
         body: FutureBuilder(

@@ -51,9 +51,9 @@ class CartScreen extends StatelessWidget {
         child: Row(
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              flex: 2,
-              child: Container(
+            //Expanded(
+             // flex: 2,
+              /*child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   gradient: LinearGradient(colors: [
@@ -71,18 +71,29 @@ class CartScreen extends StatelessWidget {
                     onTap: () {},
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
+                     /* child: Text(
                         'verificar',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.w600),
-                      ),
+                      ),*/
+                      
                     ),
                   ),
+                  
+                  
                 ),
-              ),
+                
+              ),*/
+              
+         //   ),
+             ElevatedButton(
+              child: Text('confirmar compra'),
+              onPressed: () {
+                Navigator.pushNamed(ctx, "NotaCompra");
+              },
             ),
             Spacer(),
             Text(
@@ -93,7 +104,7 @@ class CartScreen extends StatelessWidget {
                   fontWeight: FontWeight.w500),
             ),
             Text(
-              'Bs 179.0',
+              'Bs ',
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.blue,
