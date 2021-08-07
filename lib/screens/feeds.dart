@@ -11,7 +11,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
   @override
   Widget build(BuildContext context) {
     //Reemplazar por la cantidad de productos a obtener
-    var cantidad = 6;
+    // var cantidad = FirebaseFirestore.instance.collection("producto").snapshots().length;
 
     return Scaffold(
         body: GridView.count(
@@ -19,14 +19,23 @@ class _FeedsScreenState extends State<FeedsScreen> {
       crossAxisSpacing: 8,
       mainAxisSpacing: 8,
       childAspectRatio: 240 / 290,
-      children: List.generate(cantidad, (index) {
-        // Provider.of<ProductoProvider>(context, listen: false)
-        //     .changeUser(
-        //         snapshot.data
-        //     );
+      children: [
+        FeedProducts(),
+        FeedProducts(),
+        FeedProducts(),
+        FeedProducts(),
+        FeedProducts(),
+        FeedProducts(),
+        FeedProducts(),
+        FeedProducts(),
+        FeedProducts(),
+        FeedProducts(),
+      ],
 
-        return FeedProducts();
-      }),
+      // children: ()[
+      // ]
+
+      
     ));
 
     //Con FutureBuilder

@@ -1,15 +1,12 @@
 import 'dart:async';
-
 import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:puntotienda/consts/constantes.dart' as contador;
 import 'package:puntotienda/provider/product_provider.dart';
 
 class FeedProducts extends StatelessWidget {
-  
-  final int index = 0;
-
   @override
   Widget build(BuildContext context) {
     var db = FirebaseFirestore.instance.collection("producto").snapshots();
@@ -25,7 +22,10 @@ class FeedProducts extends StatelessWidget {
                 //Retraso para la carga de productos y la
                 //ejecución del provider
                 Timer(const Duration(seconds: 3), () {
-                  obtenerProducto(context, snapshot, index);
+                  obtenerProducto(context, snapshot, contador.index);
+                  if (contador.index < snapshot.data!.size + 1 ) {
+                    contador.index = contador.index + 1;
+                  } 
                 });
 
                 return Padding(
