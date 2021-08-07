@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:puntotienda/provider/user_provider.dart';
+// import 'package:provider/provider.dart';
+// import 'package:puntotienda/provider/user_provider.dart';
 import 'package:puntotienda/src/app.dart';
 
 void main() async {
@@ -9,10 +9,11 @@ void main() async {
   await Firebase.initializeApp();
 
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => UsuarioProvider(),
+    // ChangeNotifierProvider(
+      // create: (_) => UsuarioProvider(),
       // create: (_) => ProductoProvider(),
-      child: MyApp(),
-    ),
+      // child: 
+      MyApp(),
+    // ),
   );
 }

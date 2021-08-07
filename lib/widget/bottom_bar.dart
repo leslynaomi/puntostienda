@@ -4,7 +4,7 @@ import 'package:puntotienda/screens/feeds.dart';
 import 'package:puntotienda/screens/home.dart';
 import 'package:puntotienda/screens/search.dart';
 import 'package:puntotienda/screens/user.dart';
-import 'package:puntotienda/consts/constantes.dart' as contador;
+import 'package:puntotienda/consts/variables_globales.dart' as contador;
 
 class BottomBarScreen extends StatefulWidget {
   //static const routeName = 'BottomBarScreen';

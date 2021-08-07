@@ -3,7 +3,7 @@ import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:puntotienda/consts/constantes.dart' as contador;
+import 'package:puntotienda/consts/variables_globales.dart' as contador;
 import 'package:puntotienda/provider/product_provider.dart';
 
 class FeedProducts extends StatelessWidget {
@@ -11,61 +11,62 @@ class FeedProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     var db = FirebaseFirestore.instance.collection("producto").snapshots();
 
-    return ChangeNotifierProvider(
-      create: (_) => ProductoProvider(),
-      child: StreamBuilder<QuerySnapshot>(
-        stream: db,
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.active:
-              if (snapshot.hasData) {
-                //Retraso para la carga de productos y la
-                //ejecución del provider
-                Timer(const Duration(seconds: 3), () {
-                  obtenerProducto(context, snapshot, contador.index);
-                  if (contador.index < snapshot.data!.size + 1 ) {
-                    contador.index = contador.index + 1;
-                  } 
-                });
+    return StreamBuilder<QuerySnapshot>(
+      stream: db,
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.active:
+            if (snapshot.hasData) {
+              
+              //Retraso para la carga de productos y la
+              //ejecución del provider
+              
+              // Timer(const Duration(seconds: 3), () {
+              obtenerProducto(context, snapshot, contador.index);
+              contador.index = contador.index + 1;
 
-                return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 250,
-                      height: 290,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                          color: Theme.of(context).backgroundColor),
-                      child: Column(
-                        children: [
-                          imageProducto(context),
-                          detallesProducto(context),
-                        ],
-                      ),
-                    ));
-              } else {
-                print("No hay datos en el snapshot");
-                return CircularProgressIndicator();
-              }
-            case ConnectionState.waiting:
+              // if (contador.index < snapshot.data!.size + 1) {
+              //   contador.index = contador.index + 1;
+              // }
+              // });
+
+              return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: 250,
+                    height: 290,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: Theme.of(context).backgroundColor),
+                    child: Column(
+                      children: [
+                        imageProducto(context),
+                        detallesProducto(context),
+                      ],
+                    ),
+                  ));
+            } else {
+              print("No hay datos en el snapshot");
               return CircularProgressIndicator();
-            case ConnectionState.done:
-              print("Conexión efectuada");
-              break;
-            case ConnectionState.none:
-              if (snapshot.hasError) {
-                print("Error en la conexión a firestore" +
-                    "${snapshot.error.toString()}");
-              }
-              print("Conexión no efectuada");
-              break;
-            default:
-              print("Proceso default del switch");
-              return CircularProgressIndicator();
-          }
-          return CircularProgressIndicator();
-        },
-      ),
+            }
+          case ConnectionState.waiting:
+            return CircularProgressIndicator();
+          case ConnectionState.done:
+            print("Conexión efectuada");
+            break;
+          case ConnectionState.none:
+            if (snapshot.hasError) {
+              print("Error en la conexión a firestore" +
+                  "${snapshot.error.toString()}");
+            }
+            print("Conexión no efectuada");
+            break;
+          default:
+            print("Proceso default del switch");
+            return CircularProgressIndicator();
+        }
+        return CircularProgressIndicator();
+      },
     );
   }
 
@@ -79,6 +80,8 @@ class FeedProducts extends StatelessWidget {
       (snapshot.data!.docs.elementAt(index).get("categoria")).toString(),
       (snapshot.data!.docs.elementAt(index).get("imagen")).toString(),
     );
+    print("Lista de productos:");
+    print(snapshot.data!.docs.elementAt(index).get("nombre"));
   }
 }
 
