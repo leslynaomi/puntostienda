@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
+import 'package:puntotienda/methods/database/conexion_firestore.dart';
 
 class CartFull extends StatefulWidget {
-  CartFull({Key? key}) : super(key: key);
+  //final String imagen;
+ // final String nombre;
+  //final int precio;
+ // final int cantidad;
+
+ // const CartFull(
+    //  {//required this.imagen,
+     // required this.nombre,
+      //required this.precio,
+      //required this.cantidad});
 
   @override
   _CartFullState createState() => _CartFullState();
@@ -10,7 +21,13 @@ class CartFull extends StatefulWidget {
 
 class _CartFullState extends State<CartFull> {
   @override
+
+
+
+
   Widget build(BuildContext context) {
+       final cartAttr = Provider.of<CartAttr>(context);
+    int subTotal = cartAttr.cantidad * cartAttr.precio;
     return SingleChildScrollView(
         child: Container(
       height: 165,
@@ -20,7 +37,7 @@ class _CartFullState extends State<CartFull> {
           bottomRight: const Radius.circular(16.0),
           topRight: const Radius.circular(16.0),
         ),
-        color: Colors.lightBlueAccent,
+        color: Theme.of(context).backgroundColor,
       ),
       child: Row(
         children: [
@@ -28,8 +45,7 @@ class _CartFullState extends State<CartFull> {
             width: 120,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                    'https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
+                image: NetworkImage(cartAttr.imagen),
                 fit: BoxFit.fill,
               ),
             ),
@@ -44,7 +60,7 @@ class _CartFullState extends State<CartFull> {
                     children: [
                       Flexible(
                         child: Text(
-                          'title',
+                          cartAttr.nombre,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -73,7 +89,7 @@ class _CartFullState extends State<CartFull> {
                     children: [
                       Text('Precio:'),
                       Text(
-                        '450 Bs',
+                        '${cartAttr.precio} Bs',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       )
@@ -83,7 +99,7 @@ class _CartFullState extends State<CartFull> {
                     children: [
                       Text('Sub Total:'),
                       Text(
-                        '450 Bs',
+                        '$subTotal Bs',
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -130,7 +146,7 @@ class _CartFullState extends State<CartFull> {
                             ]),
                           ),
                           child: Text(
-                            '154',
+                           cartAttr.cantidad.toString(),
                             textAlign: TextAlign.center,
                           ),
                         ),

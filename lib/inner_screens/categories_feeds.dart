@@ -1,24 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:puntotienda/methods/database/conexion_firestore.dart';
+//import 'package:puntotienda/methods/database/conexion_firestore.dart';
 import 'package:puntotienda/provider/producto_provider.dart';
 //import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:puntotienda/widget/feeds_products.dart';
 
-class FeedsScreen extends StatefulWidget {
+class CategoriesFeedsScreen extends StatefulWidget {
   @override
-  _FeedsScreenState createState() => _FeedsScreenState();
+  _CategoriesFeedsScreenState createState() => _CategoriesFeedsScreenState();
 }
 
-class _FeedsScreenState extends State<FeedsScreen> {
+class _CategoriesFeedsScreenState extends State<CategoriesFeedsScreen> {
   @override
   Widget build(BuildContext context) {
     //Reemplazar por la cantidad de productos a obtener
     //var cantidad = 6;
-    final productsProvider = Provider.of<Products>(context);
-
-    List<Product> productsList = productsProvider.products;
+    final productsProvider = Provider.of<Products>(context,listen: false);
+    final categoryName = ModalRoute.of(context)!.settings as String;
+    final productsList = productsProvider.findByCategory(categoryName);
     return Scaffold(
         body: FutureBuilder(
       future: obtenerProductos(),

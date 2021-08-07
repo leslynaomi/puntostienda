@@ -1,6 +1,8 @@
-/*// import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
+import 'package:puntotienda/provider/cart_provider.dart';
 //import 'package:puntotienda/database/productos.dart';
 import 'package:puntotienda/widget/cart_empty.dart';
 import 'package:puntotienda/widget/cart_full.dart';
@@ -8,12 +10,12 @@ import 'package:puntotienda/widget/cart_full.dart';
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of(context)<CartProvider>(context);
+   // List products = [];
 
-   var products = [];
 
-    var productos = [];
 
-    return products.isNotEmpty
+    return cartProvider.getCartItems.isEmpty
         ? Scaffold(body: CartEmpty())
         : Scaffold(
             bottomSheet: checkoutSection(context),
@@ -35,11 +37,20 @@ class CartScreen extends StatelessWidget {
             body: Container(
               margin: EdgeInsets.only(bottom: 60),
               child: ListView.builder(
-                  itemCount: 6,
+                  itemCount: cartProvider.getCartItems.lenght,
                   itemBuilder: (BuildContext context, int index) {
-                    return CartFull();
+                    return ChangeNotifierProvider.value(
+                      value: cartProvider.getCartItems.values.toList()[index],
+                          child: CartFull(
+                        // imagen:cartProvider.getCartItems.values.toList()[index].imagen,
+                   // nombre :cartProvider.getCartItems.values.toList()[index].nombre,
+                   // precio :cartProvider.getCartItems.values.toList()[index].precio,
+                   // cantidad :cartProvider.getCartItems.values.toList()[index].cantidad,
+                      ),
+                    );
                   }),
-            ));
+            )
+            );
   }
 
   Widget checkoutSection(BuildContext ctx) {
@@ -108,4 +119,4 @@ class CartScreen extends StatelessWidget {
       ),
     );
   }
-}*/
+}

@@ -3,14 +3,15 @@ import 'package:backdrop/button.dart';
 import 'package:backdrop/scaffold.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 //import 'package:carousel_pro/carousel_pro.dart';
 //import 'package:backdrop/sub_header.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:puntotienda/consts/colors.dart';
-import 'package:puntotienda/consts/horizontalwidget.dart';
+import 'package:puntotienda/provider/producto_provider.dart';
+import 'package:puntotienda/widget/category.dart';
 //import 'package:puntotienda/widget/category.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -29,6 +30,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productsData = Provider.of<Products>(context);
+    productsData.imageList();
     return Scaffold(
       body: Center(
         child: BackdropScaffold(
@@ -67,6 +70,7 @@ class HomeScreen extends StatelessWidget {
           ),
           frontLayer: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment:CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   height: 190.0,
@@ -105,7 +109,16 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                   ),
                 ),
-                Container(),
+                Container(
+                  width: double.infinity,
+                  height: 180,
+                  child: ListView.builder(
+                      itemCount: 7,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return CategoryWidget(index: index);
+                      }),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -171,6 +184,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
-

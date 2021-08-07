@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:puntotienda/screens/cart.dart';
+//import 'package:puntotienda/screens/cart.dart';
 import 'package:puntotienda/screens/feeds.dart';
 import 'package:puntotienda/screens/home.dart';
 import 'package:puntotienda/screens/search.dart';
