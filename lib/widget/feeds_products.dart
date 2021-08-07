@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,9 @@ import 'package:provider/provider.dart';
 import 'package:puntotienda/provider/product_provider.dart';
 
 class FeedProducts extends StatelessWidget {
+  
+  final int index = 0;
+
   @override
   Widget build(BuildContext context) {
     var db = FirebaseFirestore.instance.collection("producto").snapshots();
@@ -17,10 +22,12 @@ class FeedProducts extends StatelessWidget {
           switch (snapshot.connectionState) {
             case ConnectionState.active:
               if (snapshot.hasData) {
-                
-                int index = 0;
-                obtenerProducto(context, snapshot, index);
-                
+                //Retraso para la carga de productos y la
+                //ejecución del provider
+                Timer(const Duration(seconds: 3), () {
+                  obtenerProducto(context, snapshot, index);
+                });
+
                 return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
@@ -62,33 +69,32 @@ class FeedProducts extends StatelessWidget {
     );
   }
 
-  void obtenerProducto(BuildContext context, var snapshot, int index) {
-    Provider.of<ProductoProvider>(context)
-        .changeUser(
+  Future<void> obtenerProducto(
+      BuildContext context, var snapshot, int index) async {
+    Provider.of<ProductoProvider>(context, listen: false).changeUser(
       (snapshot.data!.docs.elementAt(index).get("nombre")).toString(),
       (snapshot.data!.docs.elementAt(index).get("descripcion")).toString(),
       (snapshot.data!.docs.elementAt(index).get("precio")).toString(),
       (snapshot.data!.docs.elementAt(index).get("stock")).toString(),
       (snapshot.data!.docs.elementAt(index).get("categoria")).toString(),
       (snapshot.data!.docs.elementAt(index).get("imagen")).toString(),
-    
     );
   }
 }
 
 //APUNTES
-  // print("snapshot.data");
-  // print(snapshot);
+// print("snapshot.data");
+// print(snapshot);
 
-  //Imprimiendo todos los documentos de la coleccion
-  // print(snapshot.data!.docs);
+//Imprimiendo todos los documentos de la coleccion
+// print(snapshot.data!.docs);
 
-  //Mostrando algunos documentos en consola
-  // print(snapshot.data!.docs[0].data());
-  // print(snapshot.data!.docs[1].data());
+//Mostrando algunos documentos en consola
+// print(snapshot.data!.docs[0].data());
+// print(snapshot.data!.docs[1].data());
 
-  //Cantidad de documentos en una coleccion
-  //print(snapshot.data!.docs.length);
+//Cantidad de documentos en una coleccion
+//print(snapshot.data!.docs.length);
 
 Widget imageProducto(BuildContext context) {
   return Column(
