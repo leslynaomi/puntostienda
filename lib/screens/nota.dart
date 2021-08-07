@@ -16,7 +16,7 @@ class Notificacion extends ChangeNotifier {
   String precio = '';
   void changeUser(String newnombre, String newdescripcion, String newprecio) {
     nombre = newnombre;
-     descripcion = newdescripcion;
+    descripcion = newdescripcion;
     precio = newprecio;
     notifyListeners();
   }
@@ -74,21 +74,76 @@ class NotaCompra extends StatelessWidget {
         children: <Widget>[
           // SizedBox(
           // width: MediaQuery.of(context).size.width,
-          Text(
-            'Nombre:',
-            style: TextStyle(color: Colors.black, fontSize: 20),
-          ),
-          Text(
-            'Cantidad:',
-            style: TextStyle(color: Colors.black, fontSize: 20),
-          ),
-          Text(
-            'Precio:',
-            style: TextStyle(color: Colors.black, fontSize: 20),
-          ),
-          
+
           Row(
             children: [
+              const SizedBox(height: 20),
+              Text(
+                'Nombre:',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Spacer(),
+              Text(
+                '',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+              )
+            ],
+          ),
+
+          Row(
+            children: [
+              const SizedBox(height: 20),
+              Text(
+                'Cantidad:',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Spacer(),
+              Text(
+                '',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+              )
+            ],
+          ),
+
+          Row(
+            children: [
+              const SizedBox(height: 20),
+              Text(
+                'Precio:',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Spacer(),
+              Text(
+                '\Bs 0 ',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+              )
+            ],
+          ),
+
+          Row(
+            children: [
+              const SizedBox(height: 600),
               Text(
                 'Total:',
                 style: TextStyle(
@@ -99,7 +154,7 @@ class NotaCompra extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                '\$199',
+                '\Bs 0 ',
                 style: Theme.of(context).textTheme.headline4!.copyWith(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -112,4 +167,3 @@ class NotaCompra extends StatelessWidget {
     );
   }
 }
-
