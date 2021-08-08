@@ -37,10 +37,20 @@ class Producto {
     };
   }
 
+  void fromMap(Map<String, dynamic> map) {
+    nombre = map['nombre'];
+    descripcion = map['descripcion'];
+    precio = map['precio'];
+    stock = map['stock'];
+    categoria = map['categoria'];
+    imagen = map['imagen'];
+  }
+
 //Future<void> mostrarDatos() async {
 
 //}
 
+// Añadir a la base de datos
   Future<void> main() async {
     var db = FirebaseFirestore.instance
         .collection('productos')

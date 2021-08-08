@@ -3,7 +3,7 @@ import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:puntotienda/consts/variables_globales.dart' as contador;
+// import 'package:puntotienda/consts/variables_globales.dart' as contador;
 import 'package:puntotienda/provider/product_provider.dart';
 
 class FeedProducts extends StatelessWidget {
@@ -17,34 +17,19 @@ class FeedProducts extends StatelessWidget {
         switch (snapshot.connectionState) {
           case ConnectionState.active:
             if (snapshot.hasData) {
-              
               //Retraso para la carga de productos y la
               //ejecución del provider
-              
+
               // Timer(const Duration(seconds: 3), () {
-              obtenerProducto(context, snapshot, contador.index);
-              contador.index = contador.index + 1;
+              // actualizarCardProduct(context, snapshot, contador.index);
+              // contador.index = contador.index + 1;
 
               // if (contador.index < snapshot.data!.size + 1) {
               //   contador.index = contador.index + 1;
               // }
               // });
 
-              return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 250,
-                    height: 290,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: Theme.of(context).backgroundColor),
-                    child: Column(
-                      children: [
-                        imageProducto(context),
-                        detallesProducto(context),
-                      ],
-                    ),
-                  ));
+              return CircularProgressIndicator();
             } else {
               print("No hay datos en el snapshot");
               return CircularProgressIndicator();
@@ -69,20 +54,43 @@ class FeedProducts extends StatelessWidget {
       },
     );
   }
+}
 
-  Future<void> obtenerProducto(
-      BuildContext context, var snapshot, int index) async {
-    Provider.of<ProductoProvider>(context, listen: false).changeUser(
-      (snapshot.data!.docs.elementAt(index).get("nombre")).toString(),
-      (snapshot.data!.docs.elementAt(index).get("descripcion")).toString(),
-      (snapshot.data!.docs.elementAt(index).get("precio")).toString(),
-      (snapshot.data!.docs.elementAt(index).get("stock")).toString(),
-      (snapshot.data!.docs.elementAt(index).get("categoria")).toString(),
-      (snapshot.data!.docs.elementAt(index).get("imagen")).toString(),
-    );
-    print("Lista de productos:");
-    print(snapshot.data!.docs.elementAt(index).get("nombre"));
-  }
+Widget cardProductFeed(BuildContext context,var db, int index) {
+  
+  Timer(const Duration(seconds: 3), () {
+     db.forEach((doc) {
+          actualizarCardProduct(context, doc, index);
+        });
+  });
+  
+  return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        width: 250,
+        height: 290,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            color: Theme.of(context).backgroundColor),
+        child: Column(
+          children: [
+            imageProducto(context),
+            detallesProducto(context),
+          ],
+        ),
+      ));
+}
+
+Future<void> actualizarCardProduct(
+    BuildContext context, var snapshot, int index) async {
+  Provider.of<ProductoProvider>(context, listen: false).changeUser(
+    (snapshot.data!.docs.elementAt(index).get("nombre")).toString(),
+    (snapshot.data!.docs.elementAt(index).get("descripcion")).toString(),
+    (snapshot.data!.docs.elementAt(index).get("precio")).toString(),
+    (snapshot.data!.docs.elementAt(index).get("stock")).toString(),
+    (snapshot.data!.docs.elementAt(index).get("categoria")).toString(),
+    (snapshot.data!.docs.elementAt(index).get("imagen")).toString(),
+  );
 }
 
 //APUNTES
