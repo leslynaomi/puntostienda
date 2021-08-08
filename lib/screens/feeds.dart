@@ -19,8 +19,14 @@ class _FeedsScreenState extends State<FeedsScreen> {
       crossAxisSpacing: 8,
       mainAxisSpacing: 8,
       childAspectRatio: 240 / 290,
-      children: [
-        FeedProducts(),
+      children:  List.generate(10, (index) {
+          return FeedProducts();
+        }),
+      
+      // [
+      //   FeedProducts(),
+        
+        
         // FeedProducts(),
         // FeedProducts(),
         // FeedProducts(),
@@ -30,7 +36,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
         // FeedProducts(),
         // FeedProducts(),
         // FeedProducts(),
-      ],
+      // ],
 
       // children: ()[
       // ]

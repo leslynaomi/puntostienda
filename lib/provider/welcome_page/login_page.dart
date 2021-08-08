@@ -33,8 +33,9 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 height: 250,
                 fit: BoxFit.cover,
-                image: NetworkImage(
-                    'https://images.pexels.com/photos/5217882/pexels-photo-5217882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
+                image: AssetImage("assets/images/computer_world.jpg"),
+                // NetworkImage(
+                //     'https://images.pexels.com/photos/5217882/pexels-photo-5217882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
               ),
               Container(
                 margin: EdgeInsets.only(top: 50.0),
