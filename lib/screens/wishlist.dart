@@ -1,6 +1,6 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:puntotienda/consts/colors.dart';
+//import 'package:puntotienda/consts/colors.dart';
 //import 'package:puntotienda/database/productos.dart';
 import 'package:puntotienda/widget/wishlist_empty.dart';
 import 'package:puntotienda/widget/wishlist_full.dart';

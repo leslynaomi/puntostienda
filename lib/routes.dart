@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:puntotienda/inner_screens/categories_feeds.dart';
+//import 'package:puntotienda/inner_screens/categories_feeds.dart';
 import 'package:puntotienda/inner_screens/product_detalle.dart';
 import 'package:puntotienda/pages/admin/admin_page.dart';
 import 'package:puntotienda/pages/admin/admin_categoria.dart';

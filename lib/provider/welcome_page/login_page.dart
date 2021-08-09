@@ -222,7 +222,7 @@ Future<String> obtenerNombreYApellidoUser(String correo) async {
       if (doc["email"] == correo) {
         resultado = doc["nombre"] + " " + doc["apellido"];
         print("Esto guarda resultado: " + resultado);
-      } 
+      }
       // else {
       //   print("-------------------------------------------------");
       //   print("-------------------------------------------------");
@@ -254,10 +254,14 @@ Future<bool> validarUser(TextEditingController emailController,
         }
       } else {
         print("Ingrese un usuario válido");
+        emailController.clear();
+        passwordController.clear();
       }
+      print(doc["email"]);
+      print(doc["contraseña"]);
     });
   }, onError: (_) {
-    print("Ocurrió un problema"); 
+    print("Ocurrió un problema");
   });
   return resultado;
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 //import 'package:flutter_icons/flutter_icons.dart';
 
 class PopularProducts extends StatelessWidget {
@@ -40,11 +40,11 @@ class PopularProducts extends StatelessWidget {
                 fit:BoxFit.fill )),),
                 Positioned(right:12,
                 top: 7,
-                child: Icon(Entypo.star,
+                child: Icon(Icons.star,
                 color: Colors.grey.shade800,),),
                  Positioned(right:10,
                 top: 7,
-                child: Icon(Entypo.star_outlined,
+                child: Icon(Icons.star_outlined,
                   color: Colors.white,),),
                  Positioned(right:12,
                 bottom:32.0 ,
@@ -81,7 +81,7 @@ class PopularProducts extends StatelessWidget {
                               borderRadius: BorderRadius.circular(30.0),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Icon(MaterialCommunityIcons.cart_plus,
+                                child: Icon(Icons.credit_card,
                                 size: 25,
                                 color: Colors.black,
                                 ),

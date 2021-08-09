@@ -2,7 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/methods/database/conexion_firestore.dart';
-import 'package:puntotienda/provider/producto_provider.dart';
+//import 'package:puntotienda/provider/producto_provider.dart';
 
 class FeedProducts extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class _FeedProductsState extends State<FeedProducts> {
   @override
   Widget build(BuildContext context) {
     final productsAtribbutes = Provider.of<Product>(context);
-    final productId = ModalRoute.of(context)!.settings.arguments as String;
+    //final productId = ModalRoute.of(context)!.settings.arguments as String;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
