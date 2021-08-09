@@ -7,11 +7,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 //import 'package:carousel_pro/carousel_pro.dart';
 //import 'package:backdrop/sub_header.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/provider/producto_provider.dart';
+import 'package:puntotienda/widget/backlayer.dart';
 import 'package:puntotienda/widget/category.dart';
+import 'package:puntotienda/widget/popular_product.dart';
 //import 'package:puntotienda/widget/category.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -65,14 +68,12 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           ),
-          backLayer: Center(
-            child: Text("Back Layer"),
-          ),
+          backLayer: BackLayerMenu(),
           frontLayer: SingleChildScrollView(
             child: Column(
               crossAxisAlignment:CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                Container(
                   height: 190.0,
                   width: double.infinity,
                   child: CarouselSlider(
@@ -175,7 +176,44 @@ class HomeScreen extends StatelessWidget {
                           .toList(),
                     ),
                   ),
-                )
+                ),
+                 Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Productos Populares',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800, fontSize: 20),
+                      ),
+                      Spacer(),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Ver todo...',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 15,
+                              color: Colors.red),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                 Container(
+                   width: double.infinity,
+                   height: 285,
+                   margin: EdgeInsets.symmetric(horizontal: 3),
+                   child: ListView.builder(
+                     scrollDirection: Axis.horizontal,
+                     itemCount: 8,
+                     itemBuilder: (BuildContext context, int index){
+                       return PopularProducts();
+                     },
+                      
+                   ),
+
+                 )
               ],
             ),
           ),

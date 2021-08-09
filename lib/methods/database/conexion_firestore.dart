@@ -59,12 +59,13 @@ class Product with ChangeNotifier {
 class Category with ChangeNotifier {
 
   String nombre = "";
- 
+ String imagen="";
 
   Category(
       {
      
       required this.nombre,
+      required this.imagen,
     });
 }
 

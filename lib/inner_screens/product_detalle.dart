@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
 import 'package:puntotienda/provider/producto_provider.dart';
 
@@ -171,7 +172,7 @@ class _ProductodetallesState extends State<Productodetalles> {
               ],
             )),
         Align(
-          alignment: Alignment.bottomRight,
+          alignment: Alignment.bottomCenter,
           child: Row(
             children: [
               Expanded(
@@ -189,7 +190,52 @@ class _ProductodetallesState extends State<Productodetalles> {
                     ),
                   ),
                 ),
-              )
+              ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: cartProvider.getCartItems.constainsKey(productId)?(){}:() {
+                      cartProvider.addProductToCart(
+                         prodAttr.nombre, prodAttr.precio, prodAttr.imagen);
+                    },
+                    child: Row(
+                      children: [
+                      Text(cartProvider.getCartItems.constainsKey(productId)?'In cart':
+                      'comprar ahora'.toUpperCase(),
+                      style: TextStyle(fontSize: 14, color: Theme.of(context).textSelectionColor),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                      Icon(Icons.payment,
+                      color: Colors.green.shade700,
+                      size: 19,)
+
+                      ],
+
+                    ),
+                    
+                    
+                  ),
+                ),
+              ),
+
+               Expanded(
+                flex: 1,
+                child: Container(
+                  height: 50,
+                  child: InkWell(
+                    splashColor: ColorsConst.favColor,
+                    onTap: (){},
+                    child: Center(
+                      child: Icon(Icons.favorite,color: ColorsConst.white,),
+                    ),
+                  ),
+                  
+                ),
+              ),
             ],
           ),
         )

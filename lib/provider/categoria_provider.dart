@@ -19,6 +19,7 @@ class Categories with ChangeNotifier {
           0,
           Category(
             nombre: element.get('nombre'),
+            imagen:element.get('imagen'),
           ),
         );
       });

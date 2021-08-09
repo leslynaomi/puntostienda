@@ -28,14 +28,13 @@ class Products with ChangeNotifier {
     });
   }
 
-  List<Product> findByCategory(String categoryName) {
-    List _categoryList = _products
-        .where((element) => element.categoria
-            .toLowerCase()
-            .contains(categoryName.toLowerCase()))
-        .toList();
-    return _categoryList;
-  }
+  //List<Product> findByCategory(String categoryName) {
+    //List _categoryList = _products.where((element) => element.categoria
+      //      .toLowerCase()
+        //    .contains(categoryName.toLowerCase()))
+        //.toList();
+  //  return _categoryList;
+ // }
 
   List<Product> get products {
     return [..._products];

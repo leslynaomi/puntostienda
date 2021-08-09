@@ -34,22 +34,22 @@ class CartScreen extends StatelessWidget {
                 )
               ],
             ),
-            body: Container(
-              margin: EdgeInsets.only(bottom: 60),
-              child: ListView.builder(
-                  itemCount: cartProvider.getCartItems.lenght,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ChangeNotifierProvider.value(
-                      value: cartProvider.getCartItems.values.toList()[index],
-                          child: CartFull(
+            //body: Container(
+              //margin: EdgeInsets.only(bottom: 60),
+              //child: ListView.builder(
+                //  itemCount: cartProvider.getCartItems.lenght,
+                  //itemBuilder: (BuildContext context, int index) {
+                 //   return ChangeNotifierProvider.value(
+                   //   value: cartProvider.getCartItems.values.toList()[index],
+                    //      child: CartFull(
                         // imagen:cartProvider.getCartItems.values.toList()[index].imagen,
                    // nombre :cartProvider.getCartItems.values.toList()[index].nombre,
                    // precio :cartProvider.getCartItems.values.toList()[index].precio,
                    // cantidad :cartProvider.getCartItems.values.toList()[index].cantidad,
-                      ),
-                    );
-                  }),
-            )
+                     // ),
+               //     );
+                 // }),
+           // )
             );
   }
 

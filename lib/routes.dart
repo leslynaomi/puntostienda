@@ -10,6 +10,7 @@ import 'package:puntotienda/provider/welcome_page/login_page.dart';
 import 'package:puntotienda/provider/welcome_page/sign_up_page.dart';
 import 'package:puntotienda/screens/cart.dart';
 import 'package:puntotienda/screens/feeds.dart';
+import 'package:puntotienda/screens/wishlist.dart';
 import 'package:puntotienda/widget/bottom_bar.dart';
 
 final routes = <String, WidgetBuilder>{
@@ -21,7 +22,10 @@ final routes = <String, WidgetBuilder>{
   'detalles':(BuildContext context)=>Productodetalles(),
   'carrito':(BuildContext context)=>CartScreen(),
   'cartproducts':(BuildContext context)=>FeedsScreen(),
-   'categoria':(BuildContext context)=>CategoriesFeedsScreen(),
+   //'categoria':(BuildContext context)=>CategoriesFeedsScreen(),
+   'favoritos':(BuildContext context)=>WishlistScreen(),
+
+
 
   'BottomBarScreen': (BuildContext context) => BottomBarScreen(),
   'AreaAdmin': (BuildContext context) => Administracion(),

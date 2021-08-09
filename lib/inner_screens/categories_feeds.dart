@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+/*import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 //import 'package:puntotienda/methods/database/conexion_firestore.dart';
@@ -18,7 +18,7 @@ class _CategoriesFeedsScreenState extends State<CategoriesFeedsScreen> {
     //var cantidad = 6;
     final productsProvider = Provider.of<Products>(context,listen: false);
     final categoryName = ModalRoute.of(context)!.settings as String;
-    final productsList = productsProvider.findByCategory(categoryName);
+ //   final productsList = productsProvider.findByCategory(categoryName);
     return Scaffold(
         body: FutureBuilder(
       future: obtenerProductos(),
@@ -27,8 +27,8 @@ class _CategoriesFeedsScreenState extends State<CategoriesFeedsScreen> {
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
         childAspectRatio: 240 / 420,
-        children: List.generate(productsList.length, (index) {
-          return ChangeNotifierProvider.value(
+     //   children: List.generate(productsList.length, (index) {
+   //       return ChangeNotifierProvider.value(
             value: productsList[index],
             child: FeedProducts(),
           );
@@ -62,3 +62,4 @@ Future<Map<String, dynamic>> obtenerProductos() async {
       }));
   return mapa;
 }
+*/
