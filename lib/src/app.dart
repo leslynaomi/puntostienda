@@ -8,8 +8,6 @@ import 'package:puntotienda/provider/user_provider.dart';
 
 import 'package:puntotienda/routes.dart';
 
-//import '../widget/bottom_bar.dart';
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -17,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (_) => UsuarioSingUp(),
+            create: (_) => UsuarioProvider(),
           ),
           ChangeNotifierProvider(
             create: (_) => Products(),

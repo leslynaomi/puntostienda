@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:flutter/material.dart';
 
-class Productos {
+class Producto {
   String nombre;
   String descripcion;
   String precio;
@@ -9,7 +8,7 @@ class Productos {
   String categoria;
   String imagen;
 
-  Productos(
+  Producto(
       {this.nombre = "",
       this.descripcion = "",
       this.precio = "",
@@ -17,7 +16,7 @@ class Productos {
       this.categoria = "",
       this.imagen = ""});
 
-  Productos.fromJson(Map<String, dynamic> json)
+  Producto.fromJson(Map<String, dynamic> json)
       : this(
           nombre: json['nombre']! as String,
           descripcion: json['descripcion']! as String,
@@ -45,8 +44,8 @@ class Productos {
   Future<void> main() async {
     var db = FirebaseFirestore.instance
         .collection('productos')
-        .withConverter<Productos>(
-          fromFirestore: (snapshot, _) => Productos.fromJson(snapshot.data()!),
+        .withConverter<Producto>(
+          fromFirestore: (snapshot, _) => Producto.fromJson(snapshot.data()!),
           toFirestore: (productos, _) => productos.toJson(),
         );
     // Obtain science-fiction movies
@@ -57,7 +56,7 @@ class Productos {
 
     // Add a movie
     await db.add(
-      Productos(
+      Producto(
           nombre: 'nombre',
           descripcion: 'descripcion',
           precio: 'precio',

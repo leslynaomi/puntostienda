@@ -4,6 +4,7 @@ import 'package:puntotienda/screens/feeds.dart';
 import 'package:puntotienda/screens/home.dart';
 import 'package:puntotienda/screens/search.dart';
 import 'package:puntotienda/screens/user.dart';
+import 'package:puntotienda/consts/constantes.dart' as contador;
 
 class BottomBarScreen extends StatefulWidget {
   //static const routeName = 'BottomBarScreen';
@@ -25,6 +26,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   void _selectedPage(int index) {
     setState(() {
       _selectedindex = index;
+      contador.index = 0;
     });
   }
 

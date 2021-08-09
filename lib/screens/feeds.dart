@@ -35,27 +35,27 @@ class _FeedsScreenState extends State<FeedsScreen> {
         }),
       ),
     ));
+
+    //Con FutureBuilder
+    // return Scaffold(
+    //     body: FutureBuilder(
+    //   future: obtenerProductos(),
+    //   builder: (BuildContext context, AsyncSnapshot snapshot) => GridView.count(
+    //     crossAxisCount: 2,
+    //     crossAxisSpacing: 8,
+    //     mainAxisSpacing: 8,
+    //     childAspectRatio: 240 / 290,
+    //     children: List.generate(cantidad, (index) {
+    //       return FeedProducts();
+    //     }),
+    //   ),
+    // ));
   }
 }
 
-// class mostrarProducto extends StatelessWidget {
-//   const mostrarProducto({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListView.builder(
-//       itemBuilder: (BuildContext context, int index) {
-//         return FeedProducts();
-//       },
-//     );
-//   }
-// }
-
 Future<Map<String, dynamic>> obtenerProductos() async {
   Map<String, dynamic> mapa = {};
-  var db = FirebaseFirestore.instance.collection("productos").get();
+  var db = FirebaseFirestore.instance.collection("producto").get();
   db.then((value) => value.docs.forEach((doc) {
         mapa.addAll(doc.data());
         // print(doc.data());
