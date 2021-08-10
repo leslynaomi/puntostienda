@@ -3,6 +3,7 @@ import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:puntotienda/consts/variables_globales.dart';
 // import 'package:puntotienda/consts/variables_globales.dart' as contador;
 import 'package:puntotienda/provider/product_provider.dart';
 
@@ -29,6 +30,7 @@ class FeedProducts extends StatelessWidget {
               // }
               // });
 
+              // return cardProductFeed(context,db,index);
               return CircularProgressIndicator();
             } else {
               print("No hay datos en el snapshot");
@@ -56,13 +58,13 @@ class FeedProducts extends StatelessWidget {
   }
 }
 
-Widget cardProductFeed(BuildContext context,var db, int index) {
+Widget cardProductFeed(BuildContext context, String imagen, String nombre, String precio, String stock /*,var db, int index*/) {
   
-  Timer(const Duration(seconds: 3), () {
-     db.forEach((doc) {
-          actualizarCardProduct(context, doc, index);
-        });
-  });
+  // Timer(const Duration(seconds: 3), () {
+  //    db.forEach((doc) {
+  //         actualizarCardProduct(context, doc, index);
+  //       });
+  // });
   
   return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -74,8 +76,8 @@ Widget cardProductFeed(BuildContext context,var db, int index) {
             color: Theme.of(context).backgroundColor),
         child: Column(
           children: [
-            imageProducto(context),
-            detallesProducto(context),
+            imageProducto(context,imagen),
+            detallesProducto(context,nombre,precio,stock),
           ],
         ),
       ));
@@ -107,7 +109,7 @@ Future<void> actualizarCardProduct(
 //Cantidad de documentos en una coleccion
 //print(snapshot.data!.docs.length);
 
-Widget imageProducto(BuildContext context) {
+Widget imageProducto(BuildContext context, String imagen) {
   return Column(
     children: [
       Stack(
@@ -124,7 +126,8 @@ Widget imageProducto(BuildContext context) {
                 width: 0.5,
                 child: Image.network(
                   //La imagen del producto
-                  Provider.of<ProductoProvider>(context).getImagen,
+                  // Provider.of<ProductoProvider>(context).getImagen,
+                  imagen,
                   fit: BoxFit.fitWidth,
                   // fit: BoxFit.fill,
                 ),
@@ -150,7 +153,7 @@ Widget imageProducto(BuildContext context) {
   );
 }
 
-Widget detallesProducto(BuildContext context) {
+Widget detallesProducto(BuildContext context, String nombre, String precio, String stock) {
   return Container(
     padding: EdgeInsets.only(left: 5),
     margin: EdgeInsets.only(left: 5, bottom: 2, right: 3),
@@ -161,7 +164,8 @@ Widget detallesProducto(BuildContext context) {
           height: 4,
         ),
         Text(
-          Provider.of<ProductoProvider>(context).getDescripcion,
+          // Provider.of<ProductoProvider>(context).getDescripcion,
+          nombre,
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
           style: TextStyle(
@@ -170,7 +174,8 @@ Widget detallesProducto(BuildContext context) {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
-            Provider.of<ProductoProvider>(context).getPrecio,
+            // Provider.of<ProductoProvider>(context).getPrecio,
+            precio,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             style: TextStyle(
@@ -181,7 +186,8 @@ Widget detallesProducto(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              Provider.of<ProductoProvider>(context).getStock,
+              // Provider.of<ProductoProvider>(context).getStock,
+              stock,
               style: TextStyle(
                   fontSize: 12,
                   color: Colors.grey,
