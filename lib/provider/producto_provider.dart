@@ -4,8 +4,9 @@ import 'package:puntotienda/methods/database/conexion_firestore.dart';
 
 //<>[]{}
 class Products with ChangeNotifier {
-  List<Product> _products = [];
 
+  List<Product> _products = [];
+  
   Future<void> imageList() async {
     await FirebaseFirestore.instance
         .collection('producto')

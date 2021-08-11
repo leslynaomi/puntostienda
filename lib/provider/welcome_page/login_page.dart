@@ -164,7 +164,7 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
     margin: EdgeInsets.only(top: 10.0),
     child: ElevatedButton(
         onPressed: () async {Navigator.of(context).pushNamed('BottomBarScreen');
-         /* if (await validarUser(emailController, passwordController)) {
+         if (await validarUser(emailController, passwordController)) {
             if (await esAdmin(emailController)) {
               Navigator.of(context).pushNamed('AreaAdmin');
             } else {
@@ -174,8 +174,8 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
                   await obtenerNombreYApellidoUser(emailController.text);
               String phoneUser =
                   await obtenerTelefonoUser(emailController.text);
-              print(nameUser);
-              print(phoneUser);
+              // print(nameUser);
+              // print(phoneUser);
 
               if (nameUser != "" && phoneUser != "") {
                 Provider.of<UsuarioProvider>(context, listen: false)
@@ -193,7 +193,7 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
                 "No se encuentra el usuario en los registros",
                 "Intentar de nuevo");
           }
-        */},
+       },
         child: Text('iniciar sesion',
             style: TextStyle(color: Colors.white, fontSize: 17.0))),
   );
