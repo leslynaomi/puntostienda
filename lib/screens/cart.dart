@@ -4,6 +4,9 @@ import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
 import 'package:puntotienda/widget/cart_empty.dart';
 import 'package:puntotienda/widget/cart_full.dart';
+import 'package:puntotienda/widget/wishlist_empty.dart';
+import 'package:puntotienda/widget/wishlist_full.dart';
+//import 'package:puntotienda/widget/cart_full.dart';
 
 class CartScreen extends StatelessWidget {
   @override

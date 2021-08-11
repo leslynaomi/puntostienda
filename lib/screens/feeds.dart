@@ -20,6 +20,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
     //Cargando los documentos de la colección "producto"
     var db = FirebaseFirestore.instance.collection("producto").get();
 
+    //List<Product> productsList = productsProvider.products;
     return Scaffold(
         body: FutureBuilder(
       future: db,

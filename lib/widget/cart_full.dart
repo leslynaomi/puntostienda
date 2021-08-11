@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+//import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
+//import 'package:puntotienda/methods/database/conexion_firestore.dart';
 
 class CartFull extends StatefulWidget {
-  CartFull({Key? key}) : super(key: key);
+  //final String imagen;
+ // final String nombre;
+  //final int precio;
+ // final int cantidad;
+
+ // const CartFull(
+    //  {//required this.imagen,
+     // required this.nombre,
+      //required this.precio,
+      //required this.cantidad});
 
   @override
   _CartFullState createState() => _CartFullState();
@@ -10,6 +21,10 @@ class CartFull extends StatefulWidget {
 
 class _CartFullState extends State<CartFull> {
   @override
+
+
+
+
   Widget build(BuildContext context) {
     return cardProduct(context,"Mando de PS3","https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260","345");
   }

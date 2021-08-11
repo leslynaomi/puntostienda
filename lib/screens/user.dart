@@ -97,6 +97,39 @@ class _UserScreen extends State<UserScreen> {
               children: [
                 Padding(
                     padding: const EdgeInsets.only(left: 8.0),
+                    child: usertitle('bolsa de usuario')),
+                Divider(
+                  thickness: 1,
+                  color: Colors.grey,
+                ),
+                Material(
+      color: Colors.transparent,
+      child: InkWell(
+        splashColor: Theme.of(context).splashColor,
+        child: ListTile(
+          onTap: () => Navigator.of(context).pushNamed('favoritos'),
+          title: Text('lista de deseos'),
+          trailing: Icon(Icons.chevron_right_rounded),
+          leading: Icon(Icons.favorite),
+        ),
+      ),
+    ),
+
+     Material(
+      color: Colors.transparent,
+      child: InkWell(
+        splashColor: Theme.of(context).splashColor,
+        child: ListTile(
+          onTap: () {},
+          title: Text('Carrito'),
+          trailing: Icon(Icons.chevron_right_rounded),
+          leading: Icon(Icons.shopping_bag),
+        ),
+      ),
+    ),
+
+                Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
                     child: usertitle('Informacion de usuario')),
                 Divider(
                   thickness: 1,
