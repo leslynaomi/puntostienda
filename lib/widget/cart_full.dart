@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
-import 'package:puntotienda/methods/database/conexion_firestore.dart';
+//import 'package:puntotienda/methods/database/conexion_firestore.dart';
 
 class CartFull extends StatefulWidget {
   //final String imagen;
@@ -26,8 +26,8 @@ class _CartFullState extends State<CartFull> {
 
 
   Widget build(BuildContext context) {
-       final cartAttr = Provider.of<CartAttr>(context);
-    int subTotal = cartAttr.cantidad * cartAttr.precio;
+       /*final cartAttr = Provider.of<CartAttr>(context);
+    int subTotal = cartAttr.cantidad * cartAttr.precio;   sub total de cantidad por precio*/
     return SingleChildScrollView(
         child: Container(
       height: 165,
@@ -45,7 +45,7 @@ class _CartFullState extends State<CartFull> {
             width: 120,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(cartAttr.imagen),
+                image: NetworkImage(/*provider imagen cartAttr.imagen*/'https://i.pinimg.com/originals/26/4e/36/264e36aeb6ec265e887b6bc54bb48095.jpg'),
                 fit: BoxFit.fill,
               ),
             ),
@@ -60,7 +60,7 @@ class _CartFullState extends State<CartFull> {
                     children: [
                       Flexible(
                         child: Text(
-                          cartAttr.nombre,
+                          /*cartAttr.nombre*/'productos',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -88,8 +88,8 @@ class _CartFullState extends State<CartFull> {
                   Row(
                     children: [
                       Text('Precio:'),
-                      Text(
-                        '${cartAttr.precio} Bs',
+                          Text('bs'
+                        /*'${cartAttr.precio} Bs'  añadimos el provider que contenga precio*/,
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       )
@@ -99,7 +99,7 @@ class _CartFullState extends State<CartFull> {
                     children: [
                       Text('Sub Total:'),
                       Text(
-                        '$subTotal Bs',
+                       /* '$subTotal Bs '*/'15',
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -146,7 +146,7 @@ class _CartFullState extends State<CartFull> {
                             ]),
                           ),
                           child: Text(
-                           cartAttr.cantidad.toString(),
+                          /*0 cartAttr.cantidad.toString()*/'cantidad ',
                             textAlign: TextAlign.center,
                           ),
                         ),

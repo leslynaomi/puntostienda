@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:puntotienda/screens/cart.dart';
 //import 'package:puntotienda/screens/cart.dart';
 import 'package:puntotienda/screens/feeds.dart';
 import 'package:puntotienda/screens/home.dart';
@@ -17,7 +18,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     HomeScreen(),
     FeedsScreen(),
     SearchScreen(),
-    //CartScreen(),
+    CartScreen(),
     UserScreen(),
   ];
 

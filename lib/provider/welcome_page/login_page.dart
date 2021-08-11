@@ -162,8 +162,8 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
     height: 45.0,
     margin: EdgeInsets.only(top: 10.0),
     child: ElevatedButton(
-        onPressed: () async {
-          if (await validarUser(emailController, passwordController)) {
+        onPressed: () async {Navigator.of(context).pushNamed('BottomBarScreen');
+         /* if (await validarUser(emailController, passwordController)) {
             if (await esAdmin(emailController)) {
               Navigator.of(context).pushNamed('AreaAdmin');
             } else {
@@ -192,7 +192,7 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
                 "No se encuentra el usuario en los registros",
                 "Intentar de nuevo");
           }
-        },
+        */},
         child: Text('iniciar sesion',
             style: TextStyle(color: Colors.white, fontSize: 17.0))),
   );

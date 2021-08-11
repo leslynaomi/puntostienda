@@ -1,10 +1,10 @@
 //import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+///import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
-import 'package:puntotienda/provider/cart_provider.dart';
-import 'package:puntotienda/provider/producto_provider.dart';
+//import 'package:puntotienda/provider/cart_provider.dart';
+//import 'package:puntotienda/provider/producto_provider.dart';
 
 class Productodetalles extends StatefulWidget {
   @override
@@ -15,17 +15,17 @@ class _ProductodetallesState extends State<Productodetalles> {
   GlobalKey previewContainer = new GlobalKey();
   @override
   Widget build(BuildContext context) {
-    final productsData = Provider.of<Products>(context);
-    final productId = ModalRoute.of(context)!.settings.arguments as String;
-    final prodAttr = productsData.findById(productId);
-    final cartProvider = Provider.of(context)<CartProvider>(context);
+    //final productsData = Provider.of<Products>(context);
+    //final productId = ModalRoute.of(context)!.settings.arguments as String;
+    //final prodAttr = productsData.findById(productId);
+    //final cartProvider = Provider.of(context)<CartProvider>(context);
     return Scaffold(
       body: Stack(children: <Widget>[
         Container(
           foregroundDecoration: BoxDecoration(color: Colors.black12),
           height: MediaQuery.of(context).size.height * 0.45,
           width: double.infinity,
-          child: Image.network(prodAttr.imagen),
+          child: Image.network('https://i.pinimg.com/736x/61/18/42/61184274134f8d9592ac3ca0ffc26fb5.jpg'/* llamada del provider para añadir imagen prodAttr.imagen*/),
         ),
         SingleChildScrollView(
           padding: const EdgeInsets.only(top: 16.0, bottom: 20.0),
@@ -81,8 +81,8 @@ class _ProductodetallesState extends State<Productodetalles> {
                         children: [
                           Container(
                             width: MediaQuery.of(context).size.width * 0.9,
-                            child: Text(
-                              prodAttr.nombre,
+                            child: Text('nombre producto'
+                             /* llamada prodAttr.nombre*/,
                               maxLines: 2,
                               style: TextStyle(
                                 fontSize: 28.0,
@@ -93,8 +93,8 @@ class _ProductodetallesState extends State<Productodetalles> {
                           SizedBox(
                             height: 8,
                           ),
-                          Text(
-                            'bs ${prodAttr.precio} ',
+                          Text('precio'
+                          /* 'bs ${prodAttr.precio} '*/,
                             style: TextStyle(
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold,
@@ -119,8 +119,8 @@ class _ProductodetallesState extends State<Productodetalles> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        prodAttr.descripcion,
+                      child: Text('descripcion'
+                       /*llamada  prodAttr.descripcion*/,
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 21.0,
@@ -139,8 +139,8 @@ class _ProductodetallesState extends State<Productodetalles> {
                         height: 1,
                       ),
                     ),
-                    _details('Stock', '${prodAttr.stock}'),
-                    _details('id_Categoria', prodAttr.categoria),
+                    _details('Stock','30' /*'${prodAttr.stock}'*/),
+                    _details('id_Categoria', 'televisores'/*prodAttr.categoria*/),
                   ],
                 ),
               )
@@ -162,7 +162,7 @@ class _ProductodetallesState extends State<Productodetalles> {
               actions: <Widget>[
                 IconButton(
                   icon: Icon(
-                    Icons.accessibility_sharp,
+                    Icons.badge,
                     color: Colors.purple,
                   ),
                   onPressed: () {
@@ -180,14 +180,14 @@ class _ProductodetallesState extends State<Productodetalles> {
                 child: Container(
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: cartProvider.getCartItems.constainsKey(productId)?(){}:() {
+                    onPressed: /*cartProvider.getCartItems.constainsKey(productId)?(){}:() {
                       cartProvider.addProductToCart(
                          prodAttr.nombre, prodAttr.precio, prodAttr.imagen);
-                    },
-                    child: Text(cartProvider.getCartItems.constainsKey(productId)?'In cart':
+                    */(){},
+                    child: Text(/*cartProvider.getCartItems.constainsKey(productId)?'In cart':
                       'add to cart'.toUpperCase(),
-                      style: TextStyle(fontSize: 16, color: Colors.black),
-                    ),
+                      style: TextStyle(fontSize: 16, color: Colors.black),*/
+                    'cargaa carrito '),
                   ),
                 ),
               ),
@@ -196,13 +196,17 @@ class _ProductodetallesState extends State<Productodetalles> {
                 child: Container(
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: cartProvider.getCartItems.constainsKey(productId)?(){}:() {
+                    onPressed:(){},
+                    /*
+                    cargando carrito en provider
+                     cartProvider.getCartItems.constainsKey(productId)?(){}:() {
                       cartProvider.addProductToCart(
-                         prodAttr.nombre, prodAttr.precio, prodAttr.imagen);
-                    },
+                         prodAttr.nombre, prodAttr.precio, prodAttr.imagen);*/
+                    
                     child: Row(
                       children: [
-                      Text(cartProvider.getCartItems.constainsKey(productId)?'In cart':
+                      Text(/* añadiendo a carrito
+                      cartProvider.getCartItems.constainsKey(productId)?'In cart':*/
                       'comprar ahora'.toUpperCase(),
                       style: TextStyle(fontSize: 14, color: Theme.of(context).textSelectionColor),
                     ),

@@ -1,21 +1,24 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
-import 'package:puntotienda/provider/cart_provider.dart';
+//import 'package:puntotienda/provider/cart_provider.dart';
 //import 'package:puntotienda/database/productos.dart';
 import 'package:puntotienda/widget/cart_empty.dart';
 import 'package:puntotienda/widget/cart_full.dart';
+import 'package:puntotienda/widget/wishlist_empty.dart';
+import 'package:puntotienda/widget/wishlist_full.dart';
+//import 'package:puntotienda/widget/cart_full.dart';
 
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final cartProvider = Provider.of(context)<CartProvider>(context);
-   // List products = [];
+    //final cartProvider = Provider.of(context)<CartProvider>(context);
+    List products = [];
 
+     
 
-
-    return cartProvider.getCartItems.isEmpty
+    return /*cartProvider*/products.isNotEmpty
         ? Scaffold(body: CartEmpty())
         : Scaffold(
             bottomSheet: checkoutSection(context),
@@ -27,13 +30,24 @@ class CartScreen extends StatelessWidget {
                     // Productos prod = new Productos();
                     // var aux = prod.db;
                     // aux = asMap();
-
+                     
                     print('Soy el botón de eliminar todos los productos');
                   },
                   icon: Icon(Icons.delete),
                 )
               ],
             ),
+               body: ListView.builder(
+              itemCount: 1,
+              itemBuilder: (BuildContext context , int index){
+                return CartFull();
+              }),
+
+
+
+
+
+
             //body: Container(
               //margin: EdgeInsets.only(bottom: 60),
               //child: ListView.builder(

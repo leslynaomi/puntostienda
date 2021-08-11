@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:puntotienda/methods/database/conexion_firestore.dart';
-import 'package:puntotienda/provider/producto_provider.dart';
+//import 'package:provider/provider.dart';
+//import 'package:puntotienda/methods/database/conexion_firestore.dart';
+//import 'package:puntotienda/provider/producto_provider.dart';
 //import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:puntotienda/widget/feeds_products.dart';
 
@@ -16,9 +16,12 @@ class _FeedsScreenState extends State<FeedsScreen> {
   Widget build(BuildContext context) {
     //Reemplazar por la cantidad de productos a obtener
     //var cantidad = 6;
-    final productsProvider = Provider.of<Products>(context);
+    //
+    //
+    //llamando provider
+    //final productsProvider = Provider.of<Products>(context);
 
-    List<Product> productsList = productsProvider.products;
+    //List<Product> productsList = productsProvider.products;
     return Scaffold(
         body: FutureBuilder(
       future: obtenerProductos(),
@@ -27,11 +30,16 @@ class _FeedsScreenState extends State<FeedsScreen> {
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
         childAspectRatio: 240 / 420,
-        children: List.generate(productsList.length, (index) {
-          return ChangeNotifierProvider.value(
-            value: productsList[index],
-            child: FeedProducts(),
-          );
+        children: List.generate(8, (index) {
+          return FeedProducts();
+           /*funcion provvider para mostrar los productos de una categora
+           return ChangeNotifierProvider.value(value:productsList[index],
+           child:FeedProducts(),
+           )*/
+          //ChangeNotifierProvider.value(
+          //  value: productsList[index],
+          // child: FeedProducts(),
+          //  );
         }),
       ),
     ));
