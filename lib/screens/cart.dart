@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
-// import 'package:puntotienda/provider/product_provider.dart';
 import 'package:puntotienda/widget/cart_empty.dart';
 import 'package:puntotienda/widget/cart_full.dart';
 
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
     var products = ["hola", "saludos"];
+    int cantidad = 0;
+    List<Widget> listWidgetTemp = [];
 
     if (products.isNotEmpty) {
       return Scaffold(
@@ -100,8 +102,8 @@ Widget checkoutSection(BuildContext context) {
                 color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500),
           ),
           Text(
-            // 'Bs 179.0',
-            (Provider.of<CartProvider>(context).getTotal).toString(),
+            'Bs 179.0',
+            // (Provider.of<CartProvider>(context).getCantidad).toString(),
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.blue, fontSize: 18, fontWeight: FontWeight.w600),

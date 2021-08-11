@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 
 class CartProvider extends ChangeNotifier {
-  int total = 0;
 
-  get getTotal => this.total;
-  void setTotal(int total) => this.total = total;
+  List<Widget> listWidgetTemp = [];
+  // int cantidad = 0;
 
-  void changeUser(int total) {
-    setTotal(total);
+  get getListWidgetTemp => this.listWidgetTemp;
+  void setListWidgetTemp(listWidgetTemp) =>
+      this.listWidgetTemp = listWidgetTemp;
 
+  // get getCantidad => this.cantidad;
+  // void setCantidad(int cantidad) => this.cantidad = cantidad;
+
+  void changeCart(/*int cantidad,*/List<Widget> listWidgetTemp) {
+    // setCantidad(cantidad);
+    setListWidgetTemp(listWidgetTemp);
+    
     //Notificamos a los oyentes
     notifyListeners();
   }
