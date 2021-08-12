@@ -6,8 +6,9 @@ Widget fondopantalla(BuildContext context) {
     decoration: BoxDecoration(
         image: DecorationImage(
       fit: BoxFit.cover,
-      image: NetworkImage(
-          "https://tse4.mm.bing.net/th?id=OIP.KWC8ieJrAQ0UV6SD0Ei3NgHaO0&pid=15.1"),
+      image:  AssetImage("assets/images/fondo.jpg"),
+      // NetworkImage(
+      //     "https://tse4.mm.bing.net/th?id=OIP.KWC8ieJrAQ0UV6SD0Ei3NgHaO0&pid=15.1"),
     )),
     child: BackdropFilter(
         filter: ImageFilter.blur(),

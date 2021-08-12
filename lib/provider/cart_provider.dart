@@ -3,9 +3,21 @@ import 'package:puntotienda/methods/database/conexion_firestore.dart';
 
 class CartProvider with ChangeNotifier {
   Map<String, CartAttr> _cartItems = {};
+  List<Widget> listWidgetTemp = [];
 
+  // int cantidad = 0;
 
+  get getListWidgetTemp => this.listWidgetTemp;
+  void setListWidgetTemp(listWidgetTemp) =>
+      this.listWidgetTemp = listWidgetTemp;
 
+  // get getCantidad => this.cantidad;
+  // void setCantidad(int cantidad) => this.cantidad = cantidad;
+
+  void changeCart(/*int cantidad,*/ List<Widget> listWidgetTemp) {
+    // setCantidad(cantidad);
+    setListWidgetTemp(listWidgetTemp);
+  }
 
   Map<String, CartAttr> get getCartItems {
     return {..._cartItems};

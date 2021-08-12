@@ -33,8 +33,9 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 height: 250,
                 fit: BoxFit.cover,
-                image: NetworkImage(
-                    'https://images.pexels.com/photos/5217882/pexels-photo-5217882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
+                image: AssetImage("assets/images/computer_world.jpg"),
+                // NetworkImage(
+                //     'https://images.pexels.com/photos/5217882/pexels-photo-5217882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
               ),
               Container(
                 margin: EdgeInsets.only(top: 50.0),
@@ -162,13 +163,11 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
     height: 45.0,
     margin: EdgeInsets.only(top: 10.0),
     child: ElevatedButton(
-        onPressed: () async {Navigator.of(context).pushNamed('BottomBarScreen');
-         /* if (await validarUser(emailController, passwordController)) {
+        onPressed: () async {
+          if (await validarUser(emailController, passwordController)) {
             if (await esAdmin(emailController)) {
               Navigator.of(context).pushNamed('AreaAdmin');
             } else {
-              Navigator.of(context).pushNamed('BottomBarScreen');
-
               String nameUser =
                   await obtenerNombreYApellidoUser(emailController.text);
               String phoneUser =
@@ -179,6 +178,7 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
               if (nameUser != "" && phoneUser != "") {
                 Provider.of<UsuarioProvider>(context, listen: false)
                     .changeUser(nameUser, phoneUser, emailController.text);
+                Navigator.of(context).pushNamed('BottomBarScreen');
               } else {
                 await mostrarAviso(
                     context,
@@ -192,7 +192,7 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
                 "No se encuentra el usuario en los registros",
                 "Intentar de nuevo");
           }
-        */},
+        },
         child: Text('iniciar sesion',
             style: TextStyle(color: Colors.white, fontSize: 17.0))),
   );

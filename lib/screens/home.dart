@@ -3,19 +3,12 @@ import 'package:backdrop/button.dart';
 import 'package:backdrop/scaffold.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
-//import 'package:carousel_pro/carousel_pro.dart';
-//import 'package:backdrop/sub_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:provider/provider.dart';
-
 import 'package:puntotienda/consts/colors.dart';
-import 'package:puntotienda/provider/producto_provider.dart';
 import 'package:puntotienda/widget/backlayer.dart';
 import 'package:puntotienda/widget/category.dart';
 import 'package:puntotienda/widget/popular_product.dart';
-//import 'package:puntotienda/widget/category.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<String> imageList = [
@@ -33,8 +26,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productsData = Provider.of<Products>(context);
-    productsData.imageList();
+    //final productsData = Provider.of<Products>(context);
+    //  productsData.imageList();
+
     return Scaffold(
       body: Center(
         child: BackdropScaffold(
@@ -71,7 +65,7 @@ class HomeScreen extends StatelessWidget {
           backLayer: BackLayerMenu(),
           frontLayer: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment:CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   height: 190.0,
@@ -177,7 +171,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
@@ -200,20 +194,18 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                 Container(
-                   width: double.infinity,
-                   height: 285,
-                   margin: EdgeInsets.symmetric(horizontal: 3),
-                   child: ListView.builder(
-                     scrollDirection: Axis.horizontal,
-                     itemCount: 8,
-                     itemBuilder: (BuildContext context, int index){
-                       return PopularProducts();
-                     },
-                      
-                   ),
-
-                 )
+                Container(
+                  width: double.infinity,
+                  height: 285,
+                  margin: EdgeInsets.symmetric(horizontal: 3),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 8,
+                    itemBuilder: (BuildContext context, int index) {
+                      return PopularProducts();
+                    },
+                  ),
+                )
               ],
             ),
           ),

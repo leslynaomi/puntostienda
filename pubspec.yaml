@@ -46,6 +46,7 @@ dependencies:
   firebase_storage: ^10.0.1
   flutter_bloc: ^7.0.1
   animate_do: ^2.0.0
+  after_layout: ^1.1.0
   
 
 dev_dependencies:
@@ -73,6 +74,10 @@ flutter:
     - assets/images/nike.jpg
     - assets/images/samsung.jpg
     - assets/images/Huawei.jpg
+    - assets/images/fondo.jpg
+    - assets/images/computer_world.jpg
+    - assets/images/computer_user.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

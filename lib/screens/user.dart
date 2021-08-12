@@ -11,159 +11,158 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreen extends State<UserScreen> {
   bool _value = false;
-
   var top = 0.0;
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            elevation: 4,
-            expandedHeight: 200,
-            pinned: true,
-            flexibleSpace: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-              top = constraints.biggest.height;
-              return Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        ColorsConst.starterColor,
-                        ColorsConst.endColor,
-                      ],
-                      begin: const FractionalOffset(0.0, 0.0),
-                      end: const FractionalOffset(1.0, 0.0),
-                      stops: [0.0, 1.0],
-                      tileMode: TileMode.clamp),
-                ),
-                child: FlexibleSpaceBar(
-                  collapseMode: CollapseMode.parallax,
-                  centerTitle: true,
-                  title: Row(
-                    //  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      AnimatedOpacity(
-                        duration: Duration(milliseconds: 300),
-                        opacity: top <= 110.0 ? 1.0 : 0,
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Container(
-                              height: kToolbarHeight / 1.8,
-                              width: kToolbarHeight / 1.8,
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.white,
-                                    blurRadius: 1.0,
-                                  ),
-                                ],
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Text(
-                              // 'top.toString()',
-                              'Guest',
-                              style:
-                                  TextStyle(fontSize: 20.0, color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
+      slivers: <Widget>[
+        SliverAppBar(
+          automaticallyImplyLeading: false,
+          elevation: 4,
+          expandedHeight: 200,
+          pinned: true,
+          flexibleSpace: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+            top = constraints.biggest.height;
+            return Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [
+                      ColorsConst.starterColor,
+                      ColorsConst.endColor,
                     ],
-                  ),
-                  background: Image(
-                    image: NetworkImage(
-                        'https://i.pinimg.com/564x/61/2d/38/612d38034bb8ea4f566b0630e1c96f1d.jpg'),
-                    fit: BoxFit.cover,
+                    begin: const FractionalOffset(0.0, 0.0),
+                    end: const FractionalOffset(1.0, 0.0),
+                    stops: [0.0, 1.0],
+                    tileMode: TileMode.clamp),
+              ),
+              child: FlexibleSpaceBar(
+                collapseMode: CollapseMode.parallax,
+                centerTitle: true,
+                title: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    AnimatedOpacity(
+                      duration: Duration(milliseconds: 300),
+                      opacity: top <= 110.0 ? 1.0 : 0,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Container(
+                            height: kToolbarHeight / 1.8,
+                            width: kToolbarHeight / 1.8,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.white,
+                                  blurRadius: 1.0,
+                                ),
+                              ],
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(
+                            // 'top.toString()',
+                            'Guest',
+                            style:
+                                TextStyle(fontSize: 20.0, color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                background: Image(
+                  image: AssetImage("assets/images/computer_user.jpg"),
+                  // NetworkImage(
+                  //     'https://i.pinimg.com/564x/61/2d/38/612d38034bb8ea4f566b0630e1c96f1d.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            );
+          }),
+        ),
+        SliverToBoxAdapter(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: usertitle('bolsa de usuario')),
+              Divider(
+                thickness: 1,
+                color: Colors.grey,
+              ),
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  splashColor: Theme.of(context).splashColor,
+                  child: ListTile(
+                    onTap: () => Navigator.of(context).pushNamed('favoritos'),
+                    title: Text('lista de deseos'),
+                    trailing: Icon(Icons.chevron_right_rounded),
+                    leading: Icon(Icons.favorite),
                   ),
                 ),
-              );
-            }),
+              ),
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  splashColor: Theme.of(context).splashColor,
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.of(context).pushNamed('carrito');
+                    },
+                    title: Text('Carrito'),
+                    trailing: Icon(Icons.chevron_right_rounded),
+                    leading: Icon(Icons.shopping_bag),
+                  ),
+                ),
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: usertitle('Informacion de usuario')),
+              Divider(
+                thickness: 1,
+                color: Colors.grey,
+              ),
+              userListTitle('Nombre', context),
+              userListTelefono('Numero de telefono', '+591', context),
+              userEmail('Email', context),
+              Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: usertitle('Configuracion de Usuario')),
+              Divider(
+                thickness: 1,
+                color: Colors.grey,
+              ),
+              ListTileSwitch(
+                value: _value,
+                leading: const Icon(Icons.message),
+                onChanged: (value) {
+                  setState(() {
+                    _value = value;
+                  });
+                },
+                switchActiveColor: Colors.teal,
+                switchScale: 0.8,
+                switchType: SwitchType.cupertino,
+                title: const Text(
+                  'Dark theme',
+                ),
+              ),
+              userListexit('cerrar sesion', '', context),
+            ],
           ),
-          SliverToBoxAdapter(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: usertitle('bolsa de usuario')),
-                Divider(
-                  thickness: 1,
-                  color: Colors.grey,
-                ),
-                Material(
-      color: Colors.transparent,
-      child: InkWell(
-        splashColor: Theme.of(context).splashColor,
-        child: ListTile(
-          onTap: () => Navigator.of(context).pushNamed('favoritos'),
-          title: Text('lista de deseos'),
-          trailing: Icon(Icons.chevron_right_rounded),
-          leading: Icon(Icons.favorite),
-        ),
-      ),
-    ),
-
-     Material(
-      color: Colors.transparent,
-      child: InkWell(
-        splashColor: Theme.of(context).splashColor,
-        child: ListTile(
-          onTap: () {},
-          title: Text('Carrito'),
-          trailing: Icon(Icons.chevron_right_rounded),
-          leading: Icon(Icons.shopping_bag),
-        ),
-      ),
-    ),
-
-                Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: usertitle('Informacion de usuario')),
-                Divider(
-                  thickness: 1,
-                  color: Colors.grey,
-                ),
-                userListTitle('Nombre', context),
-                userListTelefono('Numero de telefono', '+591', context),
-                userEmail('Email', context),
-                Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: usertitle('Configuracion de Usuario')),
-                Divider(
-                  thickness: 1,
-                  color: Colors.grey,
-                ),
-                ListTileSwitch(
-                  value: _value,
-                  leading: const Icon(Icons.message),
-                  onChanged: (value) {
-                    setState(() {
-                      _value = value;
-                    });
-                  },
-                  switchActiveColor: Colors.teal,
-                  switchScale: 0.8,
-                  switchType: SwitchType.cupertino,
-                  title: const Text(
-                    'Dark theme',
-                  ),
-                ),
-                userListexit('cerrar sesion', '', context),
-              ],
-            ),
-          )
-        ],
+        )
+      ],
       // ),
     );
   }
@@ -176,7 +175,7 @@ class _UserScreen extends State<UserScreen> {
         child: ListTile(
           onTap: () {},
           title: Text(title),
-          subtitle: Text(Provider.of<UsuarioProvider>(context).nombre),
+          subtitle: Text(Provider.of<UsuarioProvider>(context).getNombre),
           leading: Icon(Icons.account_circle),
         ),
       ),
@@ -191,7 +190,8 @@ class _UserScreen extends State<UserScreen> {
         child: ListTile(
           onTap: () {},
           title: Text(title),
-          subtitle: Text(subtitle + Provider.of<UsuarioProvider>(context).getTelefono),
+          subtitle: Text(
+              subtitle + Provider.of<UsuarioProvider>(context).getTelefono),
           leading: Icon(Icons.phone),
         ),
       ),
@@ -206,7 +206,7 @@ class _UserScreen extends State<UserScreen> {
         child: ListTile(
           onTap: () {},
           title: Text(title),
-          subtitle: Text(Provider.of<UsuarioProvider>(context).email),
+          subtitle: Text(Provider.of<UsuarioProvider>(context).getEmail),
           leading: Icon(Icons.email),
         ),
       ),
