@@ -39,6 +39,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
               String precio = (data.data()["precio"]).toString();
               String stock = (data.data()["stock"]).toString();
 
+              
               listWidgetTemp
                   .add(cardProductFeed(context, imagen, nombre, precio, stock));
             });
@@ -186,8 +187,8 @@ class _FeedsScreenState extends State<FeedsScreen> {
                     child: ElevatedButton(
                       onPressed: () {
 
-                        Provider.of<CartProvider>(context, listen: false)
-                            .changeCart(listWidgetCart);
+                        // Provider.of<CartProvider>(context, listen: false)
+                        //     .changeCart();
                         print("Añadiendo al carrito");
                         
                         //Apagar el botón una vez se añade el producto al carrito

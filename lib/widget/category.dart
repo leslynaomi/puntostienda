@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:puntotienda/methods/database/conexion_firestore.dart';
+// import 'package:provider/provider.dart';
+// import 'package:puntotienda/methods/database/conexion_firestore.dart';
 
 class CategoryWidget extends StatelessWidget {
   CategoryWidget({Key? key, required this.index}) ;

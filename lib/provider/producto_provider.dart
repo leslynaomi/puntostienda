@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:puntotienda/methods/database/conexion_firestore.dart';
+// import 'package:puntotienda/methods/database/conexion_firestore.dart';
+import 'package:puntotienda/src/model/product.dart';
 
-//<>[]{}
 class Products with ChangeNotifier {
-
-  List<Product> _products = [];
   
+  List<Producto> _products = [];
+
   Future<void> imageList() async {
     await FirebaseFirestore.instance
         .collection('producto')
@@ -16,7 +16,7 @@ class Products with ChangeNotifier {
       categoriasSnapshot.docs.forEach((element) {
         _products.insert(
           0,
-          Product(
+          Producto(
             categoria: element.get('categoria'),
             descripcion: element.get('descripcion'),
             imagen: element.get('imagen'),
@@ -30,20 +30,20 @@ class Products with ChangeNotifier {
   }
 
   //List<Product> findByCategory(String categoryName) {
-    //List _categoryList = _products.where((element) => element.categoria
-      //      .toLowerCase()
-        //    .contains(categoryName.toLowerCase()))
-        //.toList();
+  //List _categoryList = _products.where((element) => element.categoria
+  //      .toLowerCase()
+  //    .contains(categoryName.toLowerCase()))
+  //.toList();
   //  return _categoryList;
- // }
+  // }
 
-  List<Product> get products {
-    return [..._products];
-  }
+  // List<Product> get products {
+  //   return [..._products];
+  // }
 
-  Product findById(String productoid) {
-    return _products.firstWhere((element) => element.nombre == productoid);
-  }
+  // Product findById(String productoid) {
+  //   return _products.firstWhere((element) => element.nombre == productoid);
+  // }
 }
 
 void changeUser(String nombre, String telefono, String email) {

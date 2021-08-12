@@ -8,6 +8,24 @@ class Producto {
   String categoria;
   String imagen;
 
+  get getNombre => this.nombre;
+  void setNombre(String nombre) => this.nombre = nombre;
+
+  get getDescripcion => this.descripcion;
+  void setDescripcion(descripcion) => this.descripcion = descripcion;
+
+  get getPrecio => this.precio;
+  void setPrecio(precio) => this.precio = precio;
+
+  get getStock => this.stock;
+  void setStock(stock) => this.stock = stock;
+
+  get getCategoria => this.categoria;
+  void setCategoria(categoria) => this.categoria = categoria;
+
+  get getImagen => this.imagen;
+  void setImagen(imagen) => this.imagen = imagen;
+
   Producto(
       {this.nombre = "",
       this.descripcion = "",

@@ -1,21 +1,25 @@
 import 'package:flutter/widgets.dart';
-import 'package:puntotienda/methods/database/conexion_firestore.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:puntotienda/consts/app_constants.dart';
+import 'package:puntotienda/methods/cart_item.dart';
+import 'package:puntotienda/src/model/CartAttr.dart';
 
 class CartProvider with ChangeNotifier {
   Map<String, CartAttr> _cartItems = {};
   List<Widget> listWidgetTemp = [];
 
-  // int cantidad = 0;
-
+  int cantidad = 0;
+  RxDouble totalCartPrice = 0.0.obs;
+  
   get getListWidgetTemp => this.listWidgetTemp;
   void setListWidgetTemp(listWidgetTemp) =>
       this.listWidgetTemp = listWidgetTemp;
 
-  // get getCantidad => this.cantidad;
-  // void setCantidad(int cantidad) => this.cantidad = cantidad;
+  get getCantidad => this.cantidad;
+  void setCantidad(int cantidad) => this.cantidad = cantidad;
 
-  void changeCart(/*int cantidad,*/ List<Widget> listWidgetTemp) {
-    // setCantidad(cantidad);
+  void changeCart(int cantidad, List<Widget> listWidgetTemp) {
+    setCantidad(cantidad);
     setListWidgetTemp(listWidgetTemp);
   }
 
@@ -52,5 +56,15 @@ class CartProvider with ChangeNotifier {
               ));
     }
     notifyListeners();
+  }
+
+  List<CartItemModel> _convertCartItems(List cartFomDb) {
+    List<CartItemModel> _result = [];
+    logger.i(cartFomDb.length);
+    cartFomDb.forEach((element) {
+      _result.add(CartItemModel.fromMap(element));
+    });
+
+    return _result;
   }
 }
