@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:puntotienda/database/conexion_firestore.dart';
 import 'package:puntotienda/methods/aviso.dart';
 import 'package:puntotienda/methods/database/conexion_firestore.dart';
 import 'package:puntotienda/widget/buttons/text_field.dart';
@@ -8,6 +7,8 @@ import 'package:puntotienda/widget/fondo_pantalla.dart';
 class AdminCategoria extends StatelessWidget {
   //const Categoria({Key? key}) : super(key: key);
   final categoriaController = TextEditingController();
+  final imagenController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,14 +25,17 @@ class AdminCategoria extends StatelessWidget {
               ),
             ),
             textfield(categoriaController, "Nombre de la categoría"),
+            textfield(imagenController, "Imagen de la categoría"),
             TextButton(
               onPressed: () async {
                 Map<String, dynamic> registros = {
-                  "categoria": categoriaController.text,
+                  "nombre": categoriaController.text,
+                  "img" : imagenController.text,
                 };
-                if (categoriaController.text.isNotEmpty) {
+                if (categoriaController.text.isNotEmpty && imagenController.text.isNotEmpty) {
                   insertarRegistros("categoria", registros);
                   categoriaController.clear();
+                  imagenController.clear();
                 } else {
                   await mostrarAviso(context, "Debe ingresar datos", "Aceptar");
                 }
@@ -42,7 +46,7 @@ class AdminCategoria extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.5),
                     color: Colors.green[800]),
                 child: Text(
-                  "Guardar",
+                  "Insertar",
                   style: TextStyle(fontSize: 30, color: Colors.white),
                 ),
               ),
