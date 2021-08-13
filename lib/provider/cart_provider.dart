@@ -1,56 +1,53 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:puntotienda/consts/app_constants.dart';
-import 'package:puntotienda/methods/cart_item.dart';
 import 'package:puntotienda/src/model/CartAttr.dart';
-import 'package:puntotienda/src/model/product.dart';
-
 class CartProvider with ChangeNotifier {
   //Cada item corresponde a un elemento en el carrito
   Map<String, CartAttr> _cartItems = {};
 
-  List<Producto> listproducts = [];
+  // List<Producto> listproducts = [];
 
   //La lista de Widgets que corresponden a cada item del carrito
   List<Widget> listWidgetTemp = [];
 
   //El precio total de la suma y multiplicación de los precios de cada item
-  RxDouble totalCartPrice = 0.0.obs;
+  // RxDouble totalCartPrice = 0.0.obs;
 
-  get getcartItems => this._cartItems;
-  void setcartItems(Map<String, CartAttr> value) => this._cartItems = value;
+  // get getcartItems => this._cartItems;
+  Map<String, CartAttr> get getCartItems {
+    return {..._cartItems};
+  }
+  void setCartItems(Map<String, CartAttr> value) => this._cartItems = value;
 
   get getListWidgetTemp => this.listWidgetTemp;
   void setListWidgetTemp(listWidgetTemp) =>
       this.listWidgetTemp = listWidgetTemp;
 
-  get getListproducts => this.listproducts;
-  void setListproducts(List<Producto> listproducts) =>
-      this.listproducts = listproducts;
+  // get getListproducts => this.listproducts;
+  // void setListproducts(List<Producto> listproducts) =>
+  //     this.listproducts = listproducts;
 
-  get getTotalCartPrice => this.totalCartPrice;
-  void setTotalCartPrice(RxDouble totalCartPrice) =>
-      this.totalCartPrice = totalCartPrice;
+  // get getTotalCartPrice => this.totalCartPrice;
+  // void setTotalCartPrice(RxDouble totalCartPrice) =>
+  //     this.totalCartPrice = totalCartPrice;
 
   // get getCantidad => this.cantidad;
   // void setCantidad(int cantidad) => this.cantidad = cantidad;
 
-  void changeCart(RxDouble totalCartPrice, List<Widget> listWidgetTemp) {
-    setTotalCartPrice(totalCartPrice);
-    setListWidgetTemp(listWidgetTemp);
-  }
+  // void changeCart(RxDouble totalCartPrice, List<Widget> listWidgetTemp) {
+  //   setTotalCartPrice(totalCartPrice);
+  //   setListWidgetTemp(listWidgetTemp);
+  // }
 
 //Vaciar la lista de productos
   void emptyCart() {
+    _cartItems.clear();
     listWidgetTemp.clear();
     notifyListeners();
   }
 
-  Map<String, CartAttr> get getCartItems {
-    return {..._cartItems};
-  }
-
-  double get totalAmount {
+  //Obtener todo el total (suma de subtotales) de todos los productos en el carrito
+  double get getTotalAcumulado {
     double total = 0;
     _cartItems.forEach((key, value) {
       total += value.precio * value.cantidad;
@@ -58,15 +55,18 @@ class CartProvider with ChangeNotifier {
     return total;
   }
 
-  void addProducToCart(String nombre, int precio, String imagen, int stock) {
+  //Añadir un producto al carrito con tan solo unos parámetros específicos de entrada
+  //Asimismo se encarga de aumentar +1 a la cantidad del producto si ya
+  //ha sido añadido al carrito
+  void addProducToCart(String nombre, int precio, String imagen) {
     if (_cartItems.containsKey(nombre)) {
       _cartItems.update(
           nombre,
           (exitingCartItem) => CartAttr(
+                imagen: exitingCartItem.imagen,
                 nombre: exitingCartItem.nombre,
                 precio: exitingCartItem.precio,
                 cantidad: exitingCartItem.cantidad + 1,
-                imagen: exitingCartItem.imagen,
               ));
     } else {
       _cartItems.putIfAbsent(
@@ -81,13 +81,18 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  List<CartItemModel> _convertCartItems(List cartFomDb) {
-    List<CartItemModel> _result = [];
-    logger.i(cartFomDb.length);
-    cartFomDb.forEach((element) {
-      _result.add(CartItemModel.fromMap(element));
-    });
+  // void aumentarCantidad(String nombre){
 
-    return _result;
-  }
+
+  //   notifyListeners();
+  // }
+  // List<CartItemModel> _convertCartItems(List cartFomDb) {
+  //   List<CartItemModel> _result = [];
+  //   logger.i(cartFomDb.length);
+  //   cartFomDb.forEach((element) {
+  //     _result.add(CartItemModel.fromMap(element));
+  //   });
+
+  //   return _result;
+  // }
 }

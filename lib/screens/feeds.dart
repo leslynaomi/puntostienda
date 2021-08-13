@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
+import 'package:puntotienda/src/model/CartAttr.dart';
+import 'package:puntotienda/widget/cart_full.dart';
 // import 'package:puntotienda/widget/feeds_products.dart';
 
 class FeedsScreen extends StatefulWidget {
@@ -17,9 +19,8 @@ class _FeedsScreenState extends State<FeedsScreen> {
 
   @override
   Widget build(BuildContext context) {
-  
     var db = FirebaseFirestore.instance.collection("producto").get();
-  
+
     return Scaffold(
         body: FutureBuilder(
       future: db,
@@ -35,8 +36,8 @@ class _FeedsScreenState extends State<FeedsScreen> {
               String precio = (data.data()["precio"]).toString();
               String stock = (data.data()["stock"]).toString();
 
-              listWidgetTemp
-                  .add(cardProductFeed(context, imagen, nombre, int.parse(precio), int.parse(stock)));
+              listWidgetTemp.add(cardProductFeed(context, imagen, nombre,
+                  int.parse(precio), int.parse(stock)));
             });
 
             return GridView.count(
@@ -120,7 +121,15 @@ class _FeedsScreenState extends State<FeedsScreen> {
     );
   }
 
-  Widget detallesProducto(BuildContext context, String nombre, int precio, String imagen,int stock) {
+  Widget detallesProducto(BuildContext context, String nombre, int precio,
+      String imagen, int stock) {
+    bool isButtonDisable = false;
+    // var _onPressed;
+
+    // if(!isButtonDisable){
+
+    // }
+    var opacidad = 1.0;
     return Container(
       padding: EdgeInsets.only(left: 5),
       margin: EdgeInsets.only(left: 5, bottom: 2, right: 3),
@@ -166,17 +175,25 @@ class _FeedsScreenState extends State<FeedsScreen> {
                 child: InkWell(
                     onTap: () {},
                     borderRadius: BorderRadius.circular(18.0),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Provider.of<CartProvider>(context, listen: false).addProducToCart(nombre, precio, imagen, stock);
-                          print("Añadiendo al carrito");
+                    child: Opacity(
+                      opacity: opacidad,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            //Mandando el producto al carrito vía provider
+                            Provider.of<CartProvider>(context, listen: false)
+                                .addProducToCart(nombre, precio, imagen);
+                            
+                            print("Añadiendo al carrito");
 
-                          //Apagar el botón una vez se añade el producto al carrito
-                          setState(() {});
-                        },
-                        child: Text("Añadir",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18)))),
+                            //Apagar el botón una vez se añade el producto al carrito
+                            setState(() {
+                              isButtonDisable = true;
+                            });
+                          },
+                          child: Text("Añadir",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 18))),
+                    )),
               )
             ],
           )
