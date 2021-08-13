@@ -240,8 +240,8 @@ Future<bool> validarUser(TextEditingController emailController,
         emailController.clear();
         passwordController.clear();
       }
-      print(doc["email"]);
-      print(doc["contraseña"]);
+      // print(doc["email"]);
+      // print(doc["contraseña"]);
     });
   }, onError: (_) {
     print("Ocurrió un problema");

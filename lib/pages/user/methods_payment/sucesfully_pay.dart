@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 //import 'package:kussa/widgets/buy_button.dart';
 
-class MetodoPago extends StatelessWidget {
+class PagoExitoso extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +33,10 @@ class MetodoPago extends StatelessWidget {
                           backgroundColor: MaterialStateProperty.resolveWith(
                               (states) => (Colors.blue[300])),
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          Navigator.pushNamed(context, "tabs");
+                          print("Ha finalizado la compra");
+                        }),
                   ],
                 ),
               )),

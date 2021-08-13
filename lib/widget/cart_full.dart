@@ -1,36 +1,27 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 //import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
 //import 'package:puntotienda/methods/database/conexion_firestore.dart';
 
-class CartFull extends StatefulWidget {
-  //final String imagen;
- // final String nombre;
-  //final int precio;
- // final int cantidad;
+// class CartFull extends StatefulWidget {
+//   @override
+//   _CartFullState createState() => _CartFullState();
+// }
 
- // const CartFull(
-    //  {//required this.imagen,
-     // required this.nombre,
-      //required this.precio,
-      //required this.cantidad});
+// class _CartFullState extends State<CartFull> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return cardProduct(
+//         context,
+//         "Mando de PS3",
+//         "https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+//         "345");
+//   }
+// }
 
-  @override
-  _CartFullState createState() => _CartFullState();
-}
-
-class _CartFullState extends State<CartFull> {
-  @override
-
-
-
-
-  Widget build(BuildContext context) {
-    return cardProduct(context,"Mando de PS3","https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260","345");
-  }
-}
-
-Widget cardProduct(BuildContext context,String nombre,String imagen,String precio) {
+Widget cardProduct(
+    BuildContext context, String nombre, String imagen, int precio,int cantidad) {
   return SingleChildScrollView(
       child: Container(
     height: 165,
@@ -48,8 +39,7 @@ Widget cardProduct(BuildContext context,String nombre,String imagen,String preci
           width: 120,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(
-                  imagen),
+              image: NetworkImage(imagen),
               fit: BoxFit.fill,
             ),
           ),
@@ -93,7 +83,7 @@ Widget cardProduct(BuildContext context,String nombre,String imagen,String preci
                   children: [
                     Text('Precio:'),
                     Text(
-                      precio,
+                      (precio).toString(),
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                     )
@@ -103,7 +93,8 @@ Widget cardProduct(BuildContext context,String nombre,String imagen,String preci
                   children: [
                     Text('Sub Total:'),
                     Text(
-                      '450 Bs',
+                      // '450 Bs',
+                      calcularSubTotal(cantidad, precio),
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -150,7 +141,7 @@ Widget cardProduct(BuildContext context,String nombre,String imagen,String preci
                           ]),
                         ),
                         child: Text(
-                          '154',
+                          (cantidad).toString(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -181,4 +172,9 @@ Widget cardProduct(BuildContext context,String nombre,String imagen,String preci
       ],
     ),
   ));
+}
+
+String calcularSubTotal(int cantidad, int precio) {
+  int subtotal = cantidad * precio;
+  return subtotal.toString();
 }

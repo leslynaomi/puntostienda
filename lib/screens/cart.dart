@@ -2,36 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
+import 'package:puntotienda/src/model/CartAttr.dart';
+import 'package:puntotienda/src/model/product.dart';
 import 'package:puntotienda/widget/cart_empty.dart';
 import 'package:puntotienda/widget/cart_full.dart';
-import 'package:puntotienda/widget/wishlist_empty.dart';
-import 'package:puntotienda/widget/wishlist_full.dart';
-//import 'package:puntotienda/widget/cart_full.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  // Producto aux = Producto(nombre: "hola");
+  // int cantidad = 0;
+  List<Widget> listWidgetTemp = [];
+
   @override
   Widget build(BuildContext context) {
-    
-    var products = ["hola", "saludos"];
-    int cantidad = 0;
-    List<Widget> listWidgetTemp = [];
+    Map<String, CartAttr> cartItems =
+        Provider.of<CartProvider>(context).getCartItems;
 
-    if (products.isNotEmpty) {
+    cartItems.forEach((key, value) {
+      listWidgetTemp.add(cardProduct(
+          context, value.nombre, value.imagen, value.precio, value.cantidad));
+    });
+
+    if (cartItems.isNotEmpty) {
       return Scaffold(
-          bottomSheet: checkoutSection(context),
+          bottomSheet: checkoutSection(context, cartItems),
           appBar: appBarArticulos(context),
           body: Container(
             margin: EdgeInsets.only(bottom: 60),
-            child: ListView.builder(
-                itemCount: 6,
-                itemBuilder: (BuildContext context, int index) {
-                  // return CartFull();
-                  return cardProduct(
-                      context,
-                      "Mando de PS3",
-                      "https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-                      "345");
-                }),
+            child: ListView(
+              children: listWidgetTemp
+            )
+            // ListView.builder(
+            //     itemCount: 6,
+            //     itemBuilder: (BuildContext context, int index) {
+            //       // return CartFull();
+            //       return cardProduct(
+            //           context,
+            //           "Mando de PS3",
+            //           "https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+            //           345,
+            //           5);
+            //     }),
           ));
     } else {
       return Scaffold(body: CartEmpty());
@@ -45,7 +60,8 @@ AppBar appBarArticulos(BuildContext context) {
     actions: [
       IconButton(
         onPressed: () {
-          print('Soy el botón de eliminar todos los productos');
+          Provider.of<CartProvider>(context, listen: false).emptyCart();
+          print('Se han vaciado todos los productos del carrito');
         },
         icon: Icon(Icons.delete),
       )
@@ -53,7 +69,7 @@ AppBar appBarArticulos(BuildContext context) {
   );
 }
 
-Widget checkoutSection(BuildContext context) {
+Widget checkoutSection(BuildContext context, Map<String, CartAttr> cartItems) {
   return Container(
     decoration: BoxDecoration(
       border: Border(
@@ -82,11 +98,13 @@ Widget checkoutSection(BuildContext context) {
                 color: Colors.transparent,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(30),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, "card_debit");
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Verificar',
+                      'Verificar Orden',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
@@ -105,8 +123,7 @@ Widget checkoutSection(BuildContext context) {
                 color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500),
           ),
           Text(
-            'Bs 179.0',
-            // (Provider.of<CartProvider>(context).getCantidad).toString(),
+            precioTotal(cartItems),
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.blue, fontSize: 18, fontWeight: FontWeight.w600),
@@ -115,4 +132,9 @@ Widget checkoutSection(BuildContext context) {
       ),
     ),
   );
+}
+
+String precioTotal(cartItems) {
+  //La suma y multiplicación de las cantidades
+  return "";
 }

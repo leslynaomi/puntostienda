@@ -17,10 +17,9 @@ class _FeedsScreenState extends State<FeedsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //Cargando los documentos de la colección "producto"
+  
     var db = FirebaseFirestore.instance.collection("producto").get();
-
-    //List<Product> productsList = productsProvider.products;
+  
     return Scaffold(
         body: FutureBuilder(
       future: db,
@@ -31,17 +30,13 @@ class _FeedsScreenState extends State<FeedsScreen> {
             List<Widget> listWidgetTemp = [];
 
             snapshot.data!.docs.forEach((data) {
-              //Para comprobar que lee los datos de la colección
-              // print(data.data()["nombre"]);
-
               String imagen = (data.data()["imagen"]).toString();
               String nombre = (data.data()["nombre"]).toString();
               String precio = (data.data()["precio"]).toString();
               String stock = (data.data()["stock"]).toString();
 
-              
               listWidgetTemp
-                  .add(cardProductFeed(context, imagen, nombre, precio, stock));
+                  .add(cardProductFeed(context, imagen, nombre, int.parse(precio), int.parse(stock)));
             });
 
             return GridView.count(
@@ -59,22 +54,11 @@ class _FeedsScreenState extends State<FeedsScreen> {
         }
         return CircularProgressIndicator();
       },
-
-      //     GridView.builder(
-      // padding: EdgeInsets.all(4.0),
-      // gridDelegate:
-      //     SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-      // itemCount: 2,//listaProductos.length,
-      // itemBuilder: (context, index) {
-      //   final String nombre = listaProductos[index].nombre;
-      //   // print(listaProductos.length);
-      //   );
-      // },
     ));
   }
 
   Widget cardProductFeed(BuildContext context, String imagen, String nombre,
-      String precio, String stock) {
+      int precio, int stock) {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -86,7 +70,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
           child: Column(
             children: [
               imageProducto(context, imagen),
-              detallesProducto(context, nombre, precio, stock),
+              detallesProducto(context, nombre, precio, imagen, stock),
             ],
           ),
         ));
@@ -136,8 +120,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
     );
   }
 
-  Widget detallesProducto(
-      BuildContext context, String nombre, String precio, String stock) {
+  Widget detallesProducto(BuildContext context, String nombre, int precio, String imagen,int stock) {
     return Container(
       padding: EdgeInsets.only(left: 5),
       margin: EdgeInsets.only(left: 5, bottom: 2, right: 3),
@@ -148,7 +131,6 @@ class _FeedsScreenState extends State<FeedsScreen> {
             height: 4,
           ),
           Text(
-            // Provider.of<ProductoProvider>(context).getDescripcion,
             nombre,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
@@ -159,7 +141,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text(
               // Provider.of<ProductoProvider>(context).getPrecio,
-              precio,
+              precio.toString(),
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               style: TextStyle(
@@ -185,20 +167,16 @@ class _FeedsScreenState extends State<FeedsScreen> {
                     onTap: () {},
                     borderRadius: BorderRadius.circular(18.0),
                     child: ElevatedButton(
-                      onPressed: () {
+                        onPressed: () {
+                          Provider.of<CartProvider>(context, listen: false).addProducToCart(nombre, precio, imagen, stock);
+                          print("Añadiendo al carrito");
 
-                        // Provider.of<CartProvider>(context, listen: false)
-                        //     .changeCart();
-                        print("Añadiendo al carrito");
-                        
-                        //Apagar el botón una vez se añade el producto al carrito
-                        setState(() {
-                          
-                        });
-                      },
-                      child: Text("Añadir",
-                          style:
-                              TextStyle(color: Colors.white, fontSize: 18)))),
+                          //Apagar el botón una vez se añade el producto al carrito
+                          setState(() {});
+                        },
+                        child: Text("Añadir",
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 18)))),
               )
             ],
           )

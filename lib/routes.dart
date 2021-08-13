@@ -3,6 +3,8 @@ import 'package:puntotienda/inner_screens/product_detalle.dart';
 import 'package:puntotienda/pages/admin/admin_page.dart';
 import 'package:puntotienda/pages/admin/admin_categoria.dart';
 import 'package:puntotienda/pages/admin/admin_productos.dart';
+import 'package:puntotienda/pages/user/methods_payment/card_debit.dart';
+import 'package:puntotienda/pages/user/methods_payment/sucesfully_pay.dart';
 import 'package:puntotienda/provider/welcome_page/welcome_page.dart';
 import 'package:puntotienda/provider/welcome_page/forgot_password.dart';
 import 'package:puntotienda/provider/welcome_page/login_page.dart';
@@ -27,4 +29,6 @@ final routes = <String, WidgetBuilder>{
   'AreaAdmin': (BuildContext context) => Administracion(),
   'Productos': (BuildContext context) => AdminProductos(),
   'Categoria': (BuildContext context) => AdminCategoria(),
+  'card_debit': (BuildContext context) => CardDebit(),
+  'sucesfully_pay': (BuildContext context) => PagoExitoso(),
 };
