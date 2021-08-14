@@ -1,63 +1,41 @@
 {
   "project_info": {
-    "project_number": "1055260821491",
-    "firebase_url": "https://mapita-292210.firebaseio.com",
-    "project_id": "mapita-292210",
-    "storage_bucket": "mapita-292210.appspot.com"
+    "project_number": "593074673605",
+    "project_id": "foundmart-b9b11",
+    "storage_bucket": "foundmart-b9b11.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1055260821491:android:9bfe94fc2b6efe95f47486",
-        "android_client_info": {
-          "package_name": "com.example.betafinal"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDW7xcAnBHtz_gaEc5w5TyQflYOK0ZLK8M"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1055260821491:android:b5811cfe8d3e84ebf47486",
+        "mobilesdk_app_id": "1:593074673605:android:6a89e88182bc5006d51dac",
         "android_client_info": {
           "package_name": "com.example.foundmart"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
+          "client_id": "593074673605-0v53oeu8fte0ii7c0ioi4icmmric8miu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foundmart",
+            "certificate_hash": "0032282c4f61b3e883697aa5d06bf125feae0cde"
+          }
+        },
+        {
+          "client_id": "593074673605-1Furfhe8BFbkEhXn1xcYPr8jYAACNpfV7p.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDW7xcAnBHtz_gaEc5w5TyQflYOK0ZLK8M"
+          "current_key": "AIzaSyDOtzi4xEOeV6XonK23ZYgBwZMt-3K_hwo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
+              "client_id": "593074673605-1Furfhe8BFbkEhXn1xcYPr8jYAACNpfV7p.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -66,27 +44,27 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1055260821491:android:e3e1c6e21707fc23f47486",
+        "mobilesdk_app_id": "1:593074673605:android:6e5c6d7c0fced983d51dac",
         "android_client_info": {
           "package_name": "com.example.puntotienda"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
+          "client_id": "593074673605-1Furfhe8BFbkEhXn1xcYPr8jYAACNpfV7p.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDW7xcAnBHtz_gaEc5w5TyQflYOK0ZLK8M"
+          "current_key": "AIzaSyDOtzi4xEOeV6XonK23ZYgBwZMt-3K_hwo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1055260821491-ua6pm7jg4ru39mqrctf39bb7lut59dj8.apps.googleusercontent.com",
+              "client_id": "593074673605-1Furfhe8BFbkEhXn1xcYPr8jYAACNpfV7p.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

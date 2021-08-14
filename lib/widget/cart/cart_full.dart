@@ -1,14 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
+import 'package:puntotienda/provider/cart_provider.dart';
 
 class CartFull extends StatefulWidget {
-  CartFull({Key? key}) : super(key: key);
+  final String nombre;
+  final String imagen;
+  final int precio;
+  final int cantidad;
+
+  CartFull(
+      {required this.nombre,
+      required this.imagen,
+      required this.precio,
+      required this.cantidad});
 
   @override
-  _CartFullState createState() => _CartFullState();
+  _CartFullState createState() => _CartFullState(
+      nombre: this.nombre,
+      imagen: this.imagen,
+      precio: this.precio,
+      cantidad: this.cantidad);
 }
 
 class _CartFullState extends State<CartFull> {
+  final String nombre;
+  final String imagen;
+  final int precio;
+  int cantidad;
+
+  _CartFullState(
+      {required this.nombre,
+      required this.imagen,
+      required this.precio,
+      required this.cantidad});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -28,8 +54,7 @@ class _CartFullState extends State<CartFull> {
             width: 120,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                    'https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
+                image: NetworkImage(imagen),
                 fit: BoxFit.fill,
               ),
             ),
@@ -44,7 +69,7 @@ class _CartFullState extends State<CartFull> {
                     children: [
                       Flexible(
                         child: Text(
-                          'title',
+                          nombre,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -55,7 +80,16 @@ class _CartFullState extends State<CartFull> {
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(32.0),
-                          onTap: () {},
+                          onTap: () {
+                            Provider.of<CartProvider>(context, listen: false)
+                                .removeCartItem(nombre);
+                            // Provider.of<CartProvider>(context, listen: false)
+                            //     .loadCartAndWidgets();
+                            // setState(() {
+
+                            // });
+                            print("Botón de quitar producto");
+                          },
                           child: Container(
                             height: 50,
                             width: 50,
@@ -73,7 +107,7 @@ class _CartFullState extends State<CartFull> {
                     children: [
                       Text('Precio:'),
                       Text(
-                        '450 Bs',
+                        (precio).toString(),
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       )
@@ -83,7 +117,8 @@ class _CartFullState extends State<CartFull> {
                     children: [
                       Text('Sub Total:'),
                       Text(
-                        '450 Bs',
+                        // subtotal.toString(),
+                        (cantidad * precio).toString(),
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -102,7 +137,13 @@ class _CartFullState extends State<CartFull> {
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(4.0),
-                          onTap: () {},
+                          onTap: () {
+                            Provider.of<CartProvider>(context, listen: false)
+                                .downProducToCart(nombre, precio, imagen);
+                            setState(() {
+                              cantidad--;
+                            });
+                          },
                           child: Container(
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
@@ -130,7 +171,7 @@ class _CartFullState extends State<CartFull> {
                             ]),
                           ),
                           child: Text(
-                            '154',
+                            (cantidad).toString(),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -139,7 +180,13 @@ class _CartFullState extends State<CartFull> {
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(4.0),
-                          onTap: () {},
+                          onTap: () {
+                            Provider.of<CartProvider>(context, listen: false)
+                                .addProducToCart(nombre, precio, imagen);
+                            setState(() {
+                              cantidad++;
+                            });
+                          },
                           child: Container(
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),

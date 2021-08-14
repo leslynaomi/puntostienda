@@ -9,9 +9,6 @@ Widget doneButton(BuildContext context, String labelButton) {
         onPressed: () {
           Navigator.pushNamed(context, 'login');
         },
-        // shape:
-        //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        // color: Theme.of(context).accentColor,
         child: Text(labelButton,
             style: TextStyle(color: Colors.white, fontSize: 17.0))),
   );

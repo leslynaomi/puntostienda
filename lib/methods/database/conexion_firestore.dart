@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:puntotienda/pages/admin/admin_productos.dart';
 
 //Insertar Registros de Firestore
 void insertarRegistros(String coleccion, Map<String, dynamic> registros) {

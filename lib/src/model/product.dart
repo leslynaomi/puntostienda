@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:flutter/material.dart';
 
-class Productos {
+class Producto {
   String nombre;
   String descripcion;
   String precio;
@@ -9,7 +8,25 @@ class Productos {
   String categoria;
   String imagen;
 
-  Productos(
+  get getNombre => this.nombre;
+  void setNombre(String nombre) => this.nombre = nombre;
+
+  get getDescripcion => this.descripcion;
+  void setDescripcion(descripcion) => this.descripcion = descripcion;
+
+  get getPrecio => this.precio;
+  void setPrecio(precio) => this.precio = precio;
+
+  get getStock => this.stock;
+  void setStock(stock) => this.stock = stock;
+
+  get getCategoria => this.categoria;
+  void setCategoria(categoria) => this.categoria = categoria;
+
+  get getImagen => this.imagen;
+  void setImagen(imagen) => this.imagen = imagen;
+
+  Producto(
       {this.nombre = "",
       this.descripcion = "",
       this.precio = "",
@@ -17,7 +34,7 @@ class Productos {
       this.categoria = "",
       this.imagen = ""});
 
-  Productos.fromJson(Map<String, dynamic> json)
+  Producto.fromJson(Map<String, dynamic> json)
       : this(
           nombre: json['nombre']! as String,
           descripcion: json['descripcion']! as String,
@@ -38,15 +55,25 @@ class Productos {
     };
   }
 
+  void fromMap(Map<String, dynamic> map) {
+    nombre = map['nombre'];
+    descripcion = map['descripcion'];
+    precio = map['precio'];
+    stock = map['stock'];
+    categoria = map['categoria'];
+    imagen = map['imagen'];
+  }
+
 //Future<void> mostrarDatos() async {
 
 //}
 
+// Añadir a la base de datos
   Future<void> main() async {
     var db = FirebaseFirestore.instance
         .collection('productos')
-        .withConverter<Productos>(
-          fromFirestore: (snapshot, _) => Productos.fromJson(snapshot.data()!),
+        .withConverter<Producto>(
+          fromFirestore: (snapshot, _) => Producto.fromJson(snapshot.data()!),
           toFirestore: (productos, _) => productos.toJson(),
         );
     // Obtain science-fiction movies
@@ -57,7 +84,7 @@ class Productos {
 
     // Add a movie
     await db.add(
-      Productos(
+      Producto(
           nombre: 'nombre',
           descripcion: 'descripcion',
           precio: 'precio',

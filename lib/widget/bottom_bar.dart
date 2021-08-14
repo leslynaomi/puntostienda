@@ -25,6 +25,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   void _selectedPage(int index) {
     setState(() {
       _selectedindex = index;
+      // contador.index = 0;
     });
   }
 

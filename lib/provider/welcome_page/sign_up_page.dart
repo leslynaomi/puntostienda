@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:puntotienda/methods/database/conexion_firestore.dart';
 
 // import 'package:puntotienda/database/conexion_firestore.dart';
-import 'package:puntotienda/widget/back_button.dart';
+import 'package:puntotienda/widget/buttons/back_button.dart';
 import 'package:puntotienda/widget/header_text.dart';
 
 import '../user_provider.dart';
@@ -156,7 +156,7 @@ Widget _signUpButton(
             "email": emailController.text,
             "contraseña": passwdController.text
           };
-          Provider.of<UsuarioSingUp>(context, listen: false).changeUser(
+          Provider.of<UsuarioProvider>(context, listen: false).changeUser(
               nombreController.text + apellidoController.text,
               telefonoController.text,
               emailController.text);

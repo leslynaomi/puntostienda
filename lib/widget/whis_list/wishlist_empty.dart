@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-class CartEmpty extends StatelessWidget {
+class WishlistEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
@@ -17,14 +17,14 @@ class CartEmpty extends StatelessWidget {
             ),
           ),
         ),
-        Text('tu carrito esta vacio', 
+        Text('tu lista de deseos esta vacia', 
         textAlign: TextAlign.center,
         style: TextStyle(color:Colors.black,
         fontSize: 36,
         fontWeight: FontWeight.w600),
         ),
         SizedBox(height:20 ,),
-         Text('parece que todavía no has añadido nada a tu carrito', 
+         Text('parece que todavía no has añadido nada a tu lista', 
         textAlign: TextAlign.center,
         style: TextStyle(color: Colors.black,
         fontSize: 26,
@@ -36,7 +36,7 @@ class CartEmpty extends StatelessWidget {
            height:MediaQuery.of(context).size.height * 0.06, 
            child: ElevatedButton(
              
-              child: Text('comprar ahora'.toUpperCase(), 
+              child: Text('añadir un deseo'.toUpperCase(), 
         textAlign: TextAlign.center,
         style: TextStyle(color: Colors.black,
         fontSize: 20,

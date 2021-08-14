@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:puntotienda/methods/aviso.dart';
-import 'package:puntotienda/widget/back_button.dart';
+import 'package:puntotienda/widget/aviso.dart';
+import 'package:puntotienda/widget/buttons/back_button.dart';
 
 import '../user_provider.dart';
 
@@ -33,8 +33,9 @@ class _LoginPageState extends State<LoginPage> {
                 width: double.infinity,
                 height: 250,
                 fit: BoxFit.cover,
-                image: NetworkImage(
-                    'https://images.pexels.com/photos/5217882/pexels-photo-5217882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
+                image: AssetImage("assets/images/computer_world.jpg"),
+                // NetworkImage(
+                //     'https://images.pexels.com/photos/5217882/pexels-photo-5217882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
               ),
               Container(
                 margin: EdgeInsets.only(top: 50.0),
@@ -167,8 +168,6 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
             if (await esAdmin(emailController)) {
               Navigator.of(context).pushNamed('AreaAdmin');
             } else {
-              Navigator.of(context).pushNamed('BottomBarScreen');
-
               String nameUser =
                   await obtenerNombreYApellidoUser(emailController.text);
               String phoneUser =
@@ -177,8 +176,9 @@ Widget _buttonLogin(BuildContext context, TextEditingController emailController,
               print(phoneUser);
 
               if (nameUser != "" && phoneUser != "") {
-                Provider.of<UsuarioSingUp>(context, listen: false)
+                Provider.of<UsuarioProvider>(context, listen: false)
                     .changeUser(nameUser, phoneUser, emailController.text);
+                Navigator.of(context).pushNamed('BottomBarScreen');
               } else {
                 await mostrarAviso(
                     context,
@@ -205,11 +205,6 @@ Future<String> obtenerTelefonoUser(String correo) async {
         if (doc["email"] == correo) {
           resultado = doc["teléfono"];
         }
-        // else {
-        //   print("No se encuentra registrado el correo ingresado");
-        // }
-        // print(doc.get("nombre"));
-        // print(doc.data());
       }));
   return resultado;
 }
@@ -222,19 +217,7 @@ Future<String> obtenerNombreYApellidoUser(String correo) async {
       if (doc["email"] == correo) {
         resultado = doc["nombre"] + " " + doc["apellido"];
         print("Esto guarda resultado: " + resultado);
-      } 
-      // else {
-      //   print("-------------------------------------------------");
-      //   print("-------------------------------------------------");
-      //   print("No se encuentra registrado el correo ingresado");
-      //   print(doc["email"]);
-      //   print(doc["nombre"]);
-      //   print(doc["apellido"]);
-      //   print("-------------------------------------------------");
-      //   print("-------------------------------------------------");
-      // }
-      // print(doc.get("nombre"));
-      // print(doc.data());
+      }
     });
   });
   return resultado;
@@ -254,10 +237,14 @@ Future<bool> validarUser(TextEditingController emailController,
         }
       } else {
         print("Ingrese un usuario válido");
+        emailController.clear();
+        passwordController.clear();
       }
+      // print(doc["email"]);
+      // print(doc["contraseña"]);
     });
   }, onError: (_) {
-    print("Ocurrió un problema"); 
+    print("Ocurrió un problema");
   });
   return resultado;
 }

@@ -116,6 +116,7 @@ class _CardDebitState extends State<CardDebit> {
                   textStyle: const TextStyle(fontSize: 20),
                   primary: Colors.yellow[800]),
               onPressed: () {
+                Navigator.pushNamed(context, "sucesfully_pay");
                 print("De aquí se programa la compra");
               },
               child: Text(
