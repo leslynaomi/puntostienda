@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
+import 'package:puntotienda/provider/nota_compra_provider.dart';
 import 'package:puntotienda/provider/product_provider.dart';
 import 'package:puntotienda/provider/user_provider.dart';
 import 'package:puntotienda/routes.dart';
@@ -19,6 +20,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => CartProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => NotaCompraProvider(),
         ),
       ],
       child: MaterialApp(

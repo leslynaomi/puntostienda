@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Producto {
   String nombre;
   String descripcion;
@@ -62,39 +60,5 @@ class Producto {
     stock = map['stock'];
     categoria = map['categoria'];
     imagen = map['imagen'];
-  }
-
-//Future<void> mostrarDatos() async {
-
-//}
-
-// Añadir a la base de datos
-  Future<void> main() async {
-    var db = FirebaseFirestore.instance
-        .collection('productos')
-        .withConverter<Producto>(
-          fromFirestore: (snapshot, _) => Producto.fromJson(snapshot.data()!),
-          toFirestore: (productos, _) => productos.toJson(),
-        );
-    // Obtain science-fiction movies
-    // List<QueryDocumentSnapshot<Productos>> coleccion = await db
-    //     //.where('genre', isEqualTo: 'Sci-fi')
-    //     .get()
-    //     .then((snapshot) => snapshot.docs);
-
-    // Add a movie
-    await db.add(
-      Producto(
-          nombre: 'nombre',
-          descripcion: 'descripcion',
-          precio: 'precio',
-          stock: 'stock',
-          categoria: 'categoria',
-          imagen: 'imagen'),
-    );
-
-    // Get a movie with the id 42
-    // Productos consulta =
-    //     await db.doc('42').get().then((snapshot) => snapshot.data()!);
   }
 }

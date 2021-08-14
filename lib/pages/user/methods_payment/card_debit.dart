@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:puntotienda/methods/database/conexion_firestore.dart';
+import 'package:puntotienda/provider/cart_provider.dart';
+import 'package:puntotienda/provider/nota_compra_provider.dart';
+import 'package:puntotienda/provider/user_provider.dart';
+import 'package:puntotienda/src/model/nota_compra.dart';
 
 class CardDebit extends StatefulWidget {
   //const CardMethod({Key? key}) : super(key: key);
@@ -10,13 +16,15 @@ class CardDebit extends StatefulWidget {
 class _CardDebitState extends State<CardDebit> {
   String nameBankDropDown = "Banco Fie";
 
-  List<String> elements = [
+  List<String> listaBancos = [
     "Banco Mercantil Santa Cruz",
     "Banco Nacional de Bolivia",
     "Banco Unión",
     "Banco Central de Bolivia",
     "Banco Fie"
   ];
+
+  NotaCompra notaCompra = NotaCompra();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +50,7 @@ class _CardDebitState extends State<CardDebit> {
         ),
         DropdownButton(
           value: nameBankDropDown,
-          items: elements.map((elem) {
+          items: listaBancos.map((elem) {
             return DropdownMenuItem(value: elem, child: Text(elem));
           }).toList(),
           onChanged: (String? newValue) {
@@ -70,11 +78,11 @@ class _CardDebitState extends State<CardDebit> {
                 padding: EdgeInsets.only(
                     left: 20.0, top: 5.0, right: 5.0, bottom: 0.0),
                 child: TextField(
-                  maxLength: 2,                  
+                  maxLength: 2,
                   keyboardType: TextInputType.number,
                   controller: monthController,
                   decoration: InputDecoration(hintText: "Mes"),
-                  
+
                   //style: TextStyle(),
                 ),
               ),
@@ -85,7 +93,7 @@ class _CardDebitState extends State<CardDebit> {
                 padding: EdgeInsets.only(
                     left: 0.0, top: 5.0, right: 0.0, bottom: 0.0),
                 child: TextField(
-                  maxLength: 2,                  
+                  maxLength: 2,
                   keyboardType: TextInputType.number,
                   controller: yearController,
                   decoration: InputDecoration(hintText: "Año"),
@@ -116,8 +124,33 @@ class _CardDebitState extends State<CardDebit> {
                   textStyle: const TextStyle(fontSize: 20),
                   primary: Colors.yellow[800]),
               onPressed: () {
+                Map<String, dynamic> user = {
+                  "name_user": Provider.of<UsuarioProvider>(context, listen: false).getNombre,
+                  "email": Provider.of<UsuarioProvider>(context, listen: false).getEmail,
+                  "teléfono": Provider.of<UsuarioProvider>(context, listen: false).getTelefono
+                };
+                Map<String, dynamic> cart = {
+                  "montoTotal":
+                      Provider.of<CartProvider>(context, listen: false).getTotalAcumulado,
+                };
+                Map<String, dynamic> card = {
+                  "name_bank": nameBankDropDown,
+                  "number_card": numberCardController.text,
+                  "month": monthController.text,
+                  "year": yearController.text,
+                  "cvv": cvvController.text
+                };
+
+                notaCompra.fromMaps(user, cart, card);
+                Provider.of<NotaCompraProvider>(context, listen: false)
+                    .setNotaCompra(notaCompra);
+
+                //Inserción de la nota en Firestore
+                insertarRegistros("nota_compra", notaCompra.toMap());
+
+                //Screen de pago efectivo
+                print("Ha comprado !!");
                 Navigator.pushNamed(context, "sucesfully_pay");
-                print("De aquí se programa la compra");
               },
               child: Text(
                 "Comprar",

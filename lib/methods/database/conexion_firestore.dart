@@ -6,8 +6,8 @@ void insertarRegistros(String coleccion, Map<String, dynamic> registros) {
   db
       .collection(coleccion)
       .add(registros)
-      .then((value) => print("User Added"))
-      .catchError((error) => print("Failed to add user: $error"));
+      .then((value) => print("Register Added"))
+      .catchError((error) => print("Failed to add register: $error"));
 }
 
 //Modificar Registros de Firestore
