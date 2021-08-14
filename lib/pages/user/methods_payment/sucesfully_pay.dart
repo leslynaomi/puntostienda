@@ -1,5 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:puntotienda/provider/cart_provider.dart';
 //import 'package:kussa/widgets/buy_button.dart';
 
 class PagoExitoso extends StatelessWidget {
@@ -35,6 +37,8 @@ class PagoExitoso extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.pushNamed(context, "tabs");
+                          Provider.of<CartProvider>(context, listen: false)
+                              .emptyCart();
                           print("Ha finalizado la compra");
                         }),
                   ],
