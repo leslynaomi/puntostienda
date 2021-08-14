@@ -79,7 +79,7 @@ class _UserScreen extends State<UserScreen> {
                   ],
                 ),
                 background: Image(
-                  image: AssetImage("assets/images/computer_user.jpg"),
+                  image: AssetImage("assets/images/usuario.jpg"),
                   // NetworkImage(
                   //     'https://i.pinimg.com/564x/61/2d/38/612d38034bb8ea4f566b0630e1c96f1d.jpg'),
                   fit: BoxFit.cover,
