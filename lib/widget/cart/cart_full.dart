@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
-// import 'package:puntotienda/provider/product_provider.dart';
 
 class CartFull extends StatefulWidget {
   final String nombre;
@@ -36,12 +35,8 @@ class _CartFullState extends State<CartFull> {
       required this.precio,
       required this.cantidad});
 
-  // get getNombre => this.nombre;
-
   @override
   Widget build(BuildContext context) {
-    // int subtotal = 0;
-
     return SingleChildScrollView(
         child: Container(
       height: 165,
@@ -86,13 +81,12 @@ class _CartFullState extends State<CartFull> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(32.0),
                           onTap: () {
-                            
                             Provider.of<CartProvider>(context, listen: false)
-                                  .removeCartItem(nombre);
-                              // Provider.of<CartProvider>(context, listen: false)
-                              //     .loadCartAndWidgets();
+                                .removeCartItem(nombre);
+                            // Provider.of<CartProvider>(context, listen: false)
+                            //     .loadCartAndWidgets();
                             // setState(() {
-                              
+
                             // });
                             print("Botón de quitar producto");
                           },

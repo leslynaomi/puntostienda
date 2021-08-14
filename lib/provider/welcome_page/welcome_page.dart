@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:puntotienda/consts/header_text.dart';
 import 'package:puntotienda/widget/fondo_pantalla.dart';
+import 'package:puntotienda/widget/header_text.dart';
 
 class WelcomePage extends StatelessWidget {
   @override

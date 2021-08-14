@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:puntotienda/widget/alert_dialog.dart';
-import 'package:puntotienda/widget/back_button.dart';
+import 'package:puntotienda/widget/buttons/back_button.dart';
 import 'package:puntotienda/widget/done_button.dart';
 import 'package:puntotienda/widget/header_text.dart';
 

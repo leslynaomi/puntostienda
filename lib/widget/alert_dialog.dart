@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'header_text.dart';
 
 Future showAlertDialog(BuildContext context, ImageProvider<Object> imagePath,

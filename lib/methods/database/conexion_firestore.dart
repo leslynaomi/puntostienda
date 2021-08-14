@@ -1,7 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:flutter/cupertino.dart';
-//import 'package:puntotienda/provider/producto_provider.dart';
-//import 'package:puntotienda/pages/admin/admin_productos.dart';
 
 //Insertar Registros de Firestore
 void insertarRegistros(String coleccion, Map<String, dynamic> registros) {
@@ -37,34 +34,6 @@ Future<List<Map<String, dynamic>>> obtenerRegistros(String coleccion) async {
   });
   return mapa;
 }
-
-// class Product with ChangeNotifier {
-//   String categoria = "";
-//   String descripcion = "";
-//   String imagen = "";
-//   String nombre = "";
-//   String precio = "";
-//   String stock = "";
-
-//   Product(
-//       {required this.categoria,
-//       required this.descripcion,
-//       required this.imagen,
-//       required this.nombre,
-//       required this.precio,
-//       required this.stock});
-// }
-
-// class Category with ChangeNotifier {
-//   String nombre = "";
-//   String imagen = "";
-
-//   Category({
-//     required this.nombre,
-//     required this.imagen,
-//   });
-// }
-
 
 //        Apuntes
 //Añadiendo todo el contenido del documento en un mapa

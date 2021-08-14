@@ -16,7 +16,7 @@ class _LisCategoriaState extends State<LisCategoria> {
     return StreamBuilder(
         stream:
             FirebaseFirestore.instance.collection('AllCategoria').snapshots(),
-         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(),
@@ -34,8 +34,6 @@ class _LisCategoriaState extends State<LisCategoria> {
               );
             }).toList(),
           );
-        }
-        
-        );
+        });
   }
 }

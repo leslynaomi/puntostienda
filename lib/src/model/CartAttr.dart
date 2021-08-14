@@ -11,7 +11,4 @@ class CartAttr with ChangeNotifier {
       required this.nombre,
       required this.precio,
       required this.cantidad});
-
-  
-    
 }

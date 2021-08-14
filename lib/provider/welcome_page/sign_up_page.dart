@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:puntotienda/methods/database/conexion_firestore.dart';
 
 // import 'package:puntotienda/database/conexion_firestore.dart';
-import 'package:puntotienda/widget/back_button.dart';
+import 'package:puntotienda/widget/buttons/back_button.dart';
 import 'package:puntotienda/widget/header_text.dart';
 
 import '../user_provider.dart';

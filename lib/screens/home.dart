@@ -27,8 +27,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final productsData = Provider.of<Products>(context);
-    //  productsData.imageList();
 
     var db = FirebaseFirestore.instance.collection("categoria").get();
 
@@ -38,16 +36,13 @@ class HomeScreen extends StatelessWidget {
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (snapshot.hasData == true) {
             if (snapshot.hasError == false) {
-              List<Widget> list_categorias = [];
+              List<Widget> listCategoria = [];
 
               snapshot.data!.docs.forEach((data) {
-                //Para comprobar que lee los datos de la colección
-                // print(data.data()["nombre"]);
-
                 String nombre = (data.data()["nombre"]).toString();
                 String imagen = (data.data()["img"]).toString();
 
-                list_categorias.add(categoryWidget(context, nombre, imagen));
+                listCategoria.add(categoryWidget(context, nombre, imagen));
               });
 
               return Scaffold(
@@ -132,7 +127,7 @@ class HomeScreen extends StatelessWidget {
                             height: 180,
                             child: ListView(
                               scrollDirection: Axis.horizontal,
-                              children: list_categorias,
+                              children: listCategoria,
                             )
                           ),
                           Padding(
@@ -147,7 +142,9 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    print("El botón de ver todo");
+                                  },
                                   child: Text(
                                     'Ver todo...',
                                     style: TextStyle(

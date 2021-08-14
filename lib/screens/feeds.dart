@@ -1,12 +1,8 @@
-// import 'package:after_layout/after_layout.dart';
 import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
-import 'package:puntotienda/src/model/CartAttr.dart';
-import 'package:puntotienda/widget/cart_full.dart';
-// import 'package:puntotienda/widget/feeds_products.dart';
 
 class FeedsScreen extends StatefulWidget {
   @override
@@ -20,6 +16,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
   @override
   Widget build(BuildContext context) {
     var db = FirebaseFirestore.instance.collection("producto").get();
+    // bool _isButtonDisabled = false;
 
     return Scaffold(
         body: FutureBuilder(
@@ -123,12 +120,6 @@ class _FeedsScreenState extends State<FeedsScreen> {
 
   Widget detallesProducto(BuildContext context, String nombre, int precio,
       String imagen, int stock) {
-    bool isButtonDisable = false;
-    // var _onPressed;
-
-    // if(!isButtonDisable){
-
-    // }
     var opacidad = 1.0;
     return Container(
       padding: EdgeInsets.only(left: 5),
@@ -179,17 +170,13 @@ class _FeedsScreenState extends State<FeedsScreen> {
                       opacity: opacidad,
                       child: ElevatedButton(
                           onPressed: () {
-                            //Mandando el producto al carrito vía provider
                             Provider.of<CartProvider>(context, listen: false)
                                 .addProducToCart(nombre, precio, imagen);
-                            
                             print("Añadiendo al carrito");
-
-                            //Apagar el botón una vez se añade el producto al carrito
-                            setState(() {
-                              isButtonDisable = true;
-                            });
                           },
+                          /* Apagando el botón una vez pulsado para no añadir
+                          el mismo producto 2 veces
+                          sendProductToCart(context, nombre, precio, imagen), */
                           child: Text("Añadir",
                               style: TextStyle(
                                   color: Colors.white, fontSize: 18))),
@@ -202,6 +189,26 @@ class _FeedsScreenState extends State<FeedsScreen> {
     );
   }
 }
+
+bool _isButtonDisabled = false;
+
+void Function()? sendProductToCart(
+    BuildContext context, String nombre, int precio, String imagen) {
+  if (_isButtonDisabled) {
+    _isButtonDisabled = false;
+    return null;
+  } else {
+    return () {
+      //Mandando el producto al carrito vía provider
+      Provider.of<CartProvider>(context, listen: false)
+          .addProducToCart(nombre, precio, imagen);
+      print("Añadiendo al carrito");
+      
+      _isButtonDisabled = true;
+    };
+  }
+}
+
 
 //APUNTES
 //Trayendo toda la colección de productos

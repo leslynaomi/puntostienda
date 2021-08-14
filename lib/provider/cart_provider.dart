@@ -1,7 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:puntotienda/src/model/CartAttr.dart';
-import 'package:puntotienda/widget/cart_full.dart';
 
 class CartProvider with ChangeNotifier {
   //Cada item corresponde a un elemento en el carrito
@@ -63,8 +61,7 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // void aumentarCantidad(String nombre){
-
+  //Disminuye la cantidad a comprar de un producto
   void downProducToCart(String nombre, int precio, String imagen) {
     if (_cartItems.containsKey(nombre)) {
       _cartItems.update(
@@ -91,44 +88,5 @@ class CartProvider with ChangeNotifier {
       print("No se encontró el producto en el mapa de items");
     }
     notifyListeners();
-    // itemsTemp.foreach((){
-
-    // });
-
-    // userController.updateUserData({
-    //   "cart": FieldValue.arrayRemove([cartItem.toJson()])
-    // });
-
-    // try {
-    // userController.updateUserData({
-    //   "cart": FieldValue.arrayRemove([cartItem.toJson()])
-    // });
-    // } catch (e) {
-    //   Get.snackbar("Error", "Cannot remove this item");
-    //   debugPrint(e.message);
-    // }
   }
-
-  // void loadCartAndWidgets() {
-  //   //Lista de los Widgets que se muestran en el carrito de compras
-  //   // List<Widget> listWidgetsLocal =
-  //   //     Provider.of<CartProvider>(context, listen: false).getListWidgetTemp;
-
-  //   //Limpiamos la lista de widgets
-  //   listWidgetTemp.clear();
-  //   //Cargando los elementos del carrito a la lista de widgets como cardProduct
-  //   _cartItems.forEach((key, value) {
-  //     listWidgetTemp.add(CartFull(
-  //         nombre: value.nombre,
-  //         imagen: value.imagen,
-  //         precio: value.precio,
-  //         cantidad: value.cantidad));
-  //   });
-    
-  //   print("Productos cargados en la lista de widgets");
-  //   notifyListeners();
-  //   //Mandando la lista de widgets actualizada al provider
-  //   // Provider.of<CartProvider>(context, listen: false)
-  //   //     .setListWidgetTemp(listWidgetsLocal);
-  // }
 }

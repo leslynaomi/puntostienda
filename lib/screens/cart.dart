@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
 import 'package:puntotienda/src/model/CartAttr.dart';
-import 'package:puntotienda/widget/cart_empty.dart';
-import 'package:puntotienda/widget/cart_full.dart';
+import 'package:puntotienda/widget/cart/cart_empty.dart';
+import 'package:puntotienda/widget/cart/cart_full.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -20,8 +20,6 @@ class _CartScreenState extends State<CartScreen> {
 
     //Actualizamos la lista de widgets de los productos
     loadCartAndWidgets(context,Provider.of<CartProvider>(context).getCartItems);
-    
-    // Provider.of<CartProvider>(context, listen: false).loadCartAndWidgets();
 
     if (cartItems.isNotEmpty) {
       return Scaffold(
@@ -85,6 +83,7 @@ class _CartScreenState extends State<CartScreen> {
                     borderRadius: BorderRadius.circular(30),
                     onTap: () {
                       Navigator.pushNamed(context, "card_debit");
+                      
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -137,17 +136,6 @@ class _CartScreenState extends State<CartScreen> {
   //   }
   //   return resultado;
   // }
-
-// String calcularSubTotal(int cantidad, int precio) {
-//   int subtotal = cantidad * precio;
-//   return subtotal.toString();
-// }
-
-// String calcularTotal(int subtotal) {
-//   int suma = 0;
-//   suma = suma + subtotal;
-//   return suma.toString();
-// }
 }
 
 void loadCartAndWidgets(BuildContext context, Map<String, CartAttr> cartItems) {

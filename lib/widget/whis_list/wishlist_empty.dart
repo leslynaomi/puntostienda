@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-class wishlistEmpty extends StatelessWidget {
+class WishlistEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 

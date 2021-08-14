@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:puntotienda/methods/aviso.dart';
+import 'package:puntotienda/widget/aviso.dart';
 import 'package:puntotienda/methods/database/conexion_firestore.dart';
 import 'package:puntotienda/widget/buttons/text_field.dart';
 import 'package:puntotienda/widget/fondo_pantalla.dart';
