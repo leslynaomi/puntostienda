@@ -14,7 +14,7 @@ class CartFull extends StatefulWidget {
       required this.imagen,
       required this.precio,
       required this.cantidad});
-
+  
   @override
   _CartFullState createState() => _CartFullState(
       nombre: this.nombre,
@@ -34,6 +34,8 @@ class _CartFullState extends State<CartFull> {
       required this.imagen,
       required this.precio,
       required this.cantidad});
+
+  // get getNombre => this.nombre;
 
   @override
   Widget build(BuildContext context) {
@@ -172,12 +174,11 @@ class _CartFullState extends State<CartFull> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(4.0),
                           onTap: () {
-                            
                             Provider.of<CartProvider>(context, listen: false)
                                 .addProducToCart(nombre, precio, imagen);
 
                             setState(() {
-                              cantidad++;                              
+                              cantidad++;
                             });
 
                             print("aumentar cantidad");
