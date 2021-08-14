@@ -38,7 +38,7 @@ class CartProvider with ChangeNotifier {
   //   setTotalCartPrice(totalCartPrice);
   //   setListWidgetTemp(listWidgetTemp);
   // }
-
+//para remover item
 void removeItem(String productId){
 listWidgetTemp.remove(productId);
 notifyListeners();
