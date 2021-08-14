@@ -1,11 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
 import 'package:puntotienda/src/model/CartAttr.dart';
+import 'package:puntotienda/widget/alert_dialog.dart';
 // import 'package:puntotienda/src/model/product.dart';
 import 'package:puntotienda/widget/cart_empty.dart';
 import 'package:puntotienda/widget/cart_full.dart';
+import 'package:puntotienda/widget/done_button.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -122,7 +125,10 @@ class _CartScreenState extends State<CartScreen> {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(30),
                     onTap: () {
-                      Navigator.pushNamed(context, "card_debit");
+
+                    
+                      Navigator.pushNamed(context, 'card_debit');
+                      
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),

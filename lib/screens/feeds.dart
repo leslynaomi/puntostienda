@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
+import 'package:puntotienda/provider/product_provider.dart';
 import 'package:puntotienda/src/model/CartAttr.dart';
 import 'package:puntotienda/widget/cart_full.dart';
 // import 'package:puntotienda/widget/feeds_products.dart';
@@ -35,9 +36,10 @@ class _FeedsScreenState extends State<FeedsScreen> {
               String nombre = (data.data()["nombre"]).toString();
               String precio = (data.data()["precio"]).toString();
               String stock = (data.data()["stock"]).toString();
-
+              String categoria = (data.data()["categoria"]).toString();
+              String descripcion = (data.data()["descripcion"]).toString();
               listWidgetTemp.add(cardProductFeed(context, imagen, nombre,
-                  int.parse(precio), int.parse(stock)));
+                  int.parse(precio), int.parse(stock),categoria,descripcion));
             });
 
             return GridView.count(
@@ -59,20 +61,27 @@ class _FeedsScreenState extends State<FeedsScreen> {
   }
 
   Widget cardProductFeed(BuildContext context, String imagen, String nombre,
-      int precio, int stock) {
+      int precio, int stock,String categoria,String descripcion) {
     return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          width: 250,
-          height: 290,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              color: Theme.of(context).backgroundColor),
-          child: Column(
-            children: [
-              imageProducto(context, imagen),
-              detallesProducto(context, nombre, precio, imagen, stock),
-            ],
+        child:InkWell(
+          onTap: () {
+   Provider.of<ProductoProvider>(context, listen: false).changeUser(
+                nombre,descripcion,precio.toString(),stock.toString(),categoria, imagen   );
+              Navigator.popAndPushNamed(context, 'detalles');
+          } ,
+          child: Container(
+            width: 250,
+            height: 290,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                color: Theme.of(context).backgroundColor),
+            child: Column(
+              children: [
+                imageProducto(context, imagen),
+                detallesProducto(context, nombre, precio, imagen, stock),
+              ],
+            ),
           ),
         ));
   }
@@ -173,12 +182,16 @@ class _FeedsScreenState extends State<FeedsScreen> {
               Material(
                 color: Colors.cyan,
                 child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                       
+
+                    },
                     borderRadius: BorderRadius.circular(18.0),
                     child: Opacity(
                       opacity: opacidad,
                       child: ElevatedButton(
                           onPressed: () {
+
                             //Mandando el producto al carrito vía provider
                             Provider.of<CartProvider>(context, listen: false)
                                 .addProducToCart(nombre, precio, imagen);

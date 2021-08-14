@@ -85,6 +85,8 @@ flutter:
     - assets/images/fondo.jpg
     - assets/images/computer_world.jpg
     - assets/images/computer_user.jpg
+    - assets/images/pago.png
+    - assets/images/pagando.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

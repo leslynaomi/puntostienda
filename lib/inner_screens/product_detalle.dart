@@ -1,8 +1,10 @@
 //import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 ///import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
+import 'package:puntotienda/provider/product_provider.dart';
 //import 'package:puntotienda/provider/cart_provider.dart';
 //import 'package:puntotienda/provider/producto_provider.dart';
 
@@ -25,7 +27,7 @@ class _ProductodetallesState extends State<Productodetalles> {
           foregroundDecoration: BoxDecoration(color: Colors.black12),
           height: MediaQuery.of(context).size.height * 0.45,
           width: double.infinity,
-          child: Image.network('https://i.pinimg.com/736x/61/18/42/61184274134f8d9592ac3ca0ffc26fb5.jpg'/* llamada del provider para añadir imagen prodAttr.imagen*/),
+          child: Image.network(Provider.of<ProductoProvider>(context).getImagen),
         ),
         SingleChildScrollView(
           padding: const EdgeInsets.only(top: 16.0, bottom: 20.0),
@@ -81,7 +83,7 @@ class _ProductodetallesState extends State<Productodetalles> {
                         children: [
                           Container(
                             width: MediaQuery.of(context).size.width * 0.9,
-                            child: Text('nombre producto'
+                            child: Text(Provider.of<ProductoProvider>(context).getNombre
                              /* llamada prodAttr.nombre*/,
                               maxLines: 2,
                               style: TextStyle(
@@ -93,7 +95,7 @@ class _ProductodetallesState extends State<Productodetalles> {
                           SizedBox(
                             height: 8,
                           ),
-                          Text('precio'
+                          Text('Bs'+Provider.of<ProductoProvider>(context).getPrecio
                           /* 'bs ${prodAttr.precio} '*/,
                             style: TextStyle(
                                 color: Colors.green,
@@ -119,7 +121,7 @@ class _ProductodetallesState extends State<Productodetalles> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Text('descripcion'
+                      child: Text(Provider.of<ProductoProvider>(context).getDescripcion
                        /*llamada  prodAttr.descripcion*/,
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -139,8 +141,8 @@ class _ProductodetallesState extends State<Productodetalles> {
                         height: 1,
                       ),
                     ),
-                    _details('Stock','30' /*'${prodAttr.stock}'*/),
-                    _details('id_Categoria', 'televisores'/*prodAttr.categoria*/),
+                    _details('Stock  :',Provider.of<ProductoProvider>(context).getStock /*'${prodAttr.stock}'*/),
+                    _details('Categoria  :', Provider.of<ProductoProvider>(context).categoria/*prodAttr.categoria*/),
                   ],
                 ),
               )
@@ -170,79 +172,8 @@ class _ProductodetallesState extends State<Productodetalles> {
                   },
                 )
               ],
-            )),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Row(
-            children: [
-              Expanded(
-                flex: 3,
-                child: Container(
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: /*cartProvider.getCartItems.constainsKey(productId)?(){}:() {
-                      cartProvider.addProductToCart(
-                         prodAttr.nombre, prodAttr.precio, prodAttr.imagen);
-                    */(){},
-                    child: Text(/*cartProvider.getCartItems.constainsKey(productId)?'In cart':
-                      'add to cart'.toUpperCase(),
-                      style: TextStyle(fontSize: 16, color: Colors.black),*/
-                    'cargaa carrito '),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed:(){},
-                    /*
-                    cargando carrito en provider
-                     cartProvider.getCartItems.constainsKey(productId)?(){}:() {
-                      cartProvider.addProductToCart(
-                         prodAttr.nombre, prodAttr.precio, prodAttr.imagen);*/
-                    
-                    child: Row(
-                      children: [
-                      Text(/* añadiendo a carrito
-                      cartProvider.getCartItems.constainsKey(productId)?'In cart':*/
-                      'comprar ahora'.toUpperCase(),
-                      style: TextStyle(fontSize: 14, color: Theme.of(context).textSelectionColor),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                      Icon(Icons.payment,
-                      color: Colors.green.shade700,
-                      size: 19,)
-
-                      ],
-
-                    ),
-                    
-                    
-                  ),
-                ),
-              ),
-
-               Expanded(
-                flex: 1,
-                child: Container(
-                  height: 50,
-                  child: InkWell(
-                    splashColor: ColorsConst.favColor,
-                    onTap: (){},
-                    child: Center(
-                      child: Icon(Icons.favorite,color: ColorsConst.white,),
-                    ),
-                  ),
-                  
-                ),
-              ),
-            ],
-          ),
-        )
+            ))
+       
       ]),
     );
   }

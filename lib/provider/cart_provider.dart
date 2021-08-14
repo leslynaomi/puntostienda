@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
+//import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:puntotienda/src/model/CartAttr.dart';
 class CartProvider with ChangeNotifier {
   //Cada item corresponde a un elemento en el carrito
@@ -85,6 +85,11 @@ notifyListeners();
     }
     notifyListeners();
   }
+
+
+
+
+  
 
   // void aumentarCantidad(String nombre){
 
