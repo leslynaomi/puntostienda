@@ -74,7 +74,27 @@ class NotaCompra extends StatelessWidget {
         children: <Widget>[
           // SizedBox(
           // width: MediaQuery.of(context).size.width,
-
+          Row(
+            children: [
+              const SizedBox(height: 20),
+              Text(
+                'Imagen:',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Spacer(),
+              Text(
+                '',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+              )
+            ],
+          ),
           Row(
             children: [
               const SizedBox(height: 20),
@@ -143,7 +163,7 @@ class NotaCompra extends StatelessWidget {
 
           Row(
             children: [
-              const SizedBox(height: 600),
+              const SizedBox(height: 500),
               Text(
                 'Total:',
                 style: TextStyle(
@@ -157,11 +177,18 @@ class NotaCompra extends StatelessWidget {
                 '\Bs 0 ',
                 style: Theme.of(context).textTheme.headline4!.copyWith(
                       color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                      fontWeight:  FontWeight.bold,
                     ),
               )
             ],
           ),
+
+          ElevatedButton(
+              child: Text('Comprar por Paypal'),
+              onPressed: () {
+                Navigator.pushNamed(context, "NotaCompra");
+              },
+            ),
         ],
       ),
     );
