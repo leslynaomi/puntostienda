@@ -19,7 +19,13 @@ class CartProvider with ChangeNotifier {
   void setListWidgetTemp(listWidgetTemp) =>
       this.listWidgetTemp = listWidgetTemp;
 
-  //Vaciar la lista de productos
+//Para remover item
+void removeItem(String productId){
+listWidgetTemp.remove(productId);
+notifyListeners();
+}
+
+//Vaciar la lista de productos
   void emptyCart() {
     _cartItems.clear();
     listWidgetTemp.clear();

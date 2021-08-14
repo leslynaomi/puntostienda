@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
@@ -83,7 +84,6 @@ class _CartScreenState extends State<CartScreen> {
                     borderRadius: BorderRadius.circular(30),
                     onTap: () {
                       Navigator.pushNamed(context, "card_debit");
-                      
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -121,21 +121,6 @@ class _CartScreenState extends State<CartScreen> {
       ),
     );
   }
-
-  // bool existInListOfWidgets(List<Widget> listWidgetsLocal, CartAttr value) {
-  //   bool resultado = false;
-  //   Widget cartAttrTemp = CartFull(
-  //       nombre: value.nombre,
-  //       imagen: value.imagen,
-  //       precio: value.precio,
-  //       cantidad: value.cantidad);
-  //   for (Widget item in listWidgetsLocal) {
-  //     if (item == cartAttrTemp) {
-  //       resultado = true;
-  //     }
-  //   }
-  //   return resultado;
-  // }
 }
 
 void loadCartAndWidgets(BuildContext context, Map<String, CartAttr> cartItems) {
