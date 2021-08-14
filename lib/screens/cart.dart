@@ -27,19 +27,19 @@ class _CartScreenState extends State<CartScreen> {
         Provider.of<CartProvider>(context, listen: false).getListWidgetTemp;
 
     //Cargando los elementos del carrito a la lista de widgets como cardProduct
-    
+
+    listWidgetsLocal.clear();
     cartItems.forEach((key, value) {
-      
       //Si el producto no está en la lista de widgets entonces no debe ser agregado de nuevo
-      // if (validarValue(listWidgetsLocal, value)) {
+      // if (!existInListOfWidgets(listWidgetsLocal, value)) {
         listWidgetsLocal.add(CartFull(
             nombre: value.nombre,
             imagen: value.imagen,
             precio: value.precio,
             cantidad: value.cantidad));
+      // } else {
+      //   print("Ya ha añadido este producto al carrito/Widgets");
       // }
-      // monto = calcularSubTotal(value.cantidad, value.precio);
-      // total = calcularTotal(int.parse(monto));
     });
 
     //Mandando la lista de widgets actualizada al provider
@@ -73,91 +73,112 @@ class _CartScreenState extends State<CartScreen> {
       return Scaffold(body: CartEmpty());
     }
   }
-}
 
-AppBar appBarArticulos(BuildContext context) {
-  return AppBar(
-    title: Text('Recuento de articulos del carrito'),
-    actions: [
-      IconButton(
-        onPressed: () {
-          Provider.of<CartProvider>(context, listen: false).emptyCart();
-          print('Se han vaciado todos los productos del carrito');
-        },
-        icon: Icon(Icons.delete),
-      )
-    ],
-  );
-}
+  AppBar appBarArticulos(BuildContext context) {
+    return AppBar(
+      title: Text('Recuento de articulos del carrito'),
+      actions: [
+        IconButton(
+          onPressed: () {
+            Provider.of<CartProvider>(context, listen: false).emptyCart();
+            print('Se han vaciado todos los productos del carrito');
+          },
+          icon: Icon(Icons.delete),
+        )
+      ],
+    );
+  }
 
-Widget checkoutSection(BuildContext context, Map<String, CartAttr> cartItems) {
-  double montoTotal = Provider.of<CartProvider>(context).getTotalAcumulado;
+  Widget checkoutSection(
+      BuildContext context, Map<String, CartAttr> cartItems) {
+    double montoTotal = Provider.of<CartProvider>(context).getTotalAcumulado;
 
-  return Container(
-    decoration: BoxDecoration(
-      border: Border(
-        top: BorderSide(color: Colors.grey, width: 0.5),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(color: Colors.grey, width: 0.5),
+        ),
       ),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            flex: 2,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                gradient: LinearGradient(colors: [
-                  ColorsConst.gradiendLStart,
-                  ColorsConst.gradiendLEnd,
-                ], stops: [
-                  0.0,
-                  0.7
-                ]),
-              ),
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  onTap: () {
-                    Navigator.pushNamed(context, "card_debit");
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Verificar Orden',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600),
+                  gradient: LinearGradient(colors: [
+                    ColorsConst.gradiendLStart,
+                    ColorsConst.gradiendLEnd,
+                  ], stops: [
+                    0.0,
+                    0.7
+                  ]),
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(30),
+                    onTap: () {
+                      Navigator.pushNamed(context, "card_debit");
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Verificar Orden',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-          Spacer(),
-          Text(
-            'Total: ',
-            style: TextStyle(
-                color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500),
-          ),
-          Text(
-            (montoTotal).toString(),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Colors.blue, fontSize: 18, fontWeight: FontWeight.w600),
-          ),
-        ],
+            Spacer(),
+            Text(
+              'Total: ',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),
+            ),
+            Text(
+              (montoTotal).toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 
+  bool existInListOfWidgets(List<Widget> listWidgetsLocal, CartAttr value) {
+    bool resultado = false;
+    Widget cartAttrTemp = CartFull(
+        nombre: value.nombre,
+        imagen: value.imagen,
+        precio: value.precio,
+        cantidad: value.cantidad);
+    // if (listWidgetsLocal.contains(cartAttrTemp)) {
+    //   resultado = true;
+    // }
+    for (Widget item in listWidgetsLocal) {
+      if (item == cartAttrTemp) {
+        resultado = true;
+      }
+    }
 
+    return resultado;
+  }
 
 // String calcularSubTotal(int cantidad, int precio) {
 //   int subtotal = cantidad * precio;
@@ -169,3 +190,4 @@ Widget checkoutSection(BuildContext context, Map<String, CartAttr> cartItems) {
 //   suma = suma + subtotal;
 //   return suma.toString();
 // }
+}
