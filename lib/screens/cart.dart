@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
 import 'package:puntotienda/src/model/CartAttr.dart';
-// import 'package:puntotienda/src/model/product.dart';
 import 'package:puntotienda/widget/cart_empty.dart';
 import 'package:puntotienda/widget/cart_full.dart';
 
@@ -13,38 +12,16 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  // Producto aux = Producto(nombre: "hola");
-  // int cantidad = 0;
-
   @override
   Widget build(BuildContext context) {
     //Obteniendo los items del carrito de compras
     Map<String, CartAttr> cartItems =
         Provider.of<CartProvider>(context).getCartItems;
 
-    //Lista de los Widgets que se muestran en el carrito de compras
-    List<Widget> listWidgetsLocal =
-        Provider.of<CartProvider>(context, listen: false).getListWidgetTemp;
-
-    //Cargando los elementos del carrito a la lista de widgets como cardProduct
-
-    listWidgetsLocal.clear();
-    cartItems.forEach((key, value) {
-      //Si el producto no está en la lista de widgets entonces no debe ser agregado de nuevo
-      // if (!existInListOfWidgets(listWidgetsLocal, value)) {
-        listWidgetsLocal.add(CartFull(
-            nombre: value.nombre,
-            imagen: value.imagen,
-            precio: value.precio,
-            cantidad: value.cantidad));
-      // } else {
-      //   print("Ya ha añadido este producto al carrito/Widgets");
-      // }
-    });
-
-    //Mandando la lista de widgets actualizada al provider
-    Provider.of<CartProvider>(context, listen: false)
-        .setListWidgetTemp(listWidgetsLocal);
+    //Actualizamos la lista de widgets de los productos
+    loadCartAndWidgets(context,Provider.of<CartProvider>(context).getCartItems);
+    
+    // Provider.of<CartProvider>(context, listen: false).loadCartAndWidgets();
 
     if (cartItems.isNotEmpty) {
       return Scaffold(
@@ -54,21 +31,7 @@ class _CartScreenState extends State<CartScreen> {
               margin: EdgeInsets.only(bottom: 60),
               child: ListView(
                   children:
-                      Provider.of<CartProvider>(context).getListWidgetTemp)
-              // child: ListView(children: listWidgetTemp)
-
-              // ListView.builder(
-              //     itemCount: 6,
-              //     itemBuilder: (BuildContext context, int index) {
-              //       // return CartFull();
-              //       return cardProduct(
-              //           context,
-              //           "Mando de PS3",
-              //           "https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-              //           345,
-              //           5);
-              //     }),
-              ));
+                      Provider.of<CartProvider>(context).getListWidgetTemp)));
     } else {
       return Scaffold(body: CartEmpty());
     }
@@ -102,7 +65,6 @@ class _CartScreenState extends State<CartScreen> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               flex: 2,
@@ -161,24 +123,20 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  bool existInListOfWidgets(List<Widget> listWidgetsLocal, CartAttr value) {
-    bool resultado = false;
-    Widget cartAttrTemp = CartFull(
-        nombre: value.nombre,
-        imagen: value.imagen,
-        precio: value.precio,
-        cantidad: value.cantidad);
-    // if (listWidgetsLocal.contains(cartAttrTemp)) {
-    //   resultado = true;
-    // }
-    for (Widget item in listWidgetsLocal) {
-      if (item == cartAttrTemp) {
-        resultado = true;
-      }
-    }
-
-    return resultado;
-  }
+  // bool existInListOfWidgets(List<Widget> listWidgetsLocal, CartAttr value) {
+  //   bool resultado = false;
+  //   Widget cartAttrTemp = CartFull(
+  //       nombre: value.nombre,
+  //       imagen: value.imagen,
+  //       precio: value.precio,
+  //       cantidad: value.cantidad);
+  //   for (Widget item in listWidgetsLocal) {
+  //     if (item == cartAttrTemp) {
+  //       resultado = true;
+  //     }
+  //   }
+  //   return resultado;
+  // }
 
 // String calcularSubTotal(int cantidad, int precio) {
 //   int subtotal = cantidad * precio;
@@ -190,4 +148,25 @@ class _CartScreenState extends State<CartScreen> {
 //   suma = suma + subtotal;
 //   return suma.toString();
 // }
+}
+
+void loadCartAndWidgets(BuildContext context, Map<String, CartAttr> cartItems) {
+  //Lista de los Widgets que se muestran en el carrito de compras
+  List<Widget> listWidgetsLocal =
+      Provider.of<CartProvider>(context, listen: false).getListWidgetTemp;
+
+  //Limpiamos la lista de widgets
+  listWidgetsLocal.clear();
+  //Cargando los elementos del carrito a la lista de widgets como cardProduct
+  cartItems.forEach((key, value) {
+    listWidgetsLocal.add(CartFull(
+        nombre: value.nombre,
+        imagen: value.imagen,
+        precio: value.precio,
+        cantidad: value.cantidad));
+  });
+
+  //Mandando la lista de widgets actualizada al provider
+  Provider.of<CartProvider>(context, listen: false)
+      .setListWidgetTemp(listWidgetsLocal);
 }

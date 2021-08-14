@@ -1,45 +1,27 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:puntotienda/src/model/CartAttr.dart';
+import 'package:puntotienda/widget/cart_full.dart';
+
 class CartProvider with ChangeNotifier {
   //Cada item corresponde a un elemento en el carrito
   Map<String, CartAttr> _cartItems = {};
 
-  // List<Producto> listproducts = [];
-
   //La lista de Widgets que corresponden a cada item del carrito
   List<Widget> listWidgetTemp = [];
 
-  //El precio total de la suma y multiplicación de los precios de cada item
-  // RxDouble totalCartPrice = 0.0.obs;
-
   // get getcartItems => this._cartItems;
-  Map<String, CartAttr> get getCartItems {
+  get getCartItems {
     return {..._cartItems};
   }
+
   void setCartItems(Map<String, CartAttr> value) => this._cartItems = value;
 
   get getListWidgetTemp => this.listWidgetTemp;
   void setListWidgetTemp(listWidgetTemp) =>
       this.listWidgetTemp = listWidgetTemp;
 
-  // get getListproducts => this.listproducts;
-  // void setListproducts(List<Producto> listproducts) =>
-  //     this.listproducts = listproducts;
-
-  // get getTotalCartPrice => this.totalCartPrice;
-  // void setTotalCartPrice(RxDouble totalCartPrice) =>
-  //     this.totalCartPrice = totalCartPrice;
-
-  // get getCantidad => this.cantidad;
-  // void setCantidad(int cantidad) => this.cantidad = cantidad;
-
-  // void changeCart(RxDouble totalCartPrice, List<Widget> listWidgetTemp) {
-  //   setTotalCartPrice(totalCartPrice);
-  //   setListWidgetTemp(listWidgetTemp);
-  // }
-
-//Vaciar la lista de productos
+  //Vaciar la lista de productos
   void emptyCart() {
     _cartItems.clear();
     listWidgetTemp.clear();
@@ -83,16 +65,70 @@ class CartProvider with ChangeNotifier {
 
   // void aumentarCantidad(String nombre){
 
+  void downProducToCart(String nombre, int precio, String imagen) {
+    if (_cartItems.containsKey(nombre)) {
+      _cartItems.update(
+          nombre,
+          (exitingCartItem) => CartAttr(
+                imagen: exitingCartItem.imagen,
+                nombre: exitingCartItem.nombre,
+                precio: exitingCartItem.precio,
+                cantidad: exitingCartItem.cantidad - 1,
+              ));
+    } else {
+      print("No se encontró el producto en el mapa de items");
+    }
+    notifyListeners();
+  }
 
-  //   notifyListeners();
-  // }
-  // List<CartItemModel> _convertCartItems(List cartFomDb) {
-  //   List<CartItemModel> _result = [];
-  //   logger.i(cartFomDb.length);
-  //   cartFomDb.forEach((element) {
-  //     _result.add(CartItemModel.fromMap(element));
+  //Quitar un producto del carrito
+  void removeCartItem(String nombre) {
+    // Map<String, CartAttr> itemsTemp = getCartItems();
+    if (_cartItems.containsKey(nombre)) {
+      _cartItems.remove(nombre);
+      // setCartItems(itemsTemp);
+    } else {
+      print("No se encontró el producto en el mapa de items");
+    }
+    notifyListeners();
+    // itemsTemp.foreach((){
+
+    // });
+
+    // userController.updateUserData({
+    //   "cart": FieldValue.arrayRemove([cartItem.toJson()])
+    // });
+
+    // try {
+    // userController.updateUserData({
+    //   "cart": FieldValue.arrayRemove([cartItem.toJson()])
+    // });
+    // } catch (e) {
+    //   Get.snackbar("Error", "Cannot remove this item");
+    //   debugPrint(e.message);
+    // }
+  }
+
+  // void loadCartAndWidgets() {
+  //   //Lista de los Widgets que se muestran en el carrito de compras
+  //   // List<Widget> listWidgetsLocal =
+  //   //     Provider.of<CartProvider>(context, listen: false).getListWidgetTemp;
+
+  //   //Limpiamos la lista de widgets
+  //   listWidgetTemp.clear();
+  //   //Cargando los elementos del carrito a la lista de widgets como cardProduct
+  //   _cartItems.forEach((key, value) {
+  //     listWidgetTemp.add(CartFull(
+  //         nombre: value.nombre,
+  //         imagen: value.imagen,
+  //         precio: value.precio,
+  //         cantidad: value.cantidad));
   //   });
-
-  //   return _result;
+    
+  //   print("Productos cargados en la lista de widgets");
+  //   notifyListeners();
+  //   //Mandando la lista de widgets actualizada al provider
+  //   // Provider.of<CartProvider>(context, listen: false)
+  //   //     .setListWidgetTemp(listWidgetsLocal);
   // }
 }
