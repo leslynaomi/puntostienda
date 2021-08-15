@@ -2,11 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-///import 'package:provider/provider.dart';
-import 'package:puntotienda/consts/colors.dart';
 import 'package:puntotienda/provider/product_provider.dart';
-//import 'package:puntotienda/provider/cart_provider.dart';
-//import 'package:puntotienda/provider/producto_provider.dart';
 
 class Productodetalles extends StatefulWidget {
   @override
