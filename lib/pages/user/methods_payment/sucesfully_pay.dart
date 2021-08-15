@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
+import 'package:puntotienda/provider/user_provider.dart';
 import 'package:puntotienda/src/model/CartAttr.dart';
 import 'package:url_launcher/url_launcher.dart';
 //import 'package:kussa/widgets/buy_button.dart';
@@ -76,12 +77,13 @@ class PagoExitoso extends StatelessWidget {
 
   Future<void> msgNotaCompra(BuildContext context) async {
     String nota = "";
+    String nombre=Provider.of<UsuarioProvider>(context, listen: false).getNombre;
     String fecha = (DateTime.now()).toString();
     nota = nota + "Fecha:" + fecha;
     nota = nota + "\n";
-    nota = nota+"¡Compre con nosotros!";
+    nota = nota+"¡FoundMart Compre con nosotros!";
     nota = nota + "\n";
-    nota = nota+"Cliente: Flutter - Dart";
+    nota = nota+"Cliente: "+nombre;
     nota = nota + "\n";
     nota = nota + "______________";
     nota = nota + "\n";
@@ -89,15 +91,17 @@ class PagoExitoso extends StatelessWidget {
         Provider.of<CartProvider>(context, listen: false).getCartItems;
 
      aux.forEach((key, value) {
-      nota = nota+value.nombre +
-          "\n" +
+      nota = nota+
+        
+          "\n" +"Nombre de producto: "+
+          "\n" +value.nombre +
+          "\n" +"Precio: "+
           (value.precio).toString() +
-          "\n" +
+          "\n" +"Cantidad: "+
           (value.cantidad).toString() +
-          "\n" +
-          "___________________";
+          "\n"     ;
     });
-    nota = nota +
+    nota = nota +"___________________"+ "\n"
         "Total:" +
         (Provider.of<CartProvider>(context, listen: false).getTotalAcumulado)
             .toString();
