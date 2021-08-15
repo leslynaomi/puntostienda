@@ -55,6 +55,8 @@ dependencies:
   dio: ^4.0.0
   uuid: ^3.0.4
   timeago: ^3.0.2
+  fancy_dialog: ^1.0.4
+  url_launcher: ^6.0.9
   
 
 dev_dependencies:

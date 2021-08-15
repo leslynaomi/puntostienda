@@ -12,7 +12,6 @@ class CartProvider with ChangeNotifier {
   get getCartItems {
     return {..._cartItems};
   }
-
   void setCartItems(Map<String, CartAttr> value) => this._cartItems = value;
 
   get getListWidgetTemp => this.listWidgetTemp;
@@ -20,10 +19,10 @@ class CartProvider with ChangeNotifier {
       this.listWidgetTemp = listWidgetTemp;
 
 //Para remover item
-void removeItem(String productId){
-listWidgetTemp.remove(productId);
-notifyListeners();
-}
+  void removeItem(String productId) {
+    listWidgetTemp.remove(productId);
+    notifyListeners();
+  }
 
 //Vaciar la lista de productos
   void emptyCart() {
