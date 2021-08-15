@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
+import 'package:puntotienda/provider/user_provider.dart';
 import 'package:puntotienda/src/model/CartAttr.dart';
 import 'package:url_launcher/url_launcher.dart';
 //import 'package:kussa/widgets/buy_button.dart';
@@ -43,10 +44,7 @@ class PagoExitoso extends StatelessWidget {
                               (states) => (Colors.blue[300])),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, "tabs");
-                          Provider.of<CartProvider>(context, listen: false)
-                              .emptyCart();
-
+                            Navigator.pushNamed(context, "tabs");
                           showDialog(
                               context: context,
                               builder: (BuildContext context) =>
@@ -65,6 +63,9 @@ class PagoExitoso extends StatelessWidget {
                                   ));
 
                           print("Ha finalizado la compra");
+                        
+                       
+
                         }),
                   ],
                 ),
@@ -76,34 +77,40 @@ class PagoExitoso extends StatelessWidget {
 
   Future<void> msgNotaCompra(BuildContext context) async {
     String nota = "";
+    String nombre= Provider.of<UsuarioProvider>(context,listen: false).getNombre();
     String fecha = (DateTime.now()).toString();
     nota = nota + "Fecha:" + fecha;
     nota = nota + "\n";
-    nota = "¡Compre con nosotros!";
+    nota = nota+"¡Compre con nosotros!";
     nota = nota + "\n";
-    nota = "Cliente: Flutter - Dart";
+    nota = nota+"Cliente: " + nombre;
     nota = nota + "\n";
     nota = nota + "______________";
-
+    nota = nota + "\n";
     Map<String, CartAttr> aux =
         Provider.of<CartProvider>(context, listen: false).getCartItems;
 
-    aux.forEach((key, value) {
-      nota = value.nombre +
+     aux.forEach((key, value) {
+      
+      nota = nota+"Nombre producto: "+value.nombre +
           "\n" +
-          (value.precio).toString() +
+         "Precio : "+ (value.precio).toString() +
           "\n" +
-          value.imagen +
-          "\n" +
-          (value.cantidad).toString() +
+          "Cantidad : "+(value.cantidad).toString() +
           "\n" +
           "___________________";
+
     });
+    nota=nota+"\n" ;
     nota = nota +
         "Total:" +
         (Provider.of<CartProvider>(context, listen: false).getTotalAcumulado)
             .toString();
 
     await launch("https://wa.me/59176358244?text=$nota");
+      Provider.of<CartProvider>(context, listen: false)
+                             .emptyCart();
+
+
   }
 }
