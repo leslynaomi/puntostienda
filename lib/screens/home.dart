@@ -27,13 +27,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var db = FirebaseFirestore.instance.collection("categoria").get();
 
     return FutureBuilder(
         future: db,
-        builder: (context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+        builder: (context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (snapshot.hasData == true) {
             if (snapshot.hasError == false) {
               List<Widget> listCategoria = [];
@@ -56,10 +54,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                       flexibleSpace: Container(
                         decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: [
-                          ColorsConst.starterColor,
-                          ColorsConst.endColor
-                        ])),
+                            gradient: LinearGradient(
+                                colors: [ColorsConst.starterColor, ColorsConst.endColor])),
                       ),
                       actions: <Widget>[
                         IconButton(
@@ -89,8 +85,7 @@ class HomeScreen extends StatelessWidget {
                             child: CarouselSlider(
                               options: CarouselOptions(
                                 autoPlay: true,
-                                autoPlayAnimationDuration:
-                                    Duration(milliseconds: 1000),
+                                autoPlayAnimationDuration: Duration(milliseconds: 1000),
                                 aspectRatio: 2.0,
                                 enlargeCenterPage: true,
                                 enableInfiniteScroll: false,
@@ -118,27 +113,23 @@ class HomeScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               'Categorias',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w800, fontSize: 20),
+                              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                             ),
                           ),
                           Container(
-                            width: double.infinity,
-                            height: 180,
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: listCategoria,
-                            )
-                          ),
+                              width: double.infinity,
+                              height: 180,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: listCategoria,
+                              )),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
                               children: [
                                 Text(
                                   'Marcas Populares',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: 20),
+                                  style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                                 ),
                                 Spacer(),
                                 ElevatedButton(
@@ -165,8 +156,7 @@ class HomeScreen extends StatelessWidget {
                               child: CarouselSlider(
                                 options: CarouselOptions(
                                   autoPlay: true,
-                                  autoPlayAnimationDuration:
-                                      Duration(milliseconds: 1000),
+                                  autoPlayAnimationDuration: Duration(milliseconds: 1000),
                                   aspectRatio: 2.0,
                                   enlargeCenterPage: true,
                                   enableInfiniteScroll: false,
@@ -174,8 +164,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 items: brandImages
                                     .map((e) => ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
+                                          borderRadius: BorderRadius.circular(8),
                                           child: Stack(
                                             fit: StackFit.expand,
                                             children: <Widget>[
@@ -198,9 +187,7 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   'Productos Populares',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: 20),
+                                  style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20),
                                 ),
                                 Spacer(),
                                 ElevatedButton(
@@ -242,14 +229,14 @@ class HomeScreen extends StatelessWidget {
               //   childAspectRatio: 240 / 290,
               //   children: list_categorias,
               // );
-            
+
             } else {
               print("El snapshot contiene un error");
             }
           } else {
             print("El snapshot no contiene datos");
           }
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         });
   }
 }

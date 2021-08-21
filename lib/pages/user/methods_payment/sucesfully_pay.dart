@@ -46,11 +46,10 @@ class PagoExitoso extends StatelessWidget {
                         onPressed: () {
                           Navigator.pushNamed(context, "tabs");
                           Provider.of<CartProvider>(context, listen: false).emptyCart();
-                          // print("Ha finalizado la compra");
                         }),
                     TextButton(
                         child: Text(
-                          'Ver detalle de compra en Whatsapp',
+                          'Ver detalle en Whatsapp',
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -61,30 +60,10 @@ class PagoExitoso extends StatelessWidget {
                         ),
                         onPressed: () async {
                           await msgNotaCompra(context);
-
-                          // showDialog(
-                          //     context: context,
-                          //     builder: (BuildContext context) => CupertinoAlertDialog(
-                          //           title: Text("Felicidades por su compra"),
-                          //           actions: <Widget>[
-                          //             CupertinoDialogAction(
-                          //               isDefaultAction: true,
-                          //               child: Text("Ver detalle en Whatsapp"),
-                          //               onPressed: () async {
-                          //                 await msgNotaCompra(context);
-                          //                 Navigator.of(context).pop();
-                          //               },
-                          //             ),
-                          //           ],
-                          //         ));
-
                           Navigator.pushNamed(context, "tabs");
                           Provider.of<CartProvider>(context, listen: false).emptyCart();
-                          print("Ha finalizado la compra");
-                        
-                       
-
                         }),
+                    
                   ],
                 ),
               )),
@@ -95,38 +74,41 @@ class PagoExitoso extends StatelessWidget {
 
   Future<void> msgNotaCompra(BuildContext context) async {
     String nota = "";
-    String nombre=Provider.of<UsuarioProvider>(context, listen: false).getNombre;
+    String nombre = Provider.of<UsuarioProvider>(context, listen: false).getNombre;
     String fecha = (DateTime.now()).toString();
     nota = nota + "Fecha:" + fecha;
     nota = nota + "\n";
-    nota = nota+"¡FoundMart Compre con nosotros!";
+    nota = nota + "¡FoundMart Compre con nosotros!";
     nota = nota + "\n";
-    nota = nota+"Cliente: "+nombre;
+    nota = nota + "Cliente: " + nombre;
     nota = nota + "\n";
     nota = nota + "______________";
     nota = nota + "\n";
-    Map<String, CartAttr> aux =
-        Provider.of<CartProvider>(context, listen: false).getCartItems;
+    Map<String, CartAttr> aux = Provider.of<CartProvider>(context, listen: false).getCartItems;
 
-     aux.forEach((key, value) {
-      nota = nota+
-        
-          "\n" +"Nombre de producto: "+
-          "\n" +value.nombre +
-          "\n" +"Precio: "+
+    aux.forEach((key, value) {
+      nota = nota +
+          "\n" +
+          "Nombre de producto: " +
+          "\n" +
+          value.nombre +
+          "\n" +
+          "Precio: " +
           (value.precio).toString() +
-          "\n" +"Cantidad: "+
+          "\n" +
+          "Cantidad: " +
           (value.cantidad).toString() +
-          "\n"     ;
+          "\n";
     });
-    nota = nota +"___________________"+ "\n"
-        "Total:" +
+    nota = nota +
+        "___________________" +
+        "\n"
+            "Total:" +
         (Provider.of<CartProvider>(context, listen: false).getTotalAcumulado).toString();
-
+    
     await launch("https://wa.me/59176358244?text=$nota");
-      Provider.of<CartProvider>(context, listen: false)
-                             .emptyCart();
-
-
+    
+    //Número del ing
+    // await launch("https://wa.me/59178115911?text=$nota");
   }
 }

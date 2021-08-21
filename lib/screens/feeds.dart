@@ -52,7 +52,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
         } else {
           print("El snapshot no contiene datos");
         }
-        return CircularProgressIndicator();
+        return Center(child: CircularProgressIndicator());
       },
     ));
   }
