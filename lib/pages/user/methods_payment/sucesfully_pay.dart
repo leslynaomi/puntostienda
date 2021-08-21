@@ -39,31 +39,46 @@ class PagoExitoso extends StatelessWidget {
                           ),
                         ),
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.resolveWith(
-                              (states) => (Colors.blue[300])),
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith((states) => (Colors.blue[300])),
                         ),
                         onPressed: () {
                           Navigator.pushNamed(context, "tabs");
-                          Provider.of<CartProvider>(context, listen: false)
-                              .emptyCart();
+                          Provider.of<CartProvider>(context, listen: false).emptyCart();
+                          // print("Ha finalizado la compra");
+                        }),
+                    TextButton(
+                        child: Text(
+                          'Ver detalle de compra en Whatsapp',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith((states) => (Colors.green[300])),
+                        ),
+                        onPressed: () async {
+                          await msgNotaCompra(context);
 
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  CupertinoAlertDialog(
-                                    title: Text("Felicidades por su compra"),
-                                    actions: <Widget>[
-                                      CupertinoDialogAction(
-                                        isDefaultAction: true,
-                                        child: Text("Ver detalle en Whatsapp"),
-                                        onPressed: () async{
-                                          await msgNotaCompra(context);
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                    ],
-                                  ));
+                          // showDialog(
+                          //     context: context,
+                          //     builder: (BuildContext context) => CupertinoAlertDialog(
+                          //           title: Text("Felicidades por su compra"),
+                          //           actions: <Widget>[
+                          //             CupertinoDialogAction(
+                          //               isDefaultAction: true,
+                          //               child: Text("Ver detalle en Whatsapp"),
+                          //               onPressed: () async {
+                          //                 await msgNotaCompra(context);
+                          //                 Navigator.of(context).pop();
+                          //               },
+                          //             ),
+                          //           ],
+                          //         ));
 
+                          Navigator.pushNamed(context, "tabs");
+                          Provider.of<CartProvider>(context, listen: false).emptyCart();
                           print("Ha finalizado la compra");
                         }),
                   ],
@@ -85,8 +100,7 @@ class PagoExitoso extends StatelessWidget {
     nota = nota + "\n";
     nota = nota + "______________";
 
-    Map<String, CartAttr> aux =
-        Provider.of<CartProvider>(context, listen: false).getCartItems;
+    Map<String, CartAttr> aux = Provider.of<CartProvider>(context, listen: false).getCartItems;
 
     aux.forEach((key, value) {
       nota = value.nombre +
@@ -101,8 +115,7 @@ class PagoExitoso extends StatelessWidget {
     });
     nota = nota +
         "Total:" +
-        (Provider.of<CartProvider>(context, listen: false).getTotalAcumulado)
-            .toString();
+        (Provider.of<CartProvider>(context, listen: false).getTotalAcumulado).toString();
 
     await launch("https://wa.me/59176358244?text=$nota");
   }
