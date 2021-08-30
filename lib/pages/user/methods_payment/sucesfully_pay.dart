@@ -1,16 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:fancy_dialog/FancyAnimation.dart';
-// import 'package:fancy_dialog/FancyGif.dart';
-// import 'package:fancy_dialog/FancyTheme.dart';
-// import 'package:fancy_dialog/fancy_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:puntotienda/provider/cart_provider.dart';
 import 'package:puntotienda/provider/user_provider.dart';
 import 'package:puntotienda/src/model/CartAttr.dart';
 import 'package:url_launcher/url_launcher.dart';
-//import 'package:kussa/widgets/buy_button.dart';
 
 class PagoExitoso extends StatelessWidget {
   @override
